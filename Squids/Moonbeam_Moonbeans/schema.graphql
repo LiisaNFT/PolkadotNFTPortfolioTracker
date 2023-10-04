@@ -1,0 +1,350 @@
+type Block @entity {
+    id: ID!
+    number: Int! @index
+    timestamp: DateTime! @index
+}
+
+type Transaction @entity {
+    id: ID!
+    blockNumber: Int @index
+    blockTimestamp: DateTime! @index
+    hash: String! @index
+    to: String @index
+    from: String @index
+    status: Int @index
+}
+
+type ContractEventCollectionModified @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    token: String! @index
+    enabled: Boolean! @index
+    owner: String! @index
+    collectionOwnerFee: BigInt!
+    timestamp: BigInt!
+}
+
+type ContractEventEscrowReturned @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    user: String! @index
+    price: BigInt! @index
+}
+
+type ContractEventOwnershipTransferred @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    previousOwner: String! @index
+    newOwner: String! @index
+}
+
+type ContractEventTradeAccepted @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    tradeId: String! @index
+    token: String! @index
+    tokenId: BigInt! @index
+    quantity: BigInt!
+    price: BigInt!
+    oldOwner: String!
+    newOwner: String!
+    tradeType: Int!
+    expiry: BigInt!
+    timestamp: BigInt!
+}
+
+type ContractEventTradeCancelled @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    tradeId: String! @index
+    token: String! @index
+    tokenId: BigInt! @index
+    quantity: BigInt!
+    price: BigInt!
+    maker: String!
+    expiry: BigInt!
+    timestamp: BigInt!
+    tradeFlags: JSON!
+}
+
+type ContractEventTradeOpened @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    tradeId: String! @index
+    token: String! @index
+    tokenId: BigInt! @index
+    quantity: BigInt!
+    price: BigInt!
+    maker: String!
+    expiry: BigInt!
+    timestamp: BigInt!
+    tradeFlags: JSON!
+}
+
+type ContractFunctionAcceptTrade @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    tradeId: String!
+    amount: BigInt!
+}
+
+type ContractFunctionAddMoneyToEscrow @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+}
+
+type ContractFunctionCancelTrade @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    tradeId: String!
+}
+
+type ContractFunctionListCollection @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    ca: String!
+    tradingEnabled: Boolean!
+    royaltyWallet: String!
+    fee: BigInt!
+}
+
+type ContractFunctionOpenTrade @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    ca: String!
+    tokenId: BigInt!
+    quantity: BigInt!
+    price: BigInt!
+    expiry: BigInt!
+    tradeFlags: JSON!
+}
+
+type ContractFunctionRecover1155 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    token: String!
+    tokenId: BigInt!
+    amount: BigInt!
+}
+
+type ContractFunctionRecoverGas @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    to: String!
+    amount: BigInt!
+}
+
+type ContractFunctionRecoverToken @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    token: String!
+    amount: BigInt!
+}
+
+type ContractFunctionRenounceOwnership @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+}
+
+type ContractFunctionSetAdmin @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    admin: String!
+    value: Boolean!
+}
+
+type ContractFunctionSetCollectionOwner @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    ca: String!
+    owner: String!
+}
+
+type ContractFunctionSetCollectionOwnerFee @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    ca: String!
+    fee: BigInt!
+}
+
+type ContractFunctionSetCollectionOwnersCanSetRoyalties @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    value: Boolean!
+}
+
+type ContractFunctionSetCollectionTrading @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    ca: String!
+    value: Boolean!
+}
+
+type ContractFunctionSetDefaultCollectionOwnerFee @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    fee: BigInt!
+}
+
+type ContractFunctionSetFeesOn @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    value: Boolean!
+}
+
+type ContractFunctionSetTrading @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    value: Boolean!
+}
+
+type ContractFunctionTransferOwnership @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    newOwner: String!
+}
+
+type ContractFunctionWithdrawMoneyFromEscrow @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    amount: BigInt!
+}
+
