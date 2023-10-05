@@ -12,5 +12,6 @@
     "@apollo/client": "^3.8.4",
     "axios": "^1.5.1",
     "graphql": "^16.8.1"
-  }
+  },
+  "type": "module"
 }

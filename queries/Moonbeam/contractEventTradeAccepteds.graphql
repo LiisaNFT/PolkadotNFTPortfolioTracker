@@ -1,0 +1,20 @@
+query contractEventTradeAccepteds($blockNumber_gte: Int, $limit: Int) {
+  contractEventTradeAccepteds {
+    id
+    blockNumber
+    blockTimestamp
+    contract
+    eventName
+    expiry
+    newOwner
+    oldOwner
+    price
+    quantity
+    timestamp
+    token
+    tokenId
+    tradeId
+    tradeType
+    transactionHash
+  }
+}
