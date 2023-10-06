@@ -11,7 +11,7 @@ const __dirname = path.dirname(__filename);
 export function fetchcontractFunctionRuns(host, blockNumber_gte, limit) {
     // Load the GraphQL query from the file
     console.log('Hello World');
-    const queryFilePath = path.join(__dirname, '../../queries/Astar/contractFunctionRuns.graphql');
+    const queryFilePath = path.join(__dirname, '../../queries/Astar/getTofuSales.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
@@ -32,7 +32,7 @@ export function fetchcontractFunctionRuns(host, blockNumber_gte, limit) {
 export function fetchcontractEventTradeAccepteds(host, blockNumber_gte, limit) {
     // Load the GraphQL query from the file
     console.log('Hello World');
-    const queryFilePath = path.join(__dirname, '../../queries/Moonbeam/contractEventTradeAccepteds.graphql');
+    const queryFilePath = path.join(__dirname, '../../queries/Moonbeam/getMoonbeansSales.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
