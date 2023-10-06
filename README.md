@@ -34,7 +34,7 @@ The project is open source under Apache 2.0 license. To run it locally:
 
 ## Contributing
 
-Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contributions are welcome! See [CONTRIBUTING](CONTRIBUTING.md) for guidelines.
 
 ## License
 
