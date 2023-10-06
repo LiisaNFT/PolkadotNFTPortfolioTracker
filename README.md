@@ -1,83 +1,45 @@
-```
-____/\\\_______________/\\\___/\\\______/\\\\\\\\\\\_______/\\\\\\\\\____________/\\\________/\\\\\_________        
-____\/\\\______________\///___\///_____/\\\/////////\\\___/\\\\\\\\\\\\\_________\///_______/\\\///\\\_______       
-_____\/\\\_______________/\\\___/\\\___\//\\\______\///___/\\\/////////\\\_________/\\\____/\\\/__\///\\\_____      
-______\/\\\______________\/\\\__\/\\\____\////\\\_________\/\\\_______\/\\\________\/\\\___/\\\______\//\\\____     
-_______\/\\\______________\/\\\__\/\\\_______\////\\\______\/\\\\\\\\\\\\\\\________\/\\\__\/\\\_______\/\\\____    
-________\/\\\______________\/\\\__\/\\\__________\////\\\___\/\\\/////////\\\________\/\\\__\//\\\______/\\\_____   
-_________\/\\\______________\/\\\__\/\\\___/\\\______\//\\\__\/\\\_______\/\\\________\/\\\___\///\\\__/\\\_______  
-__________\/\\\\\\\\\\\\\\\__\/\\\__\/\\\__\///\\\\\\\\\\\/___\/\\\_______\/\\\__/\\\__\/\\\_____\///\\\\\/________ 
-___________\///////////////___\///___\///_____\///////////_____\///________\///__\///___\///________\/////__________
-```
+![image](https://github.com/LiisaNFT/PolkadotNFTPortfolioTracker/assets/139144686/93a43242-892b-4ecf-8070-4856b19bf86c)
 
+# Polkadot NFT Portfolio Tracker by Liisa
 
-# NFT Portfolio Tracker by Liisa
-<!--
-## Table of Contents
+This project builds an NFT portfolio tracker tailored for the Polkadot ecosystem. It allows users to view and analyze their NFT holdings across different protocols within the Polkadot ecosystem. This project is being developed by Liisa, a multi-chain NFT data analytics platform.
 
-- Overview
-- Installation
-- Usage
-- Development
-- Testing
-- Troubleshooting
-- License
-- Contribution
+## Features
 
-## Overview
+- **Display NFT holdings** from supported protocols like Astar, Moonbeam, etc.
+- **Provide overview metrics** like estimated portfolio value, sales, revenue etc.
+- **Assess portfolio** with metrics like liquidity, volatility and diversification.
+- **View details** for each NFT like value, rarity, sales history etc.
+- **Analyze collections** based on performance and impact on portfolio.
 
-XRPL Trackr by Liisa is a dynamic alerts system for XRPL NFTs. Developed by Liisa, this system lets you track the NFT collections on the XRPL ledger and set up alerts for specific events like price changes, sales and new listings, based on user-defined criteria. It also provides a rich front-end user interface for viewing NFT collections, active alerts, and an alerts feed.
-Features include:
-Fetching NFT collections related to a specific account.
-Setting up alerts based on different conditions like price, rarity, trait, etc.
-Refreshing data to get the most recent information.
-Viewing alerts feed showing recent events related to the alerts.
+## Architecture
 
-## Installation
+The project uses a modular architecture with these main components:
 
-**Clone the repository:** Use git to clone the XRPL Trackr repository onto your local machine.
+- **Backend APIs**: Written in Node.js, it fetches on-chain data using Subsquid and runs analytics.
+- **PostgreSQL database**: Stores all NFT data.
+- **Frontend**: Developed in React, it provides the portfolio dashboard and visualizations.
+- **Bubble.io plugins**: Enable wallet connectivity.
 
-git clone https://github.com/paulogustavopeixoto/xrplTrackerbyLiisa.git
+## Getting Started
 
+The project is open source under Apache 2.0 license. To run it locally:
 
-**Navigate to the project directory:**
+1. Clone the repository
+2. Install dependencies using `npm install`
+3. Configure environment variables
+4. Start backend server using `npm run server`
+5. Start frontend using `npm start`
+6. Access the app at `http://localhost:3000`
 
-cd xrplTrackerbyLiisa
+## Contributing
 
-
-**Install Dependencies:** Use npm (Node Package Manager) to install all the necessary dependencies for XRPL Trackr.
-
-npm install
-
-
-**Set up environment variables:** Create .env and fill in the variables with your specific values.
-
-**Start the Application:** After installing the dependencies and setting up environment variables, you can start the application by running:
-
-node app.js
-
-
-This should start the XRPL Trackr locally on your machine. Open a web browser and go to localhost:3000 (or whatever port you specified) to use the application.
-
-## Usage
-
-Fetching Collections Enter an account address in the input field and click on the "Fetch Collections" button. The table will populate with the collections associated with the entered account.
-Setting up Alerts Click on a collection name in the Collections table. This will open a modal where you can set up your alerts. Choose the type of alert (for example, new listings), specify the movement (higher or lower), and set the value. Click "Submit" to set the alert.
-Refreshing Data Click the "Refresh Data" button at any time to fetch the most recent data for your collections and alerts.
-Viewing Alerts Go to the "Active Alerts" tab to view all of your active alerts. You can also view the "Alerts Feed" to see recent events related to your alerts.
-
-
-## Troubleshooting
-
-In case you run into issues, check the following:
-Dependencies not installed correctly: Try deleting the node_modules folder and package-lock.json file, then running npm install again.
-API Key: Ensure that your XRPL API key is correctly added to your .env file.
-Server not starting: Check the error message in the console. It can often provide hints as to what's going wrong.
-
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## License
-XRPL Trackr is licensed under the MIT License. For more details, see the LICENSE file in the repository.
-Contribution
-Contributions are welcome! If you'd like to contribute, please fork the repository and make changes as you'd like. Pull requests are warmly welcomed. Please ensure your code passes all the tests and linting checks before submitting a pull request.
-For detailed contribution guidelines, please check the CONTRIBUTING.md file in the repository.
--->
+
+This project is licensed under Apache 2.0. See [LICENSE](LICENSE.md) file for details.
+
+# Stay tuned for updates!
+
+Visit our [Website](https://www.liisa.io), follow us on [Twitter](https://https://twitter.com/liisa_io) and join our [Discord](https://discord.gg/6wHSEyc9NX). 
