@@ -1,5 +1,5 @@
 query contractEventTradeAccepteds($blockNumber_gte: Int, $limit: Int) {
-  contractEventTradeAccepteds {
+  contractEventTradeAccepteds(orderBy: blockNumber_DESC, limit: $limit, where: {blockNumber_gte: $blockNumber_gte}){
     id
     blockNumber
     blockTimestamp

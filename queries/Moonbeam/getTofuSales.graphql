@@ -1,0 +1,16 @@
+query contractFunctionRuns($blockNumber_gte: Int, $limit: Int) {
+  contractFunctionRuns(orderBy: blockNumber_DESC, limit: $limit, where: {blockNumber_gte: $blockNumber_gte}){
+    blockNumber
+    blockTimestamp
+    contract
+    detail
+    functionName
+    functionSuccess
+    functionValue
+    id
+    intent
+    sigDetail
+    sigIntent
+    transactionHash
+  }
+}

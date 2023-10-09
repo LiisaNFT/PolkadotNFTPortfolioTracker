@@ -1,0 +1,14 @@
+query contractEventTokenListeds($blockNumber_gte: Int, $limit: Int) {
+  contractEventTokenListeds(orderBy: blockNumber_DESC, limit: $limit, where: {blockNumber_gte: $blockNumber_gte}) {
+    id
+    blockNumber
+    blockTimestamp
+    contract
+    eventName
+    id0
+    price
+    timestamp
+    token
+    transactionHash
+  }
+}

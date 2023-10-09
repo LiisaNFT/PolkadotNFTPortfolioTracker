@@ -1,0 +1,16 @@
+query contractEventBuys($blockNumber_gte: Int, $limit: Int) {
+  contractEventBuys(orderBy: blockNumber_DESC, limit: $limit, where: {blockNumber_gte: $blockNumber_gte}){
+    id
+    blockNumber
+    blockTimestamp
+    buyer
+    contract
+    eventName
+    currency
+    price
+    saleId
+    tipsFee
+    tokenId
+    transactionHash
+  }
+}
