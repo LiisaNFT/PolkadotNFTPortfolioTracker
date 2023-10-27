@@ -7,7 +7,6 @@ import {Log, Transaction} from '../processor'
 
 const address = '0x65763702806143a5326b40ecded5b17796696cb3'
 
-
 export function parseEvent(ctx: DataHandlerContext<Store>, log: Log) {
     try {
         switch (log.topics[0]) {
