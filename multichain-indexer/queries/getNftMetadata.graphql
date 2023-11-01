@@ -1,0 +1,25 @@
+query NftMetadata($nftId: ID!, $chain: Chain) {
+  nfToken(id: $nftId, where: { chain: $chain }) {
+    id
+    nativeId
+    name
+    symbol
+    uri
+    collection {
+      id
+      name
+    }
+    attributes {
+      attribute {
+        type
+        value
+        rarity
+      }
+    }
+    chain
+  }
+}
+
+# This query, named `NftMetadata`, retrieves detailed metadata for a specified NFT using its ID (`$nftId`) and a specific blockchain chain (`$chain`). 
+# The returned data includes the NFT's native ID, name, symbol, URI, associated collection details, its attributes (type, value, and rarity), and the blockchain chain it's associated with.
+# To use this query, provide the desired NFT ID and the blockchain chain you're interested in.

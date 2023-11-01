@@ -1,0 +1,14 @@
+/node_modules
+/lib
+/builds
+
+/**Versions.jsonl
+
+# IDE files
+/.idea
+
+# MISC
+
+.DS_Store
+dump_*.sql
+

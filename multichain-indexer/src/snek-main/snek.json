@@ -1,0 +1,27 @@
+{
+  "outDir": "src/types/snek",
+  "specVersions": "https://basilisk-rococo-firesquid.play.hydration.cloud/graphql",
+  "events": [
+    "NFT.ClassCreated",
+    "NFT.InstanceMinted",
+    "NFT.InstanceTransferred",
+    "NFT.InstanceBurned",
+    "NFT.ClassDestroyed",
+    "NFT.CollectionCreated",
+    "NFT.ItemMinted",
+    "NFT.ItemTransferred",
+    "NFT.ItemBurned",
+    "NFT.CollectionDestroyed",
+    "Marketplace.TokenSold",
+    "Marketplace.TokenPriceUpdated",
+    "Marketplace.RoyaltyAdded",
+    "Marketplace.RoyaltyPaid",
+    "Marketplace.OfferPlaced",
+    "Marketplace.OfferWithdrawn",
+    "Marketplace.OfferAccepted",
+    "AssetRegistry.Registered",
+    "AssetRegistry.Updated",
+    "AssetRegistry.MetadataSet"
+  ],
+  "calls": []
+}
