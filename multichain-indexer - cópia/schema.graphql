@@ -1,0 +1,94 @@
+enum ContractStandard {
+  ERC721
+  ERC1155
+}
+
+enum EventType {
+  TRANSFER
+  MINT
+  BURN
+  SALE 
+  LIST 
+  CANCEL
+}
+
+enum Chain {
+  MOONBEAM
+  MOONRIVER
+  BASILISK
+  UNIQUE 
+  ASTAR 
+  EFINITY
+}
+
+enum TransferDirection {
+  From
+  To
+}
+
+type Account @entity {
+  id: ID! @index
+  ownedTokens: [NfToken] @derivedFrom(field: "currentOwner")
+}
+
+type Collection @entity {
+  id: ID! # Contract address @index
+  collectionType: ContractStandard! @index
+  nfts: [NfToken] @derivedFrom(field: "collection")
+  createdAtBlock: BigInt! @index
+  createdAt: DateTime! @index
+  name: String @index
+}
+
+type NfToken @entity {
+    id: ID!
+    nativeId: String! @index
+    name: String @index
+    symbol: String @index
+    collection: Collection! @index
+    image: String
+    uri: String
+    currentOwner: Account! 
+    amount: BigInt! @index
+    isBurned: Boolean! @index
+    attributes: [NfTokenAttribute!]! @derivedFrom(field: "nftoken")
+}
+
+type UriUpdateAction @entity {
+  id: ID!
+  token: NfToken!
+  newValue: String
+  oldValue: String
+  blockNumber: BigInt!
+  timestamp: DateTime!
+  txnHash: String!
+}
+
+type NftEvent @entity {
+  id: ID!
+  blockNumber: Int! @index
+  timestamp: DateTime! @index
+  txnHash: String! @index
+  nfToken: NfToken! @index
+  eventType: EventType! @index
+  from: Account!
+  to: Account!
+  marketplace: String! @index
+  price: BigInt! @index
+  chain: String! @index
+}
+
+type Attribute @entity {
+    id: ID!
+    collection: Collection! @index
+    type: String! @index
+    value: String!
+    tokens: [NfTokenAttribute!]! @derivedFrom(field: "attribute")
+    rarity: Float! @index
+}
+
+type NfTokenAttribute @entity {
+    id: ID!
+    nftoken: NfToken!
+    attribute: Attribute!
+}
