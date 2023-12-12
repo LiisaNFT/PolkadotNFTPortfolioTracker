@@ -1,0 +1,31 @@
+query LowestSalePrice($collectionId: ID!, $startTime: DateTime!, $endTime: DateTime!) {
+  # Find sale events within the collection and the given time interval
+  nftEvents(
+    where: { 
+      NfToken: { collection: { id: $collectionId } },
+      eventType: SALE,
+      timestamp_gte: $startTime,
+      timestamp_lte: $endTime
+    },
+    orderBy: { price: ASC },
+    limit: 1
+  ) {
+    price
+    NfToken {
+      id
+      collection {
+        id
+        name
+      }
+    }
+    timestamp
+    txnHash
+  }
+}
+
+# This GraphQL query retrieves the sale event with the lowest sale price 
+# for NFTs within a specified collection and time interval. 
+# It filters sale events by the given collection ID and ensures that 
+# the event timestamp is between the provided start and end times.
+# The results are sorted by sale price in ascending order, 
+# and only the sale event with the lowest price is returned.

@@ -1,0 +1,18 @@
+query LastTraitSale($collectionId: ID!, $attributeType: String!, $attributeValue: String!) {
+  # Find NFTs in the collection with the given attribute value
+  nfts(where: { 
+      collection: { id: $collectionId },
+      attributes: {
+        type: $attributeType,
+        value: $attributeValue
+      }
+    }, limit: 1) {
+    id
+    # Fetch the most recent sale event for the NFT
+    saleEvents(orderBy: { timestamp: DESC }, limit: 1) {
+      price
+      timestamp
+      txnHash
+    }
+  }
+}

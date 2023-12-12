@@ -59,6 +59,11 @@
         "deps": ["build", "migration:apply"],
         "cmd": ["node", "--require=dotenv/config", "lib/Astar/main.js"]
       },
+      "process:Moonsama": {
+        "description": "Load .env and start the Moonsama squid processor",
+        "deps": ["build", "migration:apply"],
+        "cmd": ["node", "--require=dotenv/config", "lib/Moonsama/main.js"]
+      },
       "serve": {
         "description": "Start the GraphQL API server",
         "cmd": ["squid-graphql-server"]
