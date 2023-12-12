@@ -3,7 +3,7 @@ import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSele
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../common/errors'
 import { ClaimsClaimMintedEvent } from '../../../types/generated/events'
-import { AccountClaimType, ClaimRequest, ClaimDetails, ClaimAccount, Event as EventModel } from '../../../model'
+import { AccountClaimType, ClaimRequest, ClaimDetails, ClaimAccount, Event as EventModel } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getTotalUnclaimedAmount } from '../common'

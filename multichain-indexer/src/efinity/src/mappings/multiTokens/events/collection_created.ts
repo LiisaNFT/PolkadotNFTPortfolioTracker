@@ -23,7 +23,7 @@ import {
     RoyaltyCurrency,
     Token,
     TransferPolicy,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { Call, Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'

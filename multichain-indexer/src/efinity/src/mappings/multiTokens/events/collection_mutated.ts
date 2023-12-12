@@ -12,7 +12,7 @@ import {
     Royalty,
     RoyaltyCurrency,
     Token,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'

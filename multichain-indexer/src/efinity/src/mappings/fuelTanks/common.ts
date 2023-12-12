@@ -10,7 +10,7 @@ import {
     RequireToken,
     PermittedExtrinsics,
     FuelTankRuleSet,
-} from '../../model'
+} from '../../modelEnjin'
 import { Call } from '../../types/generated/support'
 import { CommonContext } from '../types/contexts'
 import { FuelTanksDispatchAndTouchCall, FuelTanksDispatchCall } from '../../types/generated/calls'

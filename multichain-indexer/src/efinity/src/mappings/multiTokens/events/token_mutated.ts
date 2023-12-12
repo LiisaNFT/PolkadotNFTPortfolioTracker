@@ -11,7 +11,7 @@ import {
     TokenBehaviorHasRoyalty,
     TokenBehaviorIsCurrency,
     TokenBehaviorType,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { isNonFungible } from '../utils/helpers'
 import { CommonContext } from '../../types/contexts'

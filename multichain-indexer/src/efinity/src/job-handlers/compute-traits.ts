@@ -3,7 +3,7 @@ import isPlainObject from 'lodash/isPlainObject'
 import { createHash } from 'crypto'
 import Queue from 'bull'
 import connection from '../connection'
-import { Collection, Token, Trait, TraitToken } from '../model'
+import { Collection, Token, Trait, TraitToken } from '../modelEnjin'
 import { JobData } from '../jobs/compute-traits'
 
 type TraitValueMap = Map<string, bigint>

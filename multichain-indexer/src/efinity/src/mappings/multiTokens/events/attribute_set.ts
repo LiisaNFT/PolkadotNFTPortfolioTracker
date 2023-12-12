@@ -14,7 +14,7 @@ import {
     MintPolicy,
     MultiTokensAttributeSet,
     Token,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getOrCreateAccount } from '../../util/entities'

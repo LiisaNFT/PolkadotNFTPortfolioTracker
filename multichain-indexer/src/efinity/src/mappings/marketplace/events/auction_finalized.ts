@@ -13,7 +13,7 @@ import {
     ListingStatus,
     ListingStatusType,
     MarketplaceAuctionFinalized,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getBestListing } from '../../util/entities'

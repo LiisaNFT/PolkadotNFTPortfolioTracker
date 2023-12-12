@@ -1,5 +1,5 @@
 import Queue from 'bull'
-import { Collection, CollectionStats, Listing, ListingSale, ListingStatus, Token } from '../model'
+import { Collection, CollectionStats, Listing, ListingSale, ListingStatus, Token } from '../modelEnjin'
 import { JobData } from '../jobs/collection-stats'
 import connection from '../connection'
 

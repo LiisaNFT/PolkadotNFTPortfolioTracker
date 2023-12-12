@@ -14,7 +14,7 @@ import {
     ListingType,
     MarketplaceBidPlaced,
     Token,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getBestListing, getOrCreateAccount } from '../../util/entities'

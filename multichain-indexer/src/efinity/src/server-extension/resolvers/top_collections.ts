@@ -4,7 +4,7 @@ import { Field, ObjectType, Query, Resolver, Arg, registerEnumType, ID, Int } fr
 import { Json } from '@subsquid/graphql-server'
 import 'reflect-metadata'
 import type { EntityManager } from 'typeorm'
-import { Collection, Listing, ListingSale, ListingStatus, Token } from '../../model'
+import { Collection, Listing, ListingSale, ListingStatus, Token } from '../../modelEnjin'
 
 enum Timeframe {
     HOUR = 'HOUR',

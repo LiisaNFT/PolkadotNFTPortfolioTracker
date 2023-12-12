@@ -6,7 +6,7 @@ import 'reflect-metadata'
 import type { EntityManager } from 'typeorm'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Validate, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator'
-import { Collection, FreezeState, Listing, Token, TokenAccount } from '../../model'
+import { Collection, FreezeState, Listing, Token, TokenAccount } from '../../modelEnjin'
 import { isValidAddress } from '../../common/tools'
 
 enum OrderBy {

@@ -13,7 +13,7 @@ import {
     TokenAccount,
     TransferPolicy,
     FreezeState,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { isTokenFrozen } from './token_created'

@@ -3,7 +3,7 @@ import { Field, ObjectType, Query, Resolver, Arg, registerEnumType } from 'type-
 import 'reflect-metadata'
 import { type EntityManager } from 'typeorm'
 import { BigInteger } from '@subsquid/graphql-server'
-import { Collection, Token } from '../../model'
+import { Collection, Token } from '../../modelEnjin'
 import { computeTraits } from '../../jobs/compute-traits'
 import { syncCollectionStats } from '../../jobs/collection-stats'
 import { processMetadata } from '../../jobs/process-metadata'

@@ -1,7 +1,7 @@
 import Queue from 'bull'
 import { redisConfig } from './common'
 import connection from '../connection'
-import { Collection } from '../model'
+import { Collection } from '../modelEnjin'
 import { computeTraits } from './compute-traits'
 
 export type JobData = { collectionId: string }

@@ -11,7 +11,7 @@ import {
     FuelTankAccountRules,
     FuelTankRuleSet,
     PermittedExtrinsics,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 

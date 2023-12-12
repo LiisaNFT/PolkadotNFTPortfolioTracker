@@ -2,7 +2,7 @@ import Queue from 'bull'
 import connection from '../connection'
 import { JobData } from '../jobs/fetch-collection-extra'
 import { fetchCollectionsExtra } from '../mappings/util/marketplace'
-import { Collection, CollectionFlags, CollectionSocials } from '../model'
+import { Collection, CollectionFlags, CollectionSocials } from '../modelEnjin'
 
 function isNotNull<T>(input: null | T): input is T {
     return input != null

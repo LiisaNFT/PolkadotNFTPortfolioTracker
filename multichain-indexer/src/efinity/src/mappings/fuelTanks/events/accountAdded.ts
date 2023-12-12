@@ -3,7 +3,7 @@ import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSele
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../common/errors'
 import { FuelTanksAccountAddedEvent } from '../../../types/generated/events'
-import { Event as EventModel, FuelTank, FuelTankUserAccounts } from '../../../model'
+import { Event as EventModel, FuelTank, FuelTankUserAccounts } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'

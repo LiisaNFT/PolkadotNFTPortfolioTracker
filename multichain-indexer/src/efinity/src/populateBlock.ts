@@ -40,7 +40,7 @@ import {
     CollectionFlags,
     CollectionSocials,
     CollectionApproval,
-} from './model'
+} from './modelEnjin'
 import { getCapType, getFreezeState, isTokenFrozen } from './mappings/multiTokens/events'
 import { isNonFungible } from './mappings/multiTokens/utils/helpers'
 import { safeString } from './common/tools'
@@ -555,7 +555,6 @@ async function syncListings(ctx: CommonContext, block: SubstrateBlock) {
                     amount: data.amount,
                     highestPrice: data.price,
                     minTakeValue: data.minTakeValue,
-                    feeSide: FeeSide[data.feeSide.__kind],
                     seller: new Account({ id: u8aToHex(data.seller) }),
                     makeAssetId: new Token({ id: `${data.makeAssetId.collectionId}-${data.makeAssetId.tokenId}` }),
                     takeAssetId: new Token({ id: `${data.takeAssetId.collectionId}-${data.takeAssetId.tokenId}` }),

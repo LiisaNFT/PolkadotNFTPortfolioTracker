@@ -11,7 +11,7 @@ import {
     MultiTokensMinted,
     Token,
     TokenAccount,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { isNonFungible } from '../utils/helpers'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'

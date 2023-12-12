@@ -11,7 +11,7 @@ import {
     FuelTankUserAccountManagement,
     RequireToken,
     WhitelistedCallers,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 

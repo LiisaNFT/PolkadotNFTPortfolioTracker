@@ -3,7 +3,7 @@ import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSele
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../common/errors'
 import { BalancesTransferEvent } from '../../../types/generated/events'
-import { BalancesTransfer, Event as EventModel, Extrinsic } from '../../../model'
+import { BalancesTransfer, Event as EventModel, Extrinsic } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { Sns } from '../../../common/sns'

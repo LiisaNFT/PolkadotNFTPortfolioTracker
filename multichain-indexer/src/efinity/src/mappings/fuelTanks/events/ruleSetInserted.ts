@@ -3,7 +3,7 @@ import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSele
 import { u8aToHex } from '@polkadot/util'
 import { CallNotDefinedError, UnknownVersionError } from '../../../common/errors'
 import { FuelTanksRuleSetInsertedEvent } from '../../../types/generated/events'
-import { Event as EventModel, FuelTank, FuelTankRuleSet, PermittedExtrinsics } from '../../../model'
+import { Event as EventModel, FuelTank, FuelTankRuleSet, PermittedExtrinsics } from '../../../modelEnjin'
 import { Call, Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { FuelTanksInsertRuleSetCall } from '../../../types/generated/calls'

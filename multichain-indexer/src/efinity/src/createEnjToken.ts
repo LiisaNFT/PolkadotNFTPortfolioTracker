@@ -1,7 +1,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { CommonContext } from './mappings/types/contexts'
 import { getOrCreateAccount } from './mappings/util/entities'
-import { Collection, CollectionFlags, CollectionSocials, CollectionStats, MintPolicy, Token, TransferPolicy } from './model'
+import { Collection, CollectionFlags, CollectionSocials, CollectionStats, MintPolicy, Token, TransferPolicy } from './modelEnjin'
 import { isMainnet } from './common/tools'
 
 export async function createEnjToken(ctx: CommonContext, block: SubstrateBlock) {

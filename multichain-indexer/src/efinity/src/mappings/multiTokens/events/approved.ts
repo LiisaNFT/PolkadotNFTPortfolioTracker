@@ -10,7 +10,7 @@ import {
     Event as EventModel,
     MultiTokensApproved,
     Extrinsic,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { encodeId } from '../../../common/tools'
 import { Event } from '../../../types/generated/support'
 import { MultiTokensApprovedEvent } from '../../../types/generated/events'

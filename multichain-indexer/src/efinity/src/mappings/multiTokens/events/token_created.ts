@@ -20,7 +20,7 @@ import {
     TokenBehaviorType,
     TokenCapSingleMint,
     TokenCapSupply,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { Call, Event } from '../../../types/generated/support'
 import {
     DefaultMintParams_CreateToken as DefaultMintParamsCreateToken_v500,

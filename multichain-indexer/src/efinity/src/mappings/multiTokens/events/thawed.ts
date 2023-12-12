@@ -12,7 +12,7 @@ import {
     Token,
     TokenAccount,
     TransferPolicy,
-} from '../../../model'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { FreezeType_Token as FreezeTypeToken_v500 } from '../../../types/generated/v500'

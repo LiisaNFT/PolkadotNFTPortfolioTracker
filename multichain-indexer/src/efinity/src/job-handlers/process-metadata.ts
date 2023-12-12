@@ -2,7 +2,7 @@ import { IsNull } from 'typeorm'
 import Queue from 'bull'
 import connection from '../connection'
 import { JobData } from '../jobs/process-metadata'
-import { Attribute, Collection, Metadata, Token } from '../model'
+import { Attribute, Collection, Metadata, Token } from '../modelEnjin'
 import { fetchMetadata, metadataParser } from '../mappings/util/metadata'
 
 type MetadataType = {

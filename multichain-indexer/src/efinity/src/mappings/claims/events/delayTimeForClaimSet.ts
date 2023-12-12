@@ -3,7 +3,7 @@ import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSele
 import { UnknownVersionError } from '../../../common/errors'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
-import { ClaimDetails } from '../../../model'
+import { ClaimDetails } from '../../../modelEnjin'
 import { ClaimsDelayTimeForClaimSetEvent } from '../../../types/generated/events'
 import { getTotalUnclaimedAmount } from '../common'
 
