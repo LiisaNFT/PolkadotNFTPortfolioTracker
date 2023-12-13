@@ -1,0 +1,35 @@
+query FetchFloorPriceDifferences(
+  $nftCollectionID: BigInt!,
+  $include1h: Boolean!,
+  $include24h: Boolean!,
+  $include7d: Boolean!,
+  $include30d: Boolean!,
+  $inUSD: Boolean!,
+  $chain: Chain!
+) {
+  nftCollectionStats(
+    where: {
+      nft_collection_id: $nftCollectionID,
+      chain: $chain
+    }, 
+    first: 1
+  ) {
+    floor_1h_dif @include(if: $include1h) @skip(if: $inUSD)
+    floor_1h_dif_usd @include(if: $include1h) @include(if: $inUSD)
+    
+    floor_24h_dif @include(if: $include24h) @skip(if: $inUSD)
+    floor_24h_dif_usd @include(if: $include24h) @include(if: $inUSD)
+    
+    floor_7d_dif @include(if: $include7d) @skip(if: $inUSD)
+    floor_7d_dif_usd @include(if: $include7d) @include(if: $inUSD)
+    
+    floor_30d_dif @include(if: $include30d) @skip(if: $inUSD)
+    floor_30d_dif_usd @include(if: $include30d) @include(if: $inUSD)
+  }
+}
+
+# How to use this query:
+# - If you want the differences in native values, set $inUSD to false.
+# - If you want the differences in USD values, set $inUSD to true.
+# - To select specific timeframes, set the corresponding include* variables to true or false based on your needs.
+# - Specify the blockchain by setting the $chain variable to your desired value.

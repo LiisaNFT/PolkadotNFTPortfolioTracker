@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020",
+    "outDir": "lib",
+    "rootDir": "src",
+    "strict": true,
+    "declaration": false,
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipLibCheck": true
+  },
+  "include": ["src", "processor.ts", "main.ts", "../../jobs", "../../job-handlers", "mappings/balances", "mappings/claims", "mappings/fuelTanks", "mappings/marketplace", "mappings/multiTokens", "mappings/types", "mappings/util", "mappings/xcm"],
+  "exclude": [
+    "node_modules"
+  ]
+}

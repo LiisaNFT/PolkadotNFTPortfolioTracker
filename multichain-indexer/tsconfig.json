@@ -13,7 +13,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true
   },
-  "include": ["src"],
+  "include": ["src", "jobs", "job-handlers"],
   "exclude": [
     "node_modules"
   ]

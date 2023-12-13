@@ -1,0 +1,9 @@
+/node_modules
+/lib
+
+# IDE files
+/.idea
+/**/!*
+*.dev*
+.env
+/builds

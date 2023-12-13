@@ -1,0 +1,26 @@
+query PortfolioByUser($userId: ID!, $chain: Chain, $responseType: PortfolioResponseType = BOTH) {
+  # Fetch NFTs owned by the user on a specific chain
+  account(id: $userId) @include(if: $responseType == OWNED_TOKENS OR $responseType == BOTH) {
+    ownedTokens(where: { chain: $chain }) {
+      id
+      collection {
+        id
+        name
+      }
+      chain
+    }
+  }
+  
+  # List Collections
+  collections(where: { chain: $chain }) @include(if: $responseType == COLLECTIONS OR $responseType == BOTH) {
+    id
+    name
+    chain
+  }
+}
+
+# This query, named `PortfolioByUser`, retrieves either the NFTs owned by a user, a list of collections, or both, 
+# based on the specified blockchain chain (`$chain`) and the desired response type (`$responseType`).
+# To get only the NFTs owned by the user, set $responseType to OWNED_TOKENS.
+# To get only the list of collections, set $responseType to COLLECTIONS.
+# To get both, set $responseType to BOTH. Always specify the desired blockchain chain using the `$chain` parameter.
