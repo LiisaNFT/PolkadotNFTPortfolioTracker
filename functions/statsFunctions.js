@@ -1,4 +1,4 @@
-import { fetchAstarTofuSales, fetchMoonbeamMoonbeansSales, fetchMoonbeamSeascapeSales, fetchMoonbeamSeascapeListings, fetchMoonbeamTofuSales, fetchMoonriverMoonbeansSales, fetchMoonriverMoonbeansListings, fetchMoonriverSeascapeListings, fetchMoonriverSeascapeSales, fetchBasiliskSales, fetchBasiliskListings } from './getSales/getSalesAstar.js';
+import { fetchAstarTofuSales, fetchMoonbeamMoonbeansSales, fetchMoonbeamSeascapeSales, fetchMoonbeamSeascapeListings, fetchMoonbeamTofuSales, fetchMoonriverMoonbeansSales, fetchMoonriverMoonbeansListings, fetchMoonriverSeascapeListings, fetchMoonriverSeascapeSales, fetchBasiliskSales, fetchBasiliskListings } from './dataQueries.js';
 
 // Variables for queiring graphql
 
@@ -17,24 +17,6 @@ const blockNumber_gte = 10000;
 const limit = 10;
 
 //Functions
-
-//fetchAstarTofuSales(hostAstarTofuNFT, blockNumber_gte, limit);
-
-//fetchMoonbeamMoonbeansSales(hostMoonbeamMoonbeans, blockNumber_gte, limit);
-
-//fetchMoonbeamSeascapeSales(hostMoonbeamSeascape, blockNumber_gte, limit);
-
-//fetchMoonbeamSeascapeListings(hostMoonbeamSeascape, blockNumber_gte, limit);
-
-//fetchMoonbeamTofuSales(hostMoonbeamTofu, blockNumber_gte, limit);
-
-//fetchMoonriverMoonbeansSales(hostMoonriverMoonbeans, blockNumber_gte, limit);
-
-//fetchMoonriverMoonbeansListings(hostMoonriverMoonbeans, blockNumber_gte, limit);
-
-//fetchMoonriverSeascapeListings(hostMoonriverSeascape, blockNumber_gte, limit);
-
-//fetchMoonriverSeascapeSales(hostMoonriverSeascape, blockNumber_gte, limit);
 
 fetchBasiliskListings(hostBasilisk, blockNumber_gte, limit);
 

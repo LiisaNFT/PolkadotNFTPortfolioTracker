@@ -52,6 +52,7 @@ type NfToken @entity {
     amount: BigInt! @index
     isBurned: Boolean! @index
     attributes: [NfTokenAttribute!]! @derivedFrom(field: "nftoken")
+    rarity: Float!
 }
 
 type UriUpdateAction @entity {
@@ -174,4 +175,5 @@ type nftCollectionStats @entity {
     floor_7d_dif_usd: Float!
     floor_30d_dif_usd: Float!
     unique_holders: Float!
+    estimated_value: Float!
 }

@@ -2,13 +2,13 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError, UnsupportedCallError } from '../../../src/common/errors'
-import { MultiTokensCollectionCreatedEvent } from '../../../src/types/generated/events'
+import { MultiTokensCollectionCreatedEvent } from '../../../types/generated/events'
 import {
     FuelTanksDispatchAndTouchCall,
     FuelTanksDispatchCall,
     MultiTokensCreateCollectionCall,
     MultiTokensForceCreateCollectionCall,
-} from '../../../src/types/generated/calls'
+} from '../../../types/generated/calls'
 import {
     Collection,
     CollectionFlags,
@@ -23,11 +23,11 @@ import {
     RoyaltyCurrency,
     Token,
     TransferPolicy,
-} from '../../../src/modelEnjin'
-import { Call, Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Call, Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
-import { DefaultRoyalty } from '../../../src/types/generated/v500'
+import { DefaultRoyalty } from '../../../types/generated/v500'
 
 interface EventData {
     collectionId: bigint
@@ -142,7 +142,8 @@ export async function collectionCreated(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.CollectionCreated', { event: { args: true; call: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<EventModel | undefined> {
     if (!item.event.call) return undefined
 

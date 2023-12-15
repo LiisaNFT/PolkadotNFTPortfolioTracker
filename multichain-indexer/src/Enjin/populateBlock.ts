@@ -6,7 +6,7 @@ import { encodeAddress } from '@polkadot/util-crypto'
 import { In } from 'typeorm'
 import ora from 'ora'
 import axios from 'axios'
-import { CommonContext } from '../mappings/types/contexts'
+import { CommonContext } from './mappings/types/contexts'
 import * as Storage from './types/generated/storage'
 import config from './config'
 import {
@@ -41,12 +41,12 @@ import {
     CollectionSocials,
     CollectionApproval,
 } from './modelEnjin'
-import { getCapType, getFreezeState, isTokenFrozen } from '../mappings/multiTokens/events'
-import { isNonFungible } from '../mappings/multiTokens/utils/helpers'
-import { safeString } from './common/tools'
-import { addAccountsToSet, saveAccounts } from '../mappings/balances/processor'
-import { UnknownVersionError } from './common/errors'
-import { processMetadata } from '../../../jobs/process-metadata'
+import { getCapType, getFreezeState, isTokenFrozen } from './mappings/multiTokens/events'
+import { isNonFungible } from './mappings/multiTokens/utils/helpers'
+import { safeString } from './src/common/tools'
+import { addAccountsToSet, saveAccounts } from './mappings/balances/processor'
+import { UnknownVersionError } from './src/common/errors'
+import { processMetadata } from '../../jobs/process-metadata'
 
 const BATCH_SIZE = 1000
 

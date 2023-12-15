@@ -1,9 +1,9 @@
 import { u8aToHex, u8aToString } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
-import { TokenAccount } from '../../../src/modelEnjin'
-import { MultiTokensUnreservedEvent } from '../../../src/types/generated/events'
-import { Event } from '../../../src/types/generated/support'
+import { TokenAccount } from '../../../modelEnjin'
+import { MultiTokensUnreservedEvent } from '../../../types/generated/events'
+import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 
 function getEventData(ctx: CommonContext, eventItem: Event) {

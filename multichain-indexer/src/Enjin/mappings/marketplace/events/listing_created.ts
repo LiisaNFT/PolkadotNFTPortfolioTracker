@@ -3,7 +3,7 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MarketplaceListingCreatedEvent } from '../../../src/types/generated/events'
+import { MarketplaceListingCreatedEvent } from '../../../types/generated/events'
 import {
     Account,
     AccountTokenEvent,
@@ -20,8 +20,8 @@ import {
     ListingType,
     MarketplaceListingCreated,
     Token,
-} from '../../../src/modelEnjin'
-import { Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
@@ -64,7 +64,8 @@ export async function listingCreated(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'Marketplace.ListingCreated', { event: { args: true; extrinsic: true } }>,
-    skipSave = false
+    skipSave = false,
+    chain: String
 ): Promise<[EventModel, AccountTokenEvent] | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

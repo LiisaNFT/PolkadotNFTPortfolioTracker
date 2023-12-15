@@ -1,7 +1,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MarketplaceListingCancelledEvent } from '../../../src/types/generated/events'
+import { MarketplaceListingCancelledEvent } from '../../../types/generated/events'
 import {
     AccountTokenEvent,
     Event as EventModel,
@@ -10,8 +10,8 @@ import {
     ListingStatus,
     ListingStatusType,
     MarketplaceListingCancelled,
-} from '../../../src/modelEnjin'
-import { Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getBestListing } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
@@ -54,7 +54,8 @@ export async function listingCancelled(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'Marketplace.ListingCancelled', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<[EventModel, AccountTokenEvent] | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

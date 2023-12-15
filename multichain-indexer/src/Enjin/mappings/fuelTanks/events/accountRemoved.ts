@@ -2,9 +2,9 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { FuelTanksAccountRemovedEvent } from '../../../src/types/generated/events'
-import { Event as EventModel, FuelTankUserAccounts, FuelTank } from '../../../src/modelEnjin'
-import { Event } from '../../../src/types/generated/support'
+import { FuelTanksAccountRemovedEvent } from '../../../types/generated/events'
+import { Event as EventModel, FuelTankUserAccounts, FuelTank } from '../../../modelEnjin'
+import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 
 function getEventData(ctx: CommonContext, event: Event) {

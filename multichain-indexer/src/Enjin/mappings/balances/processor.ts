@@ -1,7 +1,7 @@
 import { hexToU8a, u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { UnknownVersionError } from '../../src/common/errors'
-import { Account, Balance, Event as EventModel } from '../../src/modelEnjin'
+import { Account, Balance, Event as EventModel } from '../../modelEnjin'
 import { encodeId, isAddressSS58 } from '../../src/common/tools'
 import {
     BalancesBalanceSetEvent,
@@ -14,9 +14,9 @@ import {
     BalancesTransferEvent,
     BalancesUnreservedEvent,
     BalancesWithdrawEvent,
-} from '../../src/types/generated/events'
-import { SystemAccountStorage } from '../../src/types/generated/storage'
-import { Event } from '../../src/types/generated/support'
+} from '../../types/generated/events'
+import { SystemAccountStorage } from '../../types/generated/storage'
+import { Event } from '../../types/generated/support'
 import { CommonContext } from '../types/contexts'
 
 function getDustLostAccount(ctx: CommonContext, event: Event) {

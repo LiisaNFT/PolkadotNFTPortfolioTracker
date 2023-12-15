@@ -3,7 +3,7 @@ import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSele
 import { u8aToHex } from '@polkadot/util'
 import { IsNull } from 'typeorm'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensTokenCreatedEvent } from '../../../src/types/generated/events'
+import { MultiTokensTokenCreatedEvent } from '../../../types/generated/events'
 import {
     Attribute,
     CapType,
@@ -20,20 +20,20 @@ import {
     TokenBehaviorType,
     TokenCapSingleMint,
     TokenCapSupply,
-} from '../../../src/modelEnjin'
-import { Call, Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Call, Event } from '../../../types/generated/support'
 import {
     DefaultMintParams_CreateToken as DefaultMintParamsCreateToken_v500,
     FreezeState as FreezeState_v500,
     MultiTokensCall_mint as MultiTokensCall_mint_v500,
     SufficiencyParam_Sufficient,
     TokenMarketBehavior,
-} from '../../../src/types/generated/v500'
-import { DefaultMintParams_CreateToken as DefaultMintParamsCreateToken_v600 } from '../../../src/types/generated/v600'
+} from '../../../types/generated/v500'
+import { DefaultMintParams_CreateToken as DefaultMintParamsCreateToken_v600 } from '../../../types/generated/v600'
 import {
     TokenCap,
     DefaultMintParams_CreateToken as DefaultMintParamsCreateToken_Enjin_v603,
-} from '../../../src/types/generated/matrixEnjinV603'
+} from '../../../types/generated/matrixEnjinV603'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
 import {
@@ -43,7 +43,7 @@ import {
     MultiTokensBatchMintCall,
     MultiTokensForceMintCall,
     MultiTokensMintCall,
-} from '../../../src/types/generated/calls'
+} from '../../../types/generated/calls'
 
 export function getCapType(cap: TokenCap) {
     if (cap.__kind === CapType.Supply) {
@@ -544,7 +544,8 @@ export async function tokenCreated(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.TokenCreated', { event: { args: true; call: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<EventModel | undefined> {
     const eventData = getEventData(ctx, item.event)
 

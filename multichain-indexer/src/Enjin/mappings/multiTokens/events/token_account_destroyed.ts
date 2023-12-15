@@ -2,10 +2,10 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensTokenAccountDestroyedEvent } from '../../../src/types/generated/events'
-import { CollectionAccount, Event as EventModel, Extrinsic, MultiTokensTokenAccountDestroyed, TokenAccount } from '../../../src/modelEnjin'
+import { MultiTokensTokenAccountDestroyedEvent } from '../../../types/generated/events'
+import { CollectionAccount, Event as EventModel, Extrinsic, MultiTokensTokenAccountDestroyed, TokenAccount } from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 
 interface EventData {
     collectionId: bigint

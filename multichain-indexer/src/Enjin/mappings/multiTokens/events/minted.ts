@@ -2,7 +2,7 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensMintedEvent } from '../../../src/types/generated/events'
+import { MultiTokensMintedEvent } from '../../../types/generated/events'
 import {
     Account,
     AccountTokenEvent,
@@ -11,10 +11,10 @@ import {
     MultiTokensMinted,
     Token,
     TokenAccount,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { isNonFungible } from '../utils/helpers'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { computeTraits } from '../../../../../jobs/compute-traits'
 import { getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
@@ -75,7 +75,8 @@ export async function minted(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.Minted', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<[EventModel, AccountTokenEvent] | EventModel | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

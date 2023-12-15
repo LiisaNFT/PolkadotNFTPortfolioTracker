@@ -5,8 +5,8 @@ import {
     ClaimsDelayClaimsPeriodStorage,
     ClaimsExchangeRateStorage,
     ClaimsTotalUnclaimedAmountStorage,
-} from '../../src/types/generated/storage'
-import { ClaimDetails } from '../../src/modelEnjin'
+} from '../../types/generated/storage'
+import { ClaimDetails } from '../../modelEnjin'
 
 export async function getTotalUnclaimedAmount(ctx: CommonContext, block: SubstrateBlock) {
     const data = new ClaimsTotalUnclaimedAmountStorage(ctx, block)

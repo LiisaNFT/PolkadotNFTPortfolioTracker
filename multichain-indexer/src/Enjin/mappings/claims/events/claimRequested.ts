@@ -2,7 +2,7 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { ClaimsClaimRequestedEvent } from '../../../src/types/generated/events'
+import { ClaimsClaimRequestedEvent } from '../../../types/generated/events'
 import {
     AccountClaimType,
     ClaimRequest,
@@ -11,8 +11,8 @@ import {
     ClaimsClaimRequested,
     Event as EventModel,
     Extrinsic,
-} from '../../../src/modelEnjin'
-import { Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { Sns } from '../../../src/common/sns'
 import { getTotalUnclaimedAmount } from '../common'

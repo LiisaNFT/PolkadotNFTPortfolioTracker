@@ -1,16 +1,14 @@
 query FetchFloorPriceDifferences(
-  $nftCollectionID: BigInt!,
+  $collectionId: ID!,
   $include1h: Boolean!,
   $include24h: Boolean!,
   $include7d: Boolean!,
   $include30d: Boolean!,
-  $inUSD: Boolean!,
-  $chain: Chain!
+  $inUSD: Boolean!
 ) {
   nftCollectionStats(
     where: {
-      nft_collection_id: $nftCollectionID,
-      chain: $chain
+      nft_collection_id: $collectionId
     }, 
     first: 1
   ) {

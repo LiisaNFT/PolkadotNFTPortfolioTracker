@@ -2,7 +2,7 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensTokenDestroyedEvent } from '../../../src/types/generated/events'
+import { MultiTokensTokenDestroyedEvent } from '../../../types/generated/events'
 import {
     AccountTokenEvent,
     Attribute,
@@ -13,9 +13,9 @@ import {
     MultiTokensTokenDestroyed,
     Token,
     TraitToken,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 
 import { computeTraits } from '../../../../../jobs/compute-traits'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
@@ -56,7 +56,8 @@ export async function tokenDestroyed(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.TokenDestroyed', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<EventModel | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

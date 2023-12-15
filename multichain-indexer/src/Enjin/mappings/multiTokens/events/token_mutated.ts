@@ -1,7 +1,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensTokenMutatedEvent } from '../../../src/types/generated/events'
+import { MultiTokensTokenMutatedEvent } from '../../../types/generated/events'
 import {
     Event as EventModel,
     Extrinsic,
@@ -11,12 +11,12 @@ import {
     TokenBehaviorHasRoyalty,
     TokenBehaviorIsCurrency,
     TokenBehaviorType,
-} from '../../../src/modelEnjin'
-import { Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Event } from '../../../types/generated/support'
 import { isNonFungible } from '../utils/helpers'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
-import { TokenMarketBehavior } from '../../../src/types/generated/v500'
+import { TokenMarketBehavior } from '../../../types/generated/v500'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MultiTokensTokenMutatedEvent(ctx, event)
@@ -71,7 +71,8 @@ export async function tokenMutated(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.TokenMutated', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<EventModel | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

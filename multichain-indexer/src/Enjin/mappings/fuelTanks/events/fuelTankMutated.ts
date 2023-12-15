@@ -3,7 +3,7 @@ import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSele
 import { u8aToHex } from '@polkadot/util'
 import { randomBytes } from 'crypto'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { FuelTanksFuelTankMutatedEvent } from '../../../src/types/generated/events'
+import { FuelTanksFuelTankMutatedEvent } from '../../../types/generated/events'
 import {
     Event as EventModel,
     FuelTank,
@@ -11,8 +11,8 @@ import {
     FuelTankUserAccountManagement,
     RequireToken,
     WhitelistedCallers,
-} from '../../../src/modelEnjin'
-import { Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 
 function getEventData(ctx: CommonContext, event: Event) {

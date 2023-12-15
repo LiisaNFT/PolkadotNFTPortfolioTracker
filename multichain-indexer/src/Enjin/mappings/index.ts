@@ -12,11 +12,11 @@ export {
   handleTofuSales
 } from './Marketplaces';
 export { handleErc1155UriChanged } from './uriUpdateActions';
-import multiTokens from '../mappings/multiTokens'
-import balances from '../mappings/balances'
-import marketplace from '../mappings/marketplace'
-import claims from '../mappings/claims'
-import xcm from '../mappings/xcm'
-import fuelTanks from '../mappings/fuelTanks'
+import multiTokens from './multiTokens'
+import balances from './balances'
+import marketplace from './marketplace'
+import claims from './claims'
+import xcm from './xcm'
+import fuelTanks from './fuelTanks'
 
 export { multiTokens, balances, marketplace, claims, xcm, fuelTanks }

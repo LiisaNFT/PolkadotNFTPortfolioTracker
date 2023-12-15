@@ -2,7 +2,7 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MarketplaceBidPlacedEvent } from '../../../src/types/generated/events'
+import { MarketplaceBidPlacedEvent } from '../../../types/generated/events'
 import {
     Account,
     AccountTokenEvent,
@@ -14,9 +14,9 @@ import {
     ListingType,
     MarketplaceBidPlaced,
     Token,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { getBestListing, getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
 
@@ -61,7 +61,8 @@ export async function bidPlaced(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'Marketplace.BidPlaced', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<[EventModel, AccountTokenEvent] | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

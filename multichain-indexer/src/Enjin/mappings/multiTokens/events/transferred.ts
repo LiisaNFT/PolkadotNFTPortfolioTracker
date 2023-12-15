@@ -2,7 +2,7 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensTransferredEvent } from '../../../src/types/generated/events'
+import { MultiTokensTransferredEvent } from '../../../types/generated/events'
 import {
     Account,
     AccountTokenEvent,
@@ -11,9 +11,9 @@ import {
     MultiTokensTransferred,
     Token,
     TokenAccount,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
 
@@ -62,7 +62,8 @@ export async function transferred(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.Transferred', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<[EventModel, AccountTokenEvent] | EventModel | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

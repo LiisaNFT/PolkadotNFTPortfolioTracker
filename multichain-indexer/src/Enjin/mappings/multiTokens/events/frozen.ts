@@ -2,7 +2,7 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensFrozenEvent } from '../../../src/types/generated/events'
+import { MultiTokensFrozenEvent } from '../../../types/generated/events'
 import {
     Collection,
     CollectionAccount,
@@ -13,9 +13,9 @@ import {
     TokenAccount,
     TransferPolicy,
     FreezeState,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { isTokenFrozen } from './token_created'
 
 function getEventData(ctx: CommonContext, event: Event) {

@@ -1,10 +1,10 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
-import { ClaimDetails } from '../../../src/modelEnjin'
-import { ClaimsDelayTimeForClaimSetEvent } from '../../../src/types/generated/events'
+import { ClaimDetails } from '../../../modelEnjin'
+import { ClaimsDelayTimeForClaimSetEvent } from '../../../types/generated/events'
 import { getTotalUnclaimedAmount } from '../common'
 
 function getEventData(ctx: CommonContext, event: Event) {

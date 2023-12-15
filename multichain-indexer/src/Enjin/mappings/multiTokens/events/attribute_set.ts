@@ -1,7 +1,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensAttributeSetEvent } from '../../../src/types/generated/events'
+import { MultiTokensAttributeSetEvent } from '../../../types/generated/events'
 import {
     Attribute,
     Collection,
@@ -14,9 +14,9 @@ import {
     MintPolicy,
     MultiTokensAttributeSet,
     Token,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { getOrCreateAccount } from '../../util/entities'
 import { safeString } from '../../../src/common/tools'
 import { computeTraits } from '../../../../../jobs/compute-traits'
@@ -54,7 +54,8 @@ export async function attributeSet(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.AttributeSet', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<EventModel | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

@@ -6,7 +6,7 @@ import { EntityManager } from 'typeorm'
 import _ from 'lodash'
 import * as Sentry from '@sentry/node'
 import { RewriteFrames } from '@sentry/integrations'
-import config from './src/config'
+import config from './config'
 
 Sentry.init({
     dsn: config.sentryDsn,

@@ -2,7 +2,7 @@ import { ApiPromise, WsProvider } from '@polkadot/api'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { ChainInfo, Marketplace } from './modelEnjin'
 import config from './config'
-import { CommonContext } from '../mappings/types/contexts'
+import { CommonContext } from './mappings/types/contexts'
 
 const wsProvider = new WsProvider(config.dataSource.chain)
 const apiPromise = ApiPromise.create({ provider: wsProvider })

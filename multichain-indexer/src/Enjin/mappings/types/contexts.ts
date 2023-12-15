@@ -15,4 +15,4 @@ export type CallHandlerContext<T extends CallDataRequest = { call: true; extrins
 >
 export type CommonContext = PrCommonHandlerContext<EntityManager>
 
-export { CallContext, EventContext } from '../../src/types/generated/support'
+export { CallContext, EventContext } from '../../types/generated/support'

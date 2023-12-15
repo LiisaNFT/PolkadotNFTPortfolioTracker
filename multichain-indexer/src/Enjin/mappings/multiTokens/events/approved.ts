@@ -10,10 +10,10 @@ import {
     Event as EventModel,
     MultiTokensApproved,
     Extrinsic,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { encodeId } from '../../../src/common/tools'
-import { Event } from '../../../src/types/generated/support'
-import { MultiTokensApprovedEvent } from '../../../src/types/generated/events'
+import { Event } from '../../../types/generated/support'
+import { MultiTokensApprovedEvent } from '../../../types/generated/events'
 import { CommonContext } from '../../types/contexts'
 
 function getEventData(ctx: CommonContext, event: Event) {

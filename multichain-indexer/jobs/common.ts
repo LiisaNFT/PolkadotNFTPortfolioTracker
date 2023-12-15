@@ -1,4 +1,4 @@
-import config from '../src/enjin/src/config'
+import config from '../src/enjin/config'
 
 export const redisConfig = {
     port: config.redisPort,

@@ -2,16 +2,16 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensCollectionAccountCreatedEvent } from '../../../src/types/generated/events'
+import { MultiTokensCollectionAccountCreatedEvent } from '../../../types/generated/events'
 import {
     Collection,
     CollectionAccount,
     Event as EventModel,
     Extrinsic,
     MultiTokensCollectionAccountCreated,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { getOrCreateAccount } from '../../util/entities'
 
 interface EventData {

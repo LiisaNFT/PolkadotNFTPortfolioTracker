@@ -2,7 +2,7 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MarketplaceAuctionFinalizedEvent } from '../../../src/types/generated/events'
+import { MarketplaceAuctionFinalizedEvent } from '../../../types/generated/events'
 import {
     Account,
     AccountTokenEvent,
@@ -13,9 +13,9 @@ import {
     ListingStatus,
     ListingStatusType,
     MarketplaceAuctionFinalized,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { getBestListing } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
 
@@ -63,7 +63,8 @@ export async function auctionFinalized(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'Marketplace.AuctionFinalized', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<[EventModel, AccountTokenEvent] | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

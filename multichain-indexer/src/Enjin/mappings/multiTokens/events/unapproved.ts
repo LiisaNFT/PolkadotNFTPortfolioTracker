@@ -2,11 +2,11 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensUnapprovedEvent } from '../../../src/types/generated/events'
-import { CollectionAccount, Event as EventModel, Extrinsic, MultiTokensUnapproved, TokenAccount } from '../../../src/modelEnjin'
+import { MultiTokensUnapprovedEvent } from '../../../types/generated/events'
+import { CollectionAccount, Event as EventModel, Extrinsic, MultiTokensUnapproved, TokenAccount } from '../../../modelEnjin'
 import { encodeId } from '../../../src/common/tools'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 
 interface EventData {
     collectionId: bigint

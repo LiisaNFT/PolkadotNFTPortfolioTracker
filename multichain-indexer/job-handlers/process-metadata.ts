@@ -1,8 +1,8 @@
 import { IsNull } from 'typeorm'
 import Queue from 'bull'
-import connection from '../src/enjin/src/connection'
+import connection from '../src/enjin/connection'
 import { JobData } from '../jobs/process-metadata'
-import { Attribute, Collection, Metadata, Token } from '../src/enjin/src/modelEnjin'
+import { Attribute, Collection, Metadata, Token } from '../src/enjin/modelEnjin'
 import { fetchMetadata, metadataParser } from '../src/enjin/mappings/util/metadata'
 
 type MetadataType = {

@@ -3,7 +3,7 @@ import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSele
 import { u8aToHex, u8aToString } from '@polkadot/util'
 import { randomBytes } from 'crypto'
 import { CallNotDefinedError, UnknownVersionError } from '../../../src/common/errors'
-import { FuelTanksFuelTankCreatedEvent } from '../../../src/types/generated/events'
+import { FuelTanksFuelTankCreatedEvent } from '../../../types/generated/events'
 import {
     Event as EventModel,
     Extrinsic,
@@ -14,10 +14,10 @@ import {
     FuelTankUserAccountManagement,
     RequireToken,
     WhitelistedCallers,
-} from '../../../src/modelEnjin'
-import { Call, Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Call, Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
-import { FuelTanksCreateFuelTankCall, FuelTanksForceCreateFuelTankCall } from '../../../src/types/generated/calls'
+import { FuelTanksCreateFuelTankCall, FuelTanksForceCreateFuelTankCall } from '../../../types/generated/calls'
 import { getOrCreateAccount } from '../../util/entities'
 import { rulesToMap } from '../common'
 import { safeJsonString } from '../../../src/common/tools'

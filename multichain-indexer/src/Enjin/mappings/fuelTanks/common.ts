@@ -1,8 +1,8 @@
 import { u8aToHex } from '@polkadot/util'
-import { DispatchRuleDescriptor } from '../../src/types/generated/matrixEnjinV603'
-import { DispatchRuleDescriptor as DispatchRuleDescriptorV602 } from '../../src/types/generated/v602'
-import { DispatchRuleDescriptor as DispatchRuleDescriptorV601 } from '../../src/types/generated/v601'
-import { DispatchRuleDescriptor as DispatchRuleDescriptorV600 } from '../../src/types/generated/v600'
+import { DispatchRuleDescriptor } from '../../types/generated/matrixEnjinV603'
+import { DispatchRuleDescriptor as DispatchRuleDescriptorV602 } from '../../types/generated/v602'
+import { DispatchRuleDescriptor as DispatchRuleDescriptorV601 } from '../../types/generated/v601'
+import { DispatchRuleDescriptor as DispatchRuleDescriptorV600 } from '../../types/generated/v600'
 import {
     MaxFuelBurnPerTransaction,
     UserFuelBudget,
@@ -10,10 +10,10 @@ import {
     RequireToken,
     PermittedExtrinsics,
     FuelTankRuleSet,
-} from '../../src/modelEnjin'
-import { Call } from '../../src/types/generated/support'
+} from '../../modelEnjin'
+import { Call } from '../../types/generated/support'
 import { CommonContext } from '../types/contexts'
-import { FuelTanksDispatchAndTouchCall, FuelTanksDispatchCall } from '../../src/types/generated/calls'
+import { FuelTanksDispatchAndTouchCall, FuelTanksDispatchCall } from '../../types/generated/calls'
 import { UnknownVersionError } from '../../src/common/errors'
 
 export function rulesToMap(

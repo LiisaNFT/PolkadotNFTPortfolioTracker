@@ -1,4 +1,4 @@
-import { CapType, Token, TokenBehaviorType, TokenCapSupply } from '../../../src/modelEnjin'
+import { CapType, Token, TokenBehaviorType, TokenCapSupply } from '../../../modelEnjin'
 
 export function isNonFungible(token: Token): boolean {
     if (token.behavior?.type === TokenBehaviorType.IsCurrency) {

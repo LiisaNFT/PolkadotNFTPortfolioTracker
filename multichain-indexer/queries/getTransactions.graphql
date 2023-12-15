@@ -1,4 +1,4 @@
-query ActivityQuery($userId: ID, $collectionId: ID, $nftId: ID, $startTimestamp: DateTime, $endTimestamp: DateTime, $chain: Chain) {
+query ActivityQuery($userId: ID, $collectionId: ID, $nftId: ID, $startTimestamp: DateTime, $endTimestamp: DateTime, $chain: Chain, $eventType: EventType!) {
   nftEvents(
     orderBy: { timestamp: DESC },
     where: {
@@ -13,7 +13,8 @@ query ActivityQuery($userId: ID, $collectionId: ID, $nftId: ID, $startTimestamp:
         },
         { timestamp_gte: $startTimestamp },
         { timestamp_lte: $endTimestamp },
-        { chain: $chain }
+        { chain: $chain },
+        { eventType: $eventType }
       ]
     }
   ) {

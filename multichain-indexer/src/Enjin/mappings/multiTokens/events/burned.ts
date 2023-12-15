@@ -2,7 +2,7 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensBurnedEvent } from '../../../src/types/generated/events'
+import { MultiTokensBurnedEvent } from '../../../types/generated/events'
 import {
     Account,
     AccountTokenEvent,
@@ -11,9 +11,9 @@ import {
     MultiTokensBurned,
     Token,
     TokenAccount,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
+import { Event } from '../../../types/generated/support'
 import { computeTraits } from '../../../../../jobs/compute-traits'
 import { getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
@@ -73,7 +73,8 @@ export async function burned(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.Burned', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<[EventModel, AccountTokenEvent] | undefined | EventModel> {
     const data = getEventData(ctx, item.event)
     if (!data || data.amount === 0n) return undefined

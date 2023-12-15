@@ -2,7 +2,7 @@ import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensThawedEvent } from '../../../src/types/generated/events'
+import { MultiTokensThawedEvent } from '../../../types/generated/events'
 import {
     Collection,
     CollectionAccount,
@@ -12,10 +12,10 @@ import {
     Token,
     TokenAccount,
     TransferPolicy,
-} from '../../../src/modelEnjin'
+} from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
-import { Event } from '../../../src/types/generated/support'
-import { FreezeType_Token as FreezeTypeToken_v500 } from '../../../src/types/generated/v500'
+import { Event } from '../../../types/generated/support'
+import { FreezeType_Token as FreezeTypeToken_v500 } from '../../../types/generated/v500'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MultiTokensThawedEvent(ctx, event)

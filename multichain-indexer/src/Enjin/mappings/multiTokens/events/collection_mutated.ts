@@ -2,7 +2,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { MultiTokensCollectionMutatedEvent } from '../../../src/types/generated/events'
+import { MultiTokensCollectionMutatedEvent } from '../../../types/generated/events'
 import {
     Collection,
     Event as EventModel,
@@ -12,11 +12,11 @@ import {
     Royalty,
     RoyaltyCurrency,
     Token,
-} from '../../../src/modelEnjin'
-import { Event } from '../../../src/types/generated/support'
+} from '../../../modelEnjin'
+import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
-import { DefaultRoyalty } from '../../../src/types/generated/v500'
+import { DefaultRoyalty } from '../../../types/generated/v500'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MultiTokensCollectionMutatedEvent(ctx, event)

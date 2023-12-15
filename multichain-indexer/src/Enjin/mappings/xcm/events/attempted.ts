@@ -2,8 +2,8 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { hexToU8a } from '@polkadot/util'
 import { UnknownVersionError } from '../../../src/common/errors'
-import { Event as EventModel, Extrinsic, TeleportBalanceWithdrawn } from '../../../src/modelEnjin'
-import { Call } from '../../../src/types/generated/support'
+import { Event as EventModel, Extrinsic, TeleportBalanceWithdrawn } from '../../../modelEnjin'
+import { Call } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
 import {
@@ -11,8 +11,8 @@ import {
     FuelTanksDispatchCall,
     PolkadotXcmLimitedTeleportAssetsCall,
     PolkadotXcmTeleportAssetsCall,
-} from '../../../src/types/generated/calls'
-import config from '../../../src/config'
+} from '../../../types/generated/calls'
+import config from '../../../config'
 
 async function getCallData(ctx: CommonContext, call: Call) {
     if (call.name === 'PolkadotXcm.limited_teleport_assets') {
