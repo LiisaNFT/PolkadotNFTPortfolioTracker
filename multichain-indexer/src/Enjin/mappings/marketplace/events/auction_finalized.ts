@@ -18,6 +18,15 @@ import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getBestListing } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
+import * as utils from '../../utils';
+import {
+    Collection,
+    ContractStandard
+  } from '../../../../model';
+import { encodeId, isAddressSS58 } from '../../../../common/tools'
+import {
+    getNftTransferEntityId
+  } from '../../utils/common';
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MarketplaceAuctionFinalizedEvent(ctx, event)
@@ -64,61 +73,49 @@ export async function auctionFinalized(
     block: SubstrateBlock,
     item: EventItem<'Marketplace.AuctionFinalized', { event: { args: true; extrinsic: true } }>,
     skipSave: boolean,
-    chain: String
-): Promise<[EventModel, AccountTokenEvent] | undefined> {
+    chain: string
+): Promise<void> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined
 
     const listingId = Buffer.from(data.listingId).toString('hex')
-    const listing = await ctx.store.findOne<Listing>(Listing, {
-        where: { id: listingId },
-        relations: {
-            seller: true,
-            makeAssetId: {
-                collection: true,
-                bestListing: true,
-            },
-        },
-    })
 
-    if (!listing || !listing.makeAssetId) {
-        return undefined
-    }
-
+    const list = await utils.entity.NftListManager.getOrCreate({
+        id: getNftTransferEntityId(listingId, chain),
+        amount: BigInt('0'),
+        contractStandard: ContractStandard.ERC1155,
+        isBatch: false,
+        chain: chain,
+        tokenId: BigInt('0'),    
+        from: '',
+        to: '',
+        operator: '',
+        contract: '',
+        price: BigInt('0'),
+        marketplace: '',
+        transactionHash: '',
+        blockHeight: 0,
+        logId: '',
+        blockTimestamp: 0
+      });
+    
     if (data.winningBid) {
-        const sale = new ListingSale({
-            id: `${listingId}-${item.event.id}`,
-            amount: listing.amount,
+        const sale = await utils.entity.NftSaleManager.getOrCreate({
+            amount: BigInt('1'),
+            contractStandard: ContractStandard.ERC1155,
+            isBatch: false,
+            chain: chain,
+            tokenId: BigInt(list.nfToken.id),
+            from: list.from.id,
+            to: data.winningBid.bidder.toString(),
+            operator: '',
+            contract: list.nfToken.collection.id,
             price: data.winningBid.price,
-            buyer: new Account({ id: u8aToHex(data.winningBid.bidder) }),
-            listing,
-            createdAt: new Date(block.timestamp),
-        })
-        ctx.store.save(sale)
+            marketplace: '',
+            transactionHash: '',
+            blockHeight: block.height,
+            logId: listingId,
+            blockTimestamp: block.timestamp
+          });
     }
-
-    listing.updatedAt = new Date(block.timestamp)
-
-    const listingStatus = new ListingStatus({
-        id: `${listingId}-${block.height}`,
-        type: ListingStatusType.Finalized,
-        listing,
-        height: block.height,
-        createdAt: new Date(block.timestamp),
-    })
-
-    if (listing.makeAssetId.bestListing?.id === listing.id) {
-        const bestListing = await getBestListing(ctx, listing.makeAssetId.id)
-        listing.makeAssetId.bestListing = null
-        if (bestListing) {
-            listing.makeAssetId.bestListing = bestListing
-        }
-        ctx.store.save(listing.makeAssetId)
-    }
-
-    await Promise.all([ctx.store.insert(ListingStatus, listingStatus as any), ctx.store.save(listing)])
-
-    if (!skipSave) syncCollectionStats(listing.makeAssetId.collection.id)
-
-    return getEvent(item, data, listing)
 }

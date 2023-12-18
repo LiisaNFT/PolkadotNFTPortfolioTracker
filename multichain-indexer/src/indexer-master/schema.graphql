@@ -1,0 +1,850 @@
+type ChainInfo @entity {
+  id: ID!
+  specVersion: Int!
+  transactionVersion: Int!
+  genesisHash: String!
+  blockHash: String!
+  blockNumber: Int! @index
+  existentialDeposit: BigInt!
+  timestamp: DateTime!
+  marketplace: Marketplace
+}
+
+type Marketplace {
+  protocolFee: Float!
+  listingActiveDelay: Int!
+  listingDeposit: BigInt!
+  maxRoundingError: BigInt!
+  maxSaltLength: Int!
+  minimumBidIncreasePercentage: Float!
+}
+
+type Fee {
+  amount: BigInt
+  who: Account
+}
+
+type FuelTankData {
+  id: String!
+  name: String!
+  ruleSetId: Int
+  paysRemainingFee: Boolean
+  useNoneOrigin: Boolean
+  feePaid: BigInt
+}
+
+type Extrinsic @entity {
+  id: ID!
+  hash: String! @index
+  blockNumber: Int! @index
+  blockHash: String!
+  success: Boolean!
+  pallet: String!
+  method: String!
+  args: JSON
+  signature: JSON!
+  signer: Account! @index
+  nonce: Int!
+  tip: BigInt
+  fee: Fee
+  error: String
+  createdAt: DateTime!
+
+  # Relationship
+  events: [Event] @derivedFrom(field: "extrinsic")
+
+  # Extras
+  participants: [String!]!
+  fuelTank: FuelTankData
+}
+
+type Event @entity {
+  id: ID!
+  extrinsic: Extrinsic
+  data: EventData
+
+  # Filters
+  collectionId: String @index
+  tokenId: String @index
+}
+
+type AccountTokenEvent @entity {
+  id: ID!
+  from: Account!
+  to: Account
+  event: Event!
+  token: Token!
+}
+
+union EventData = MultiTokensApproved | MultiTokensAttributeRemoved | MultiTokensAttributeSet | MultiTokensBurned
+  | MultiTokensCollectionAccountCreated | MultiTokensCollectionAccountDestroyed | MultiTokensCollectionCreated
+  | MultiTokensCollectionDestroyed | MultiTokensCollectionMutated | MultiTokensFrozen | MultiTokensMinted
+  | MultiTokensThawed | MultiTokensTokenAccountCreated | MultiTokensTokenAccountDestroyed | MultiTokensTokenCreated
+  | MultiTokensTokenDestroyed | MultiTokensTokenMutated | MultiTokensTransferred | MultiTokensUnapproved
+  | MarketplaceAuctionFinalized | MarketplaceBidPlaced | MarketplaceListingCancelled | MarketplaceListingCreated
+  | MarketplaceListingFilled | BalancesTransfer | TeleportBalanceWithdrawn | ClaimsClaimRequested | ClaimsClaimed
+  | FuelTankCreated | FuelTankDestroyed | MultiTokensClaimedCollections | MultiTokensClaimTokensInitiated | MultiTokensClaimTokensCompleted
+
+type BalancesTransfer {
+  from: Account!
+  to: Account!
+  amount: BigInt!
+}
+
+type TeleportBalanceWithdrawn {
+  beneficiary: Account!
+  amount: BigInt!
+  account: Account!
+  destination: String!
+}
+
+type MarketplaceAuctionFinalized {
+  listing: Listing!
+  winningBid: Bid
+  protocolFee: BigInt!
+  royalty: BigInt!
+}
+
+type MarketplaceBidPlaced {
+  listing: Listing!
+  bid: Bid!
+}
+
+type MarketplaceListingCancelled {
+  listing: Listing!
+}
+
+type MarketplaceListingCreated {
+  listing: Listing!
+}
+
+type MarketplaceListingFilled {
+  listing: Listing!
+  buyer: Account!
+  amountFilled: BigInt!
+  amountRemaining: BigInt!
+  protocolFee: BigInt!
+  royalty: BigInt!
+}
+
+type MultiTokensApproved {
+  collectionId: BigInt!
+  tokenId: BigInt
+  owner: Account!
+  operator: Account!
+  amount: BigInt
+  expiration: Int
+}
+
+type MultiTokensAttributeRemoved {
+  collectionId: BigInt!
+  tokenId: BigInt
+  key: String!
+}
+
+type MultiTokensAttributeSet {
+  collectionId: BigInt!
+  tokenId: BigInt
+  key: String!
+  value: String!
+}
+
+type MultiTokensBurned {
+  collectionId: BigInt!
+  tokenId: BigInt!
+  token: Token
+  account: Account!
+  amount: BigInt!
+}
+
+type MultiTokensCollectionAccountCreated {
+  collectionId: BigInt!
+  account: Account!
+}
+
+type MultiTokensCollectionAccountDestroyed {
+  collectionId: BigInt!
+  account: Account!
+}
+
+type MultiTokensCollectionCreated {
+  collectionId: BigInt!
+  owner: Account!
+}
+
+type MultiTokensCollectionDestroyed {
+  collectionId: BigInt!
+  caller: Account!
+}
+
+type MultiTokensCollectionMutated {
+  extrinsic: Extrinsic
+}
+
+type MultiTokensFrozen {
+  extrinsic: Extrinsic
+}
+
+type MultiTokensMinted {
+  collectionId: BigInt!
+  tokenId: BigInt!
+  token: Token
+  issuer: Account!
+  recipient: Account!
+  amount: BigInt!
+}
+
+type MultiTokensThawed {
+  extrinsic: Extrinsic
+}
+
+type MultiTokensTokenAccountCreated {
+  collectionId: BigInt!
+  tokenId: BigInt!
+  account: Account!
+  balance: BigInt!
+}
+
+type MultiTokensTokenAccountDestroyed {
+  collectionId: BigInt!
+  tokenId: BigInt!
+  accountId: Account!
+}
+
+type MultiTokensTokenCreated {
+  collectionId: BigInt!
+  tokenId: BigInt!
+  issuer: Account!
+  initialSupply: BigInt!
+}
+
+type MultiTokensTokenDestroyed {
+  collectionId: BigInt!
+  tokenId: BigInt!
+  caller: Account!
+}
+
+type MultiTokensTokenMutated {
+  extrinsic: Extrinsic
+}
+
+type MultiTokensTransferred {
+  collectionId: BigInt!
+  tokenId: BigInt!
+  token: Token
+  operator: Account!
+  from: Account!
+  to: Account!
+  amount: BigInt!
+}
+
+type MultiTokensUnapproved {
+  collectionId: BigInt!
+  tokenId: BigInt
+  owner: Account!
+  operator: Account!
+}
+
+type ClaimAccount {
+   type: AccountClaimType!
+   account: String!
+}
+
+type ClaimsClaimRequested {
+  who: ClaimAccount!
+  hash: String
+  amountClaimable: BigInt!
+  amountBurned: BigInt!
+  isEfiToken: Boolean!
+}
+
+type ClaimsClaimed {
+  account: Account!
+  ethAccount: String
+  efiSum: BigInt!
+  enjSum: BigInt!
+  efiBurned: BigInt!
+  amount: BigInt!
+}
+
+type FuelTankCreated {
+  tank: String!
+  name: String!
+  owner: Account!
+}
+
+type FuelTankDestroyed {
+  tank: String!
+}
+
+type MultiTokensClaimedCollections {
+  account: Account!
+  ethAccount: String!
+  collectionIds: [BigInt!]
+}
+
+type MultiTokensClaimTokensInitiated {
+  account: Account!
+  ethAccount: String!
+}
+
+type MultiTokensClaimTokensCompleted {
+  account: Account!
+  ethAccount: String!
+}
+
+type Balance {
+  transferable: BigInt!
+  free: BigInt!
+  reserved: BigInt!
+  miscFrozen: BigInt!
+  feeFrozen: BigInt!
+}
+
+type Account @entity {
+  id: ID!
+
+  # Storage defaults
+  address: String! @index
+  nonce: Int!
+  balance: Balance!
+
+  # Relations
+  extrinsics: [Extrinsic] @derivedFrom(field: "signer")
+  collectionsOwned: [Collection] @derivedFrom(field: "owner")
+  collectionAccounts: [CollectionAccount] @derivedFrom(field: "account")
+  tokenAccounts: [TokenAccount] @derivedFrom(field: "account")
+  tokenEvents: [AccountTokenEvent] @derivedFrom(field: "from")
+
+  # Extras
+  lastUpdateBlock: Int
+
+  # profile
+  username: String
+  verifiedAt: DateTime
+  image: String
+}
+
+type MintPolicy {
+  maxTokenCount: BigInt
+  maxTokenSupply: BigInt
+  forceSingleMint: Boolean!
+}
+
+type TransferPolicy {
+  isFrozen: Boolean
+}
+
+type MarketPolicy {
+  royalty: Royalty!
+}
+
+type RoyaltyCurrency @entity {
+  id: ID!
+
+  collection: Collection!
+  token: Token!
+}
+
+type CollectionStats {
+  floorPrice: BigInt
+  lastSale: BigInt
+  highestSale: BigInt
+  supply: BigInt
+  tokenCount: Int!
+  salesCount: Int!
+  marketCap: BigInt!
+  volume: BigInt!
+}
+
+type Trait @entity {
+  id: ID!
+  collection: Collection!
+  traitType: String!
+  value: String!
+  count: BigInt!
+  tokens: [TraitToken] @derivedFrom(field: "trait")
+}
+
+type TraitToken @entity {
+  id: ID!
+  trait: Trait!
+  token: Token!
+}
+
+type CollectionFlags {
+  hiddenForLegalReasons: Boolean!
+  featured: Boolean!
+  verified: Boolean!
+}
+
+type CollectionSocials {
+    twitter: String
+    discord: String
+    instagram: String
+    website: String
+    medium: String
+    tiktok: String
+}
+
+type Collection @entity {
+  id: ID!
+  collectionId: BigInt! @index
+
+  # Storage defaults
+  owner: Account!
+  mintPolicy: MintPolicy!
+  marketPolicy: MarketPolicy
+  explicitRoyaltyCurrencies: [RoyaltyCurrency] @derivedFrom(field: "collection")
+  burnPolicy: String
+  transferPolicy: TransferPolicy
+  attributePolicy: String
+  attributeCount: Int!
+  totalDeposit: BigInt!
+
+  # Relations
+  tokens: [Token] @derivedFrom(field: "collection")
+  collectionAccounts: [CollectionAccount] @derivedFrom(field: "collection")
+  tokenAccounts: [TokenAccount] @derivedFrom(field: "collection")
+  attributes: [Attribute] @derivedFrom(field: "collection")
+  traits: [Trait] @derivedFrom(field: "collection")
+
+  # Extras
+  metadata: Metadata
+  createdAt: DateTime!
+  flags: CollectionFlags!
+  socials: CollectionSocials!
+  hidden: Boolean!
+
+  # Marketplace analytics
+  stats: CollectionStats!
+}
+
+type CollectionApproval {
+  account: String!
+  expiration: Int
+}
+
+type CollectionAccount @entity {
+  id: ID!
+
+  # Storage defaults
+  isFrozen: Boolean!
+  approvals: [CollectionApproval!]
+  accountCount: Int!
+
+  # Relations
+  account: Account! @index
+  collection: Collection! @index
+
+  # Extras
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum CapType {
+  SingleMint
+  Supply
+}
+
+union TokenCap = TokenCapSingleMint | TokenCapSupply
+
+type TokenCapSingleMint {
+  type: CapType!
+}
+
+type TokenCapSupply {
+  type: CapType!
+  supply: BigInt!
+}
+
+enum TokenBehaviorType {
+  HasRoyalty
+  IsCurrency
+}
+
+union TokenBehavior = TokenBehaviorHasRoyalty | TokenBehaviorIsCurrency
+
+type Royalty {
+  beneficiary: Account!
+  percentage: Float!
+}
+
+type TokenBehaviorHasRoyalty {
+  type: TokenBehaviorType!
+  royalty: Royalty!
+}
+
+type TokenBehaviorIsCurrency {
+  type: TokenBehaviorType!
+}
+
+enum FreezeState {
+  Permanent
+  Temporary
+  Never
+}
+
+type Token @entity {
+  id: ID!
+
+  # Extrinsic defaults
+  tokenId: BigInt! @index
+  supply: BigInt!
+  isFrozen: Boolean!
+  freezeState: FreezeState
+  cap: TokenCap
+  behavior: TokenBehavior
+  listingForbidden: Boolean!
+
+  # Storage extras
+  unitPrice: BigInt
+  minimumBalance: BigInt!
+  mintDeposit: BigInt!
+  attributeCount: Int!
+
+  # Relations
+  collection: Collection! @index
+  tokenAccounts: [TokenAccount] @derivedFrom(field: "token")
+  attributes: [Attribute] @derivedFrom(field: "token")
+  listings: [Listing] @derivedFrom(field: "makeAssetId")
+  offers: [Listing] @derivedFrom(field: "takeAssetId")
+  traits: [TraitToken] @derivedFrom(field: "token")
+  bestListing: Listing 
+  recentListing: Listing
+
+  # Extras
+  nonFungible: Boolean!
+  metadata: Metadata
+  createdAt: DateTime!
+}
+
+type TokenApproval {
+  account: String!
+  amount: BigInt!
+  expiration: Int
+}
+
+type TokenNamedReserve {
+  pallet: String!
+  amount: BigInt!
+}
+
+type TokenLock {
+  pallet: String!
+  amount: BigInt!
+}
+
+type TokenAccount @entity {
+  id: ID!
+
+  # Storage defaults
+  totalBalance: BigInt!
+  balance: BigInt!
+  reservedBalance: BigInt!
+  lockedBalance: BigInt!
+  namedReserves: [TokenNamedReserve!]
+  locks: [TokenLock!]
+  approvals: [TokenApproval!]
+  isFrozen: Boolean!
+
+  # Relations
+  account: Account! @index
+  collection: Collection! @index
+  token: Token! @index
+
+  # Extras
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type MetadataMeta {
+  version: Float!
+  language: String
+  sensitiveContent: String
+}
+
+type MetadataMedia {
+  url: String!
+  alt: String
+  type: String
+}
+
+type Metadata {
+  name: String
+  description: String
+  externalUrl: String
+  keywords: [String]
+  fallbackImage: String
+  media: [MetadataMedia]
+  meta: MetadataMeta
+  attributes: JSON
+}
+
+type Attribute @entity {
+  id: ID!
+
+  # Storage defaults
+  key: String! @index
+  value: String!
+  deposit: BigInt!
+
+  # Relations
+  collection: Collection! @index
+  token: Token @index
+
+  # Extras
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum FeeSide {
+  NoFee
+  Make
+  Take
+}
+
+enum ListingType {
+  FixedPrice
+  Auction
+}
+
+type FixedPriceData {
+  listingType: ListingType!
+}
+
+type AuctionData {
+  listingType: ListingType!
+  startHeight: Int!
+  endHeight: Int!
+}
+
+union ListingData = FixedPriceData | AuctionData
+
+type FixedPriceState {
+  listingType: ListingType!
+  amountFilled: BigInt!
+}
+
+type AuctionState {
+  listingType: ListingType!
+  highBid: Bid
+}
+
+type Bid @entity {
+  id: ID!
+
+  # Storage defaults
+  bidder: Account!
+  price: BigInt!
+
+  # Extras
+  listing: Listing!
+  height: Int!
+  extrinsicHash: String
+
+  createdAt: DateTime!
+}
+
+union ListingState = FixedPriceState | AuctionState
+
+enum ListingStatusType {
+  Active
+  Cancelled
+  Finalized
+}
+
+type ListingStatus @entity {
+  id: ID!
+  type: ListingStatusType!
+  listing: Listing!
+  height: Int!
+  createdAt: DateTime!
+}
+
+type ListingSale @entity {
+  id: ID!
+  amount: BigInt!
+  price: BigInt!
+  buyer: Account! @index
+  listing: Listing! @index
+  createdAt: DateTime!
+}
+
+type Listing @entity {
+  id: ID!
+
+  # Storage defaults
+  seller: Account!
+  makeAssetId: Token! @index
+  takeAssetId: Token! @index
+  amount: BigInt!
+  price: BigInt!
+  minTakeValue: BigInt!
+  feeSide: FeeSide!
+  height: Int!
+  deposit: BigInt!
+  salt: String!
+  data: ListingData!
+  state: ListingState!
+
+  # Relations
+  bids: [Bid] @derivedFrom(field: "listing")
+  status: [ListingStatus] @derivedFrom(field: "listing")
+  sales: [ListingSale] @derivedFrom(field: "listing")
+
+  # Extras
+  highestPrice: BigInt!
+  deadListing: Boolean
+
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum AccountClaimType {
+  Substrate
+  EVM
+}
+
+
+type ClaimRequest @entity {
+  id: ID!
+
+  account: ClaimAccount!
+  hash: String @unique
+  amountClaimable: BigInt!
+  amountBurned: BigInt!
+
+  isEfiToken: Boolean!
+  extrinsicIndex: Int
+
+  isClaimed: Boolean!
+
+  isRejected: Boolean!
+
+  createdAt: DateTime!
+  createdBlock: Int!
+}
+
+type Claim @entity {
+  id: ID!
+
+  account: Account!
+  amount: BigInt!
+
+  efiSum: BigInt!
+  enjSum: BigInt!
+  count: Int!
+}
+
+type ClaimDetails @entity {
+  id: ID!
+
+  exchangeRate: Int
+  delayClaimsPeriod: Int
+  totalUnclaimedAmount: BigInt!
+}
+
+type MultiTokensClaims @entity {
+  id: ID!
+
+  account: Account!
+  ethAccount: String!
+  completed: Boolean!
+
+  createdAt: DateTime!
+}
+
+type WhitelistedCallers {
+  value: [String!]!
+}
+
+type WhitelistedPallets {
+  value: [String!]!
+}
+
+type MaxFuelBurnPerTransaction {
+  value: BigInt!
+}
+
+type UserFuelBudget {
+  amount: BigInt
+  resetPeriod: BigInt
+}
+
+type TankFuelBudget {
+  amount: BigInt
+  resetPeriod: BigInt
+}
+
+type RequireToken {
+  collectionId: BigInt!
+  tokenId: BigInt
+}
+
+type PermittedExtrinsics @entity {
+  id: ID!
+
+  ruleSet: FuelTankRuleSet!
+  palletName: String
+  extrinsicName: String
+}
+
+union AccountRule = WhitelistedCallers | RequireToken
+
+type FuelTankUserAccountManagement {
+  tankReservesExistentialDeposit: Boolean
+  tankReservesAccountCreationDeposit: Boolean
+}
+
+type FuelTankUserAccounts @entity {
+  id: ID!
+  tank: FuelTank!
+  account: Account!
+
+  tankDeposit: BigInt!
+  userDeposit: BigInt!
+}
+
+type FuelTankAccountRules @entity {
+  id: ID!
+  tank: FuelTank!
+  rule: AccountRule!
+}
+
+type FuelTankRuleSet @entity {
+  id: ID!
+  index: Int!
+  tank: FuelTank!
+  isFrozen: Boolean!
+
+  #for ease
+  isPermittedExtrinsicsEmpty: Boolean!
+  isPermittedExtrinsicsNull: Boolean!
+
+  whitelistedCallers: [String!]
+  whitelistedCollections: [String]
+  whitelistedPallets: [String!]
+  maxFuelBurnPerTransaction: MaxFuelBurnPerTransaction
+  userFuelBudget: UserFuelBudget
+  tankFuelBudget: TankFuelBudget
+  requireToken: RequireToken
+  permittedCalls: [String!]
+  permittedExtrinsics: [PermittedExtrinsics] @derivedFrom(field: "ruleSet")
+}
+
+type FuelTank @entity {
+  id: ID!
+
+  tankAccount: Account!
+  name: String!
+  owner: Account!
+  providesDeposit: Boolean!
+  isFrozen: Boolean!
+  accountCount: Int!
+
+  userAccounts: [FuelTankUserAccounts] @derivedFrom(field: "tank")
+  userAccountManagement: FuelTankUserAccountManagement
+  accountRules: [FuelTankAccountRules] @derivedFrom(field: "tank")
+  ruleSets: [FuelTankRuleSet] @derivedFrom(field: "tank")
+}

@@ -16,6 +16,20 @@ import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
+import { accountsManager, nfTokenManager, collectionManager, attributeManager, nfTokenAttributeManager } from '../../utils/entityUtils';
+import {
+    Collection,
+    ContractStandard
+  } from '../../../../model';
+  import {
+    getNftTransferEntityId,
+    getTokenTotalSupply,
+    getTokenBurnedStatus,
+    getEventType,
+    getNftMetadata,
+    nftMetadata
+  } from '../../utils/common';
+  import * as utils from '../../utils';
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MultiTokensTransferredEvent(ctx, event)
@@ -63,42 +77,29 @@ export async function transferred(
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.Transferred', { event: { args: true; extrinsic: true } }>,
     skipSave: boolean,
-    chain: String
-): Promise<[EventModel, AccountTokenEvent] | EventModel | undefined> {
+    chain: string
+): Promise<void> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined
 
-    if (skipSave) {
-        getOrCreateAccount(ctx, data.from)
-        getOrCreateAccount(ctx, data.to)
-        return getEvent(item, data)
-    }
 
     const fromAddress = u8aToHex(data.from)
     const toAddress = u8aToHex(data.to)
 
-    const [fromTokenAccount, toTokenAccount] = await Promise.all([
-        ctx.store.findOne<TokenAccount>(TokenAccount, {
-            where: { id: `${fromAddress}-${data.collectionId}-${data.tokenId}` },
-        }),
-        ctx.store.findOne<TokenAccount>(TokenAccount, {
-            where: { id: `${toAddress}-${data.collectionId}-${data.tokenId}` },
-        }),
-    ])
-
-    if (fromTokenAccount) {
-        fromTokenAccount.balance -= data.amount
-        fromTokenAccount.updatedAt = new Date(block.timestamp)
-        await ctx.store.save(fromTokenAccount)
-    }
-
-    if (toTokenAccount) {
-        toTokenAccount.balance += data.amount
-        toTokenAccount.updatedAt = new Date(block.timestamp)
-        await ctx.store.save(toTokenAccount)
-    }
-
-    syncCollectionStats(data.collectionId.toString())
-
-    return getEvent(item, data)
+    const transfer = await utils.entity.nftTransferManager.getOrCreate({
+        amount: data.amount,
+        isBatch: false,
+        contractStandard: ContractStandard.ERC1155,
+        chain,
+        tokenId: data.tokenId,
+        from: fromAddress,
+        to: toAddress,
+        contract: data.collectionId.toString(),
+        price: BigInt('0'),
+        marketplace: '',
+        transactionHash: '',
+        blockHeight: block.height,
+        logId: '',
+        blockTimestamp: block.timestamp
+      });
 }

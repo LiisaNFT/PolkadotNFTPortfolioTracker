@@ -1,7 +1,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
-import { UnknownVersionError, UnsupportedCallError } from '../../../src/common/errors'
+import { UnknownVersionError, UnsupportedCallError } from '../../../common/errors'
 import { MultiTokensCollectionCreatedEvent } from '../../../types/generated/events'
 import {
     FuelTanksDispatchAndTouchCall,
@@ -10,7 +10,6 @@ import {
     MultiTokensForceCreateCollectionCall,
 } from '../../../types/generated/calls'
 import {
-    Collection,
     CollectionFlags,
     CollectionSocials,
     CollectionStats,
@@ -28,6 +27,14 @@ import { Call, Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
 import { DefaultRoyalty } from '../../../types/generated/v500'
+import * as utils from '../../utils';
+import { accountsManager, nfTokenManager, collectionManager, attributeManager, nfTokenAttributeManager } from '../../utils/entityUtils';
+
+import {
+    Collection,
+    ContractStandard
+  } from '../../../../model';
+import { createCollection } from '../../collections';
 
 interface EventData {
     collectionId: bigint
@@ -157,64 +164,13 @@ export async function collectionCreated(
     const [callData, account] = await Promise.all([getCallData(ctx, item.event.call), getOrCreateAccount(ctx, eventData.owner)])
 
     if (!callData) return undefined
-    const collection = new Collection({
+
+    // Fetch or create the collection
+    const collection = await collectionManager.getOrCreate({
         id: eventData.collectionId.toString(),
-        collectionId: eventData.collectionId,
-        owner: account,
-        mintPolicy: new MintPolicy({
-            maxTokenCount: callData.maxTokenCount,
-            maxTokenSupply: callData.maxTokenSupply,
-            forceSingleMint: callData.forceSingleMint,
-        }),
-        marketPolicy: callData.market,
-        transferPolicy: new TransferPolicy({
-            isFrozen: false,
-        }),
-        stats: new CollectionStats({
-            lastSale: null,
-            floorPrice: null,
-            highestSale: null,
-            tokenCount: 0,
-            salesCount: 0,
-            supply: 0n,
-            marketCap: 0n,
-            volume: 0n,
-        }),
-        flags: new CollectionFlags({
-            featured: false,
-            hiddenForLegalReasons: false,
-            verified: false,
-        }),
-        socials: new CollectionSocials({
-            discord: null,
-            twitter: null,
-            instagram: null,
-            medium: null,
-            tiktok: null,
-            website: null,
-        }),
-        hidden: false,
-        burnPolicy: null,
-        attributePolicy: null,
-        attributeCount: 0,
-        totalDeposit: 0n, // TODO
-        createdAt: new Date(block.timestamp),
-    })
+        contractStandard: ContractStandard.ERC1155,
+        blockHeight: block.height,
+        blockTimestamp: block.timestamp
+      });
 
-    await ctx.store.save(collection)
-
-    const royaltyPromises = callData.explicitRoyaltyCurrencies
-        .map((currency) => {
-            const tokenId = `${currency.collectionId.toString()}-${currency.tokenId.toString()}`
-            return new RoyaltyCurrency({
-                id: `${collection.id}-${tokenId}`,
-                collection,
-                token: new Token({ id: tokenId }),
-            })
-        })
-        .map((rc) => ctx.store.insert(RoyaltyCurrency, rc as any))
-
-    await Promise.all(royaltyPromises)
-
-    return getEvent(item, eventData)
 }

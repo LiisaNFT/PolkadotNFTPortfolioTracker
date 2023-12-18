@@ -46,7 +46,8 @@ export async function tokenAccountCreated(
     ctx: CommonContext,
     block: SubstrateBlock,
     item: EventItem<'MultiTokens.TokenAccountCreated', { event: { args: true; extrinsic: true } }>,
-    skipSave: boolean
+    skipSave: boolean,
+    chain: String
 ): Promise<EventModel | undefined> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined

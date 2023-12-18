@@ -15,7 +15,6 @@ import {
   getNftMetadata,
   nftMetadata
 } from '../common';
-import {Log, Transaction} from '../../../processor'
 
 
 export class NftListManager extends EntitiesManager<NftEvent> {
@@ -38,7 +37,8 @@ export class NftListManager extends EntitiesManager<NftEvent> {
     transactionHash,
     blockHeight,
     logId,
-    blockTimestamp
+    blockTimestamp,
+    id
   }: {
     operator?: string;
     amount: bigint;
@@ -55,94 +55,96 @@ export class NftListManager extends EntitiesManager<NftEvent> {
     blockHeight: number;
     logId: string;
     blockTimestamp: number;
+    id: string;
   }): Promise<NftEvent> {
 
+    let list = await this.get(id);
     
-
-    // Fetch or create accounts
-    const fromAccount = await accountsManager.getOrCreate(from);
-    const toAccount = await accountsManager.getOrCreate(to);
-    
-    // Fetch or create the collection
-    const collection = await collectionManager.getOrCreate({
-      id: contract,
-      contractStandard,
-      blockHeight,
-      blockTimestamp
-    });
-
-    // Fetch or create the token
-    const token = await nfTokenManager.getOrCreate({
-      id: tokenId,
-      image: '',
-      contractAddress: contract, 
-      owner: toAccount,
-      contractStandard,
-      collection,
-      blockHeight
-    });
-
-    // Determine the transfer type
-    const transferType = EventType.LIST;
-
-    if (!token.image) {
-      // Update token amount and burned status
-      token.amount = getTokenTotalSupply(
-        token.amount,
-        BigInt(amount.toString()),
-        transferType
-      );
-      token.isBurned = false;
+    if (!list) {
       
-      const metadata = await getNftMetadata(token);
-      token.name = metadata.name;
-      token.image = metadata.image;
+      // Fetch or create accounts
+      const fromAccount = await accountsManager.getOrCreate(from);
+      const toAccount = await accountsManager.getOrCreate(to);
       
-      if (metadata.attributes) {
-        for (const a of metadata.attributes) {
-          const attribute = await attributeManager.getOrCreate({
-            id: '',
-            collection,
-            type: a.trait_type,
-            value: a.value,
-            rarity: 0
-          })
+      // Fetch or create the collection
+      const collection = await collectionManager.getOrCreate({
+        id: contract,
+        contractStandard,
+        blockHeight,
+        blockTimestamp
+      });
 
-          const NfTokenAttribute = await nfTokenAttributeManager.getOrCreate({
-            id: '',
-            nftoken: token,
-            attribute: attribute
-          })
+      // Fetch or create the token
+      const token = await nfTokenManager.getOrCreate({
+        id: tokenId,
+        image: '',
+        contractAddress: contract, 
+        owner: toAccount,
+        contractStandard,
+        collection,
+        blockHeight
+      });
 
-          if (!token.attributes) {
-            token.attributes = [];
+      // Determine the transfer type
+      const transferType = EventType.LIST;
+
+      if (!token.image) {
+        // Update token amount and burned status
+        token.amount = getTokenTotalSupply(
+          token.amount,
+          BigInt(amount.toString()),
+          transferType
+        );
+        token.isBurned = false;
+        
+        const metadata = await getNftMetadata(token);
+        token.name = metadata.name;
+        token.image = metadata.image;
+        
+        if (metadata.attributes) {
+          for (const a of metadata.attributes) {
+            const attribute = await attributeManager.getOrCreate({
+              id: '',
+              collection,
+              type: a.trait_type,
+              value: a.value,
+              rarity: 0
+            })
+
+            const NfTokenAttribute = await nfTokenAttributeManager.getOrCreate({
+              id: '',
+              nftoken: token,
+              attribute: attribute
+            })
+
+            if (!token.attributes) {
+              token.attributes = [];
+            }
+
+            token.attributes.push(NfTokenAttribute)
           }
-
-          token.attributes.push(NfTokenAttribute)
         }
       }
+      
+      nfTokenManager.add(token);
+
+      // Create the sale instance
+      list = new NftEvent({
+        id: getNftTransferEntityId(logId, chain),
+        blockNumber: blockHeight,
+        timestamp: new Date(blockTimestamp),
+        txnHash: transactionHash,
+        nfToken: token,  
+        eventType: transferType,
+        from: fromAccount,
+        to: toAccount,
+        marketplace: marketplace, 
+        price: price,
+        chain: chain
+      });
     }
-    
-    nfTokenManager.add(token);
+    this.add(list);
 
-    // Create the sale instance
-    const sale = new NftEvent({
-      id: getNftTransferEntityId(logId, tokenId.toString()),
-      blockNumber: blockHeight,
-      timestamp: new Date(blockTimestamp),
-      txnHash: transactionHash,
-      nfToken: token,  
-      eventType: transferType,
-      from: fromAccount,
-      to: toAccount,
-      marketplace: marketplace, 
-      price: price,
-      chain: chain
-    });
-    
-
-    this.add(sale);
-
-    return sale;
+    return list;
   }
 }

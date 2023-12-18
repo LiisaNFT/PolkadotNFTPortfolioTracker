@@ -25,6 +25,12 @@ import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
 import { syncCollectionStats } from '../../../../../jobs/collection-stats'
+import * as utils from '../../utils';
+import {
+    Collection,
+    ContractStandard
+  } from '../../../../model';
+import { encodeId, isAddressSS58 } from '../../../../common/tools'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MarketplaceListingCreatedEvent(ctx, event)
@@ -65,81 +71,28 @@ export async function listingCreated(
     block: SubstrateBlock,
     item: EventItem<'Marketplace.ListingCreated', { event: { args: true; extrinsic: true } }>,
     skipSave = false,
-    chain: String
-): Promise<[EventModel, AccountTokenEvent] | undefined> {
+    chain: string
+): Promise<void> {
     const data = getEventData(ctx, item.event)
     if (!data) return undefined
-    const listingId = Buffer.from(data.listingId).toString('hex')
-    const [makeAssetId, takeAssetId, account] = await Promise.all([
-        ctx.store.findOne<Token>(Token, {
-            where: { id: `${data.listing.makeAssetId.collectionId}-${data.listing.makeAssetId.tokenId}` },
-            relations: {
-                bestListing: true,
-            },
-        }),
-        ctx.store.findOne<Token>(Token, {
-            where: { id: `${data.listing.takeAssetId.collectionId}-${data.listing.takeAssetId.tokenId}` },
-        }),
-        getOrCreateAccount(ctx, data.listing.seller),
-    ])
 
-    if (!makeAssetId || !takeAssetId) return undefined
 
-    const feeSide = data.listing.feeSide.__kind as FeeSide
-    const listingData =
-        data.listing.data.__kind === ListingType.FixedPrice
-            ? new FixedPriceData({ listingType: ListingType.FixedPrice })
-            : new AuctionData({
-                  listingType: ListingType.Auction,
-                  startHeight: data.listing.data.value.startBlock,
-                  endHeight: data.listing.data.value.endBlock,
-              })
-    const listingState =
-        data.listing.state.__kind === ListingType.FixedPrice.toString()
-            ? new FixedPriceState({ listingType: ListingType.FixedPrice, amountFilled: 0n })
-            : new AuctionState({ listingType: ListingType.Auction })
-
-    const listing = new Listing({
-        id: listingId,
-        seller: account,
-        makeAssetId,
-        takeAssetId,
+    const listing = await utils.entity.NftListManager.getOrCreate({
+        id: '',
         amount: data.listing.amount,
+        contractStandard: ContractStandard.ERC1155,
+        isBatch: false,
+        chain: chain,
+        tokenId: data.listing.makeAssetId.collectionId,
+        from: isAddressSS58(data.listing.seller) ? encodeId(data.listing.seller) : '',
+        to: '',
+        operator: '',
+        contract: data.listing.makeAssetId.collectionId.toString(),
         price: data.listing.price,
-        highestPrice: data.listing.price,
-        minTakeValue: data.listing.minTakeValue,
-        feeSide,
-        height: data.listing.creationBlock,
-        deposit: data.listing.deposit,
-        salt: Buffer.from(data.listing.salt).toString('hex'),
-        data: listingData,
-        state: listingState,
-        createdAt: new Date(block.timestamp),
-        updatedAt: new Date(block.timestamp),
-    })
-
-    const listingStatus = new ListingStatus({
-        id: `${listingId}-${block.height}`,
-        type: ListingStatusType.Active,
-        listing,
-        height: block.height,
-        createdAt: new Date(block.timestamp),
-    })
-    // update best listing
-    if ((makeAssetId.bestListing && makeAssetId.bestListing?.highestPrice >= listing.price) || !makeAssetId.bestListing) {
-        makeAssetId.bestListing = listing
-    }
-    makeAssetId.recentListing = listing
-
-    await Promise.all([
-        ctx.store.insert(Listing, listing as any),
-        ctx.store.insert(ListingStatus, listingStatus as any),
-        ctx.store.save(makeAssetId),
-    ])
-
-    if (!skipSave) {
-        await syncCollectionStats(data.listing.makeAssetId.collectionId.toString())
-    }
-
-    return getEvent(item, data)
+        marketplace: '',
+        transactionHash: '',
+        blockHeight: block.height,
+        logId: data.listingId.toString(),
+        blockTimestamp: block.timestamp
+      });
 }

@@ -7,7 +7,6 @@ import { MultiTokensTokenCreatedEvent } from '../../../types/generated/events'
 import {
     Attribute,
     CapType,
-    Collection,
     Event as EventModel,
     Extrinsic,
     FreezeState,
@@ -44,6 +43,21 @@ import {
     MultiTokensForceMintCall,
     MultiTokensMintCall,
 } from '../../../types/generated/calls'
+import { accountsManager, nfTokenManager, collectionManager, attributeManager, nfTokenAttributeManager } from '../../utils/entityUtils';
+
+import {
+    Collection,
+    ContractStandard
+  } from '../../../../model';
+  import {
+    getNftTransferEntityId,
+    getTokenTotalSupply,
+    getTokenBurnedStatus,
+    getEventType,
+    getNftMetadata,
+    nftMetadata
+  } from '../../utils/common';
+
 
 export function getCapType(cap: TokenCap) {
     if (cap.__kind === CapType.Supply) {
@@ -549,15 +563,6 @@ export async function tokenCreated(
 ): Promise<EventModel | undefined> {
     const eventData = getEventData(ctx, item.event)
 
-    if (skipSave && item.event.call) {
-        ctx.store.update(
-            Token,
-            { id: `${eventData.collectionId}-${eventData.tokenId}` },
-            { createdAt: new Date(block.timestamp) }
-        )
-        return getEvent(item, eventData)
-    }
-
     if (item.event.call) {
         const [callData, collection, collectionUri] = await Promise.all([
             getCallData(ctx, item.event.call, eventData),
@@ -594,29 +599,71 @@ export async function tokenCreated(
             }
         }
 
-        const token = new Token({
-            id: `${eventData.collectionId}-${eventData.tokenId}`,
-            tokenId: eventData.tokenId,
-            supply: 0n, // Supply is updated on Mint/Burn events
-            cap: callData.cap,
-            behavior: callData.behavior,
-            isFrozen: isTokenFrozen(callData.freezeState),
-            freezeState: callData.freezeState,
-            minimumBalance: callData.minimumBalance,
-            unitPrice: callData.unitPrice,
-            mintDeposit: 0n, // TODO: Fixed for now
-            attributeCount: 0,
+
+        // Fetch or create accounts
+        const to = '';
+        const toAccount = await accountsManager.getOrCreate(to);
+
+        // Fetch or create the collection
+        const collection = await collectionManager.getOrCreate({
+            id: eventData.collectionId.toString(),
+            contractStandard: ContractStandard.ERC1155,
+            blockHeight: block.height,
+            blockTimestamp: block.timestamp
+          });
+
+        // Fetch or create the token
+        const token = await nfTokenManager.getOrCreate({
+            id: eventData.tokenId,
+            image: '',
+            contractAddress: eventData.collectionId.toString(), 
+            owner: toAccount,
+            contractStandard: ContractStandard.ERC1155,
             collection,
-            metadata: null,
-            nonFungible: false,
-            listingForbidden: callData.listingForbidden,
-            createdAt: new Date(block.timestamp),
-        })
+            blockHeight: block.height
+        });
 
-        await ctx.store.insert(Token, token as any)
+        if (!token.image) {
+            // Update token amount and burned status
+            token.amount = getTokenTotalSupply(
+              token.amount,
+              BigInt(amount.toString()),
+              transferType
+            );
+            token.isBurned = false;
+            
+            const metadata = await getNftMetadata(token);
+            token.name = metadata.name;
+            token.image = metadata.image;
+            
+            if (metadata.attributes) {
+              for (const a of metadata.attributes) {
+                const attribute = await attributeManager.getOrCreate({
+                  id: '',
+                  collection,
+                  type: a.trait_type,
+                  value: a.value,
+                  rarity: 0
+                })
+      
+                const NfTokenAttribute = await nfTokenAttributeManager.getOrCreate({
+                  id: '',
+                  nftoken: token,
+                  attribute: attribute
+                })
+      
+                if (!token.attributes) {
+                  token.attributes = [];
+                }
+      
+                token.attributes.push(NfTokenAttribute)
+              }
+            }
+        }
 
-        return getEvent(item, eventData)
+        nfTokenManager.add(token);
+
     }
-
+    
     return undefined
 }

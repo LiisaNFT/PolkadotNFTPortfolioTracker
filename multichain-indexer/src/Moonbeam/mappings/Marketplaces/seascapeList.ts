@@ -11,7 +11,7 @@ export async function handleSeascapeListings(transaction: Transaction, chain: st
   const operator = '';
   let f = Seascape.functions['sell'].decode(transaction.input);
 
-  const sale = await utils.entity.NftListManager.getOrCreate({
+  const listing = await utils.entity.NftListManager.getOrCreate({
     amount: BigInt('1'),
     contractStandard: ContractStandard.ERC721,
     isBatch: false,
