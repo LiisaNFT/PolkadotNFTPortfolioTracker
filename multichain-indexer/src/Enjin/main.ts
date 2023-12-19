@@ -25,7 +25,7 @@ const chain = 'Enjin';
 
 processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_processor'}), async (ctx) => {
         
-    utils.entity.initAllEntityManagers(ctx);
+        utils.entity.initAllEntityManagers(ctx);
         await utils.entity.prefetchEntities(ctx);
         
         for (const block of ctx.blocks) {

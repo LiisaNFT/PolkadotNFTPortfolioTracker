@@ -1,6 +1,6 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
-import { UnknownVersionError } from '../../../src/common/errors'
+import { UnknownVersionError } from '../../../../common/errors'
 import { MarketplaceListingCancelledEvent } from '../../../types/generated/events'
 import {
     AccountTokenEvent,

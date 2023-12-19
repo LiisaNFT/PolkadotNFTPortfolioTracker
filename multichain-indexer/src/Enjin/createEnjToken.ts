@@ -2,7 +2,7 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { CommonContext } from './mappings/types/contexts'
 import { getOrCreateAccount } from './mappings/util/entities'
 import { Collection, CollectionFlags, CollectionSocials, CollectionStats, MintPolicy, Token, TransferPolicy } from './modelEnjin'
-import { isMainnet } from './src/common/tools'
+import { isMainnet } from '../common/tools'
 
 export async function createEnjToken(ctx: CommonContext, block: SubstrateBlock) {
     const enj = await ctx.store.findOneBy(Token, { id: '0-0' })

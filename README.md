@@ -25,18 +25,50 @@ The project uses a modular architecture with these main components:
 
 The project is open source under Apache 2.0 license. To run it locally:
 
-1. Clone the repository
-2. Install dependencies using `npm install`
-3. Configure environment variables
-4. Start backend server using `npm run server`
-5. Start frontend using `npm start`
-6. Access the app at `http://localhost:3000`
+```bash
+# 0. Install @subsquid/cli a.k.a. the sqd command globally
+npm i -g @subsquid/cli
+
+# 1. Clone the repo
+git clone https://github.com/LiisaNFT/PolkadotNFTPortfolioTracker
+cd multichain-indexer
+
+# 2. Install dependencies
+npm ci
+
+# 3. Build the squid project
+sqd build
+
+# 4. Start a Postgres database container and detach
+sqd up
+
+# 4. Generate the schema migrations
+sqd migration:generate
+sqd migration:apply
+
+# 4. Build and start the processors in separate terminals
+sqd process:Moonbeam
+sqd process:Moonriver
+sqd process:Astar
+sqd process:Enjin
+sqd process:Basilisk 
+
+# 5. Start the GraphQL server by running in yet another terminal
+sqd serve
+sqd open #in a separate terminal
+
+A GraphiQL playground will be available at [localhost:4350/graphql](http://localhost:4350/graphql).
+```
 
 ## Contributing
 
 Contributions are welcome! See [CONTRIBUTING](CONTRIBUTING.md) for guidelines.
 
 ## License
+
+See [LICENSE](LICENSE.md) for guidelines.
+
+
 
 <<<<<<< HEAD
 This project is licensed under Apache 2.0. See [LICENSE](LICENSE.md) file for details.
