@@ -23,18 +23,6 @@ import * as utils from './mappings/utils'
 // Chain
 const chain = 'Enjin';
 
-
-function getParticipants(args: any, signer: string): string[] {
-    const accountsFromArgs = JSON.stringify(args).match(/\b0x[0-9a-fA-F]{64}\b/g)
-    if (accountsFromArgs) {
-        const accounts = new Set<string>(accountsFromArgs)
-        return Array.from(accounts.add(signer))
-    }
-
-    return [signer]
-}
-
-// eslint-disable-next-line sonarjs/cognitive-complexity
 processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_processor'}), async (ctx) => {
         
     utils.entity.initAllEntityManagers(ctx);

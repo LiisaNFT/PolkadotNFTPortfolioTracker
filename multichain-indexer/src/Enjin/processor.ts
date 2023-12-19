@@ -45,10 +45,7 @@ export const processor = new SubstrateBatchProcessor()
             call: true,
             extrinsic: true,
         },
-    })  
-    .addEvent('MultiTokens.CollectionCreated', eventOptionsWithCall)
-    .addEvent('MultiTokens.TokenCreated', eventOptionsWithCall)
-    .addEvent('MultiTokens.TokenDestroyed', eventOptions)
+    })
     .addEvent('MultiTokens.AttributeSet', eventOptions)
     .addEvent('MultiTokens.Transferred', eventOptions)
     .addEvent('Marketplace.ListingCreated', eventOptions)
