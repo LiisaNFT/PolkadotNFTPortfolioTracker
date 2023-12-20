@@ -13,29 +13,27 @@ processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_pr
         utils.entity.initAllEntityManagers(ctx as Context);
         
         for (const block of ctx.blocks) {
-            for (const item of block.items) {
-                if (item.kind === 'event') {
+            for (const item of block.events) {
                     
-                    switch (item.name) {
-                        //case 'MultiTokens.AttributeSet':
-                            //return map.multiTokens.events.attributeSet(ctx, block, item, false, chain)
-                        case 'MultiTokens.Transferred':
-                            return map.multiTokens.events.transferred(ctx as unknown as CommonContext, block.header, item, false, chain)
-                        case 'Marketplace.ListingCreated':
-                            return map.marketplace.events.listingCreated(ctx as unknown as CommonContext, block.header, item, false, chain)
-                        case 'Marketplace.ListingCancelled':
-                            return map.marketplace.events.listingCancelled(ctx as unknown as CommonContext, block.header, item, false, chain)
-                        case 'Marketplace.ListingFilled':
-                            return map.marketplace.events.listingFilled(ctx as unknown as CommonContext, block.header, item, false, chain)
-                        case 'Marketplace.AuctionFinalized':
-                            return map.marketplace.events.auctionFinalized(ctx as unknown as CommonContext, block.header, item, false, chain)
-                        default: {
-                            ctx.log.error(`Event not handled: ${item.name}`)
-                            return undefined
-                        }
+                switch (item.name) {
+                    //case 'MultiTokens.AttributeSet':
+                        //return map.multiTokens.events.attributeSet(ctx, block, item, false, chain)
+                    case 'MultiTokens.Transferred':
+                        return map.multiTokens.events.transferred(ctx as unknown as CommonContext, block.header, item, false, chain)
+                    case 'Marketplace.ListingCreated':
+                        return map.marketplace.events.listingCreated(ctx as unknown as CommonContext, block.header, item, false, chain)
+                    case 'Marketplace.ListingCancelled':
+                        return map.marketplace.events.listingCancelled(ctx as unknown as CommonContext, block.header, item, false, chain)
+                    case 'Marketplace.ListingFilled':
+                        return map.marketplace.events.listingFilled(ctx as unknown as CommonContext, block.header, item, false, chain)
+                    case 'Marketplace.AuctionFinalized':
+                        return map.marketplace.events.auctionFinalized(ctx as unknown as CommonContext, block.header, item, false, chain)
+                    default: {
+                        ctx.log.error(`Event not handled: ${item.name}`)
+                        return undefined
                     }
-                    
                 }
+                    
             }
             
         }

@@ -1,5 +1,6 @@
-import { BatchContext, BatchProcessorItem, SubstrateBatchProcessor, SubstrateBlock } from '@subsquid/substrate-processor'
+import { SubstrateBatchProcessor, DataHandlerContext } from '@subsquid/substrate-processor'
 import { EntityManager } from 'typeorm'
+import { Store} from '@subsquid/typeorm-store'
 import _ from 'lodash'
 import * as Sentry from '@sentry/node'
 import { RewriteFrames } from '@sentry/integrations'
@@ -15,6 +16,18 @@ Sentry.init({
     ],
 })
 
+export const fields = {
+    call: {
+      args: true,
+      origin: true,
+      success: true
+    },
+    event: {
+      args: true
+    },
+    block: { timestamp: true }
+  }
+
 const eventOptions = {  
     data: {
         event: {
@@ -24,31 +37,23 @@ const eventOptions = {
     } as const,
 } as const
 
-const eventOptionsWithCall = {
-    data: {
-        event: {
-            args: true,
-            call: true,
-            extrinsic: true,
-        },
-    } as const,
-} as const
-
 export const processor = new SubstrateBatchProcessor()
-    .setDataSource(config.dataSource)
-    .setBlockRange(config.blockRange || { from: 0 })
-    .addCall('*', {
-        data: {
-            call: true,
-            extrinsic: true,
-        },
+    .setDataSource({
+        archive: process.env.ARCHIVE_ENDPOINT || 'https://matrixchain.archive.subsquid.io/graphql',
+        chain: process.env.CHAIN_ENDPOINT || 'wss://archive.matrix.blockchain.enjin.io',
     })
-    .addEvent('MultiTokens.AttributeSet', eventOptions)
-    .addEvent('MultiTokens.Transferred', eventOptions)
-    .addEvent('Marketplace.ListingCreated', eventOptions)
-    .addEvent('Marketplace.ListingCancelled', eventOptions)
-    .addEvent('Marketplace.ListingFilled', eventOptions)
-    .addEvent('Marketplace.AuctionFinalized', eventOptions)
+    .setBlockRange({ from: 0 })
+    .addEvent({
+        name: ['MultiTokens.AttributeSet', 'MultiTokens.Transferred', 'Marketplace.ListingCreated', 'Marketplace.ListingCancelled', 'Marketplace.ListingFilled', 'Marketplace.AuctionFinalized'],
+        extrinsic: true,
+        call: true
+      })
+    //.addEvent('MultiTokens.AttributeSet', eventOptions)
+    //.addEvent('MultiTokens.Transferred', eventOptions)
+    //.addEvent('Marketplace.ListingCreated', eventOptions)
+    //.addEvent('Marketplace.ListingCancelled', eventOptions)
+    //.addEvent('Marketplace.ListingFilled', eventOptions)
+    //.addEvent('Marketplace.AuctionFinalized', eventOptions)
 
-export type Item = BatchProcessorItem<typeof processor>
-export type Context = BatchContext<EntityManager, Item>
+//export type Item = BatchProcessorItem<typeof processor>
+export type Context = DataHandlerContext<Store, typeof fields>

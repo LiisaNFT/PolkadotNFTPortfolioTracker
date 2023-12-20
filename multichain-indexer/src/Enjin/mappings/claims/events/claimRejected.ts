@@ -1,7 +1,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
-import { UnknownVersionError } from '../../../src/common/errors'
+import { UnknownVersionError } from '../../../../common/errors'
 import { ClaimsClaimRejectedEvent } from '../../../types/generated/events'
 import { ClaimRequest, ClaimDetails, Event as EventModel } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
