@@ -60,17 +60,8 @@ sqd open #in a separate terminal
 A GraphiQL playground will be available at [localhost:4350/graphql](http://localhost:4350/graphql).
 ```
 
-## Contributing
-
-Contributions are welcome! See [CONTRIBUTING](CONTRIBUTING.md) for guidelines.
-
 ## License
 
-See [LICENSE](LICENSE.md) for guidelines.
-
-
-
-<<<<<<< HEAD
 This project is licensed under Apache 2.0. See [LICENSE](LICENSE.md) file for details.
 
 # Stay tuned for updates!
