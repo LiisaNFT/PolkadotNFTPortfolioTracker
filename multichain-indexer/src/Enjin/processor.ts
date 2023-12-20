@@ -1,7 +1,4 @@
-/* eslint-disable no-await-in-loop */
 import { BatchContext, BatchProcessorItem, SubstrateBatchProcessor, SubstrateBlock } from '@subsquid/substrate-processor'
-import { TypeormDatabase } from '@subsquid/typeorm-store'
-import { hexStripPrefix, hexToU8a, u8aToHex } from '@polkadot/util'
 import { EntityManager } from 'typeorm'
 import _ from 'lodash'
 import * as Sentry from '@sentry/node'

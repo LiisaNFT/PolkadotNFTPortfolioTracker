@@ -1,7 +1,7 @@
 import { u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
-import { UnknownVersionError } from '../../../src/common/errors'
+import { UnknownVersionError } from '../../../../common/errors'
 import {
     CollectionAccount,
     TokenAccount,
@@ -11,7 +11,7 @@ import {
     MultiTokensApproved,
     Extrinsic,
 } from '../../../modelEnjin'
-import { encodeId } from '../../../src/common/tools'
+import { encodeId } from '../../../../common/tools'
 import { Event } from '../../../types/generated/support'
 import { MultiTokensApprovedEvent } from '../../../types/generated/events'
 import { CommonContext } from '../../types/contexts'

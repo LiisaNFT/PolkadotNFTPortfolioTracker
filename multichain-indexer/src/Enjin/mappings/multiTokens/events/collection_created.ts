@@ -1,7 +1,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
-import { UnknownVersionError, UnsupportedCallError } from '../../../common/errors'
+import { UnknownVersionError, UnsupportedCallError } from '../../../../common/errors'
 import { MultiTokensCollectionCreatedEvent } from '../../../types/generated/events'
 import {
     FuelTanksDispatchAndTouchCall,

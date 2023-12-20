@@ -2,7 +2,7 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex } from '@polkadot/util'
 import { IsNull } from 'typeorm'
-import { UnknownVersionError } from '../../../src/common/errors'
+import { UnknownVersionError } from '../../../../common/errors'
 import { MultiTokensTokenCreatedEvent } from '../../../types/generated/events'
 import {
     Attribute,

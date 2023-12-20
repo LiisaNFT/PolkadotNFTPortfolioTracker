@@ -1,6 +1,6 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
-import { UnknownVersionError } from '../../../src/common/errors'
+import { UnknownVersionError } from '../../../../common/errors'
 import { MultiTokensAttributeSetEvent } from '../../../types/generated/events'
 import {
     Attribute,
@@ -18,7 +18,7 @@ import {
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getOrCreateAccount } from '../../util/entities'
-import { safeString } from '../../../src/common/tools'
+import { safeString } from '../../../../common/tools'
 import { computeTraits } from '../../../../../jobs/compute-traits'
 import { processMetadata } from '../../../../../jobs/process-metadata'
 

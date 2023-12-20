@@ -1,6 +1,6 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
-import { UnknownVersionError } from '../../../src/common/errors'
+import { UnknownVersionError } from '../../../../common/errors'
 import { MultiTokensAttributeRemovedEvent } from '../../../types/generated/events'
 import { Attribute, Collection, Event as EventModel, Extrinsic, MultiTokensAttributeRemoved, Token } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
