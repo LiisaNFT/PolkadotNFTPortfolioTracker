@@ -1,7 +1,7 @@
 manifestVersion: subsquid.io/v0.1
 name: multichain-transfers-squid
 version: 1
-description: 'A squid that indexes USDC transfers on ETH and BSC'
+description: 'A squid that indexes NFT transactions and metadata on polkadot'
 build: 
 deploy:
   addons:

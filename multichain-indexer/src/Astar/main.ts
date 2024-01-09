@@ -5,7 +5,6 @@ import * as tofu from '../abi/astarTofu'
 import {processor} from './processor'
 import * as modules from './mappings';
 import * as utils from './mappings/utils'
-import {Log, Transaction} from './processor'
 
 // Chain
 const chain = 'Astar';
@@ -27,7 +26,7 @@ processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_pr
                         try {
                             await modules.handleErc721Transfer(log, chain);
                         } catch (error) {
-                            console.error('Error decoding log:', error);
+                            console.error('Error decoding log:', error); 
                         }
                     }
                     break;
