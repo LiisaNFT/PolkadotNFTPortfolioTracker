@@ -1,0 +1,16 @@
+{
+  "name": "astar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@subsquid/archive-registry": "^3.3.0",
+    "@subsquid/evm-processor": "^1.12.0",
+    "@subsquid/typeorm-store": "^1.2.6"
+  }
+}
