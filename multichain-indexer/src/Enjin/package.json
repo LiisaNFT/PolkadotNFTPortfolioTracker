@@ -1,0 +1,19 @@
+{
+  "name": "enjin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@subsquid/substrate-processor": "^8.1.1",
+    "@subsquid/typeorm-config": "^4.1.0",
+    "assert": "^2.1.0",
+    "axios": "^1.6.5",
+    "dotenv": "^16.3.1",
+    "typeorm": "^0.3.19"
+  }
+}
