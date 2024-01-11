@@ -1,6 +1,7 @@
 enum ContractStandard {
   ERC721
   ERC1155
+  PSP34
 }
 
 enum EventType {
