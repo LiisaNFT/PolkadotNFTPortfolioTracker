@@ -4,11 +4,9 @@ import * as erc1155abi from '../abi/erc1155'
 import * as Moonbeans from '../abi/moonbeamMoonbeans'
 import * as Seascape from '../abi/moonbeamSeascape'
 import * as tofu from '../abi/moonbeamTofu'
-
 import {processor} from './processor'
 import * as modules from './mappings';
 import * as utils from './mappings/utils'
-import {Log, Transaction} from './processor'
 
 // Chain
 const chain = 'Moonbeam';
