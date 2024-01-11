@@ -18,7 +18,7 @@ enum Chain {
   BASILISK
   UNIQUE 
   ASTAR 
-  ENJIN
+  EFINITY
 }
 
 enum TransferDirection {
@@ -52,7 +52,6 @@ type NfToken @entity {
     amount: BigInt! @index
     isBurned: Boolean! @index
     attributes: [NfTokenAttribute!]! @derivedFrom(field: "nftoken")
-    rarity: Float!
 }
 
 type UriUpdateAction @entity {
@@ -92,88 +91,4 @@ type NfTokenAttribute @entity {
     id: ID!
     nftoken: NfToken!
     attribute: Attribute!
-}
-
-type nftCollectionStats @entity {
-    id: ID!
-    collection: Collection! @index
-    stat_timestamp: BigInt!
-    floor_price: Float!
-    floor_price_usd: Float!
-    floor_1h_dif: Float!
-    floor_24h_dif: Float!
-    floor_7d_dif: Float!
-    floor_30d_dif: Float!
-    volume: Float!
-    volume_usd: Float!
-    volume_24h: Float!
-    volume_24h_usd: Float!
-    volume_7d: Float!
-    volume_7d_usd: Float!
-    volume_1h_dif: Float!
-    volume_24h_dif: Float!
-    volume_7d_dif: Float!
-    volume_30d_dif: Float!
-    volume_24h_1d_dif: Float!
-    avg_price_7d_dif: Float!
-    min_price: Float!
-    min_price_usd: Float!
-    min_price_1h_dif: Float!
-    min_price_24h_dif: Float!
-    min_price_7d_dif: Float!
-    min_price_30d_dif: Float!
-    avg_price: Float!
-    avg_price_usd: Float!
-    avg_price_1h_dif: Float!
-    avg_price_24h_dif: Float!
-    avg_price_30d_dif: Float!
-    max_price: Float!
-    max_price_usd: Float!
-    max_price_1h_dif: Float!
-    max_price_24h_dif: Float!
-    max_price_7d_dif: Float!
-    max_price_30d_dif: Float!
-    sales_count: Float!
-    sales_count_24h: Float!
-    sales_count_1h_dif: Float!
-    sales_count_24h_dif: Float!
-    sales_count_7d_dif: Float!
-    sales_count_30d_dif: Float!
-    sales_count_24h_1d_dif: Float!
-    market_cap: Float!
-    market_cap_usd: Float!
-    market_cap_1h_dif: Float!
-    market_cap_24h_dif: Float!
-    market_cap_7d_dif: Float!
-    market_cap_30d_dif: Float!
-    social_mentions: Float!
-    social_mentions_24h: Float!
-    social_mentions_1h_dif: Float!
-    social_mentions_24h_dif: Float!
-    social_mentions_7d_dif: Float!
-    social_mentions_24h_1d_dif: Float!
-    social_mentions_30d_dif: Float!
-    listings_count: Float!
-    listings_count_24h: Float!
-    listings_count_1h_dif: Float!
-    listings_count_24h_dif: Float!
-    listings_count_7d_dif: Float!
-    listings_count_30d_dif: Float!
-    listings_count_24h_1d_dif: Float!
-    offers_count: Float!
-    offers_count_24h: Float!
-    offers_count_1h_dif: Float!
-    offers_count_24h_dif: Float!
-    offers_count_7d_dif: Float!
-    offers_count_30d_dif: Float!
-    offers_count_24h_1d_dif: Float!
-    listing_event: BigInt!
-    visits_count_1h: Float!
-    visits_count_24h: Float!
-    floor_1h_dif_usd: Float!
-    floor_24h_dif_usd: Float!
-    floor_7d_dif_usd: Float!
-    floor_30d_dif_usd: Float!
-    unique_holders: Float!
-    estimated_value: Float!
 }

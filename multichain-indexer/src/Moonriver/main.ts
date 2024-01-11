@@ -3,9 +3,11 @@ import * as erc721abi from '../abi/erc721'
 import * as erc1155abi from '../abi/erc1155'
 import * as Moonbeans from '../abi/moonriverMoonbeans'
 import * as Seascape from '../abi/moonriverSeascape'
+
 import {processor} from './processor'
 import * as modules from './mappings';
 import * as utils from './mappings/utils'
+import {Log, Transaction} from './processor'
 
 // Chain
 const chain = 'Moonriver';

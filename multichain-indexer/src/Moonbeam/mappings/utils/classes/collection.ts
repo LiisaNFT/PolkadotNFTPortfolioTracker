@@ -5,6 +5,25 @@ import {
 import { createCollection } from '../../collections';
 import { EntitiesManager } from './common';
 
+type LogType = {
+  id: string;
+  logIndex: number;
+  transactionIndex: number;
+  address: string;
+  data: string;
+  transactionHash: string;
+  topics: string[];
+  block: {
+      id: string; 
+      hash: string;
+      height: number;
+      parentHash: string;
+      timestamp: number;
+  };
+  transaction?: {
+      //... whatever properties this has
+  } | undefined;
+}
 
 export class CollectionManager extends EntitiesManager<Collection> {
   constructor(entity: typeof Collection) {

@@ -26,7 +26,7 @@ processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_pr
                         try {
                             await modules.handleErc721Transfer(log, chain);
                         } catch (error) {
-                            console.error('Error decoding log:', error); 
+                            console.error('Error decoding log:', error);
                         }
                     }
                     break;

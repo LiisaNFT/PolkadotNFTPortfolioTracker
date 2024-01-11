@@ -2,7 +2,7 @@ import * as ss58 from '@subsquid/ss58'
 import { decodeHex } from '@subsquid/util-internal-hex'
 import { decodeAddress, encodeAddress } from '@polkadot/keyring'
 import { hexToU8a, isHex, stringToHex } from '@polkadot/util'
-import config from '../Enjin/config'
+import config from '../enjin/config'
 
 export function isMainnet() {
     return config.chainName === 'enjin-matrixchain'

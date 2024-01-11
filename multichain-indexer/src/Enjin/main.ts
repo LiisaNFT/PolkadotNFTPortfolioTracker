@@ -1,4 +1,4 @@
-import {processor, Context} from './processor'
+import {processor} from './processor'
 import { TypeormDatabase } from '@subsquid/typeorm-store'
 import _ from 'lodash'
 import * as map from './mappings'
@@ -10,7 +10,7 @@ const chain = 'Enjin';
 
 processor.run(new TypeormDatabase({stateSchema: 'eth_processor'}), async (ctx) => {
         
-        utils.entity.initAllEntityManagers(ctx as Context);
+        utils.entity.initAllEntityManagers(ctx as unknown as CommonContext);
         
         for (const block of ctx.blocks) {
             for (const item of block.items) {

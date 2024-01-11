@@ -147,7 +147,6 @@ export const ABI_JSON = [
                     },
                     {
                         "type": "tuple[]",
-                        "name": "has",
                         "components": [
                             {
                                 "type": "address",
@@ -157,11 +156,11 @@ export const ABI_JSON = [
                                 "type": "uint256",
                                 "name": "tokenId"
                             }
-                        ]
+                        ],
+                        "name": "has"
                     },
                     {
                         "type": "tuple[]",
-                        "name": "wants",
                         "components": [
                             {
                                 "type": "address",
@@ -171,7 +170,8 @@ export const ABI_JSON = [
                                 "type": "uint256",
                                 "name": "tokenId"
                             }
-                        ]
+                        ],
+                        "name": "wants"
                     }
                 ]
             },
@@ -237,8 +237,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -251,8 +250,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -265,8 +263,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -279,8 +276,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -293,8 +289,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -307,8 +302,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -321,8 +315,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -335,8 +328,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -349,8 +341,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -363,8 +354,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -377,8 +367,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -391,8 +380,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -405,8 +393,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -419,8 +406,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -433,8 +419,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             }
         ]
     },
@@ -447,8 +432,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -461,8 +445,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -475,8 +458,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -489,8 +471,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -503,8 +484,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -517,8 +497,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint8",
-                "name": ""
+                "type": "uint8"
             }
         ]
     },
@@ -543,14 +522,12 @@ export const ABI_JSON = [
         "payable": false,
         "inputs": [
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             }
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -585,8 +562,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -604,8 +580,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -638,8 +613,7 @@ export const ABI_JSON = [
         "payable": false,
         "inputs": [
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             }
         ],
         "outputs": [
@@ -685,14 +659,12 @@ export const ABI_JSON = [
         "payable": false,
         "inputs": [
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             }
         ],
         "outputs": [
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             }
         ]
     },
@@ -704,12 +676,10 @@ export const ABI_JSON = [
         "payable": false,
         "inputs": [
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             },
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             }
         ],
         "outputs": [
@@ -749,8 +719,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -768,8 +737,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -791,8 +759,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -810,8 +777,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -829,8 +795,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -848,8 +813,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -867,8 +831,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -894,8 +857,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -913,8 +875,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -926,14 +887,12 @@ export const ABI_JSON = [
         "payable": false,
         "inputs": [
             {
-                "type": "address",
-                "name": ""
+                "type": "address"
             }
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -946,8 +905,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             }
         ]
     },
@@ -960,8 +918,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "uint256",
-                "name": ""
+                "type": "uint256"
             }
         ]
     },
@@ -995,8 +952,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bytes4",
-                "name": ""
+                "type": "bytes4"
             }
         ]
     },
@@ -1030,8 +986,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bytes4",
-                "name": ""
+                "type": "bytes4"
             }
         ]
     },
@@ -1061,8 +1016,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bytes4",
-                "name": ""
+                "type": "bytes4"
             }
         ]
     },
@@ -1075,8 +1029,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "address",
-                "name": ""
+                "type": "address"
             }
         ]
     },
@@ -1097,8 +1050,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -1127,7 +1079,6 @@ export const ABI_JSON = [
                     },
                     {
                         "type": "tuple[]",
-                        "name": "bundle",
                         "components": [
                             {
                                 "type": "address",
@@ -1149,7 +1100,8 @@ export const ABI_JSON = [
                                 "type": "bytes",
                                 "name": "mintData"
                             }
-                        ]
+                        ],
+                        "name": "bundle"
                     },
                     {
                         "type": "address",
@@ -1249,7 +1201,6 @@ export const ABI_JSON = [
                     },
                     {
                         "type": "tuple[]",
-                        "name": "bundle",
                         "components": [
                             {
                                 "type": "address",
@@ -1271,7 +1222,8 @@ export const ABI_JSON = [
                                 "type": "bytes",
                                 "name": "mintData"
                             }
-                        ]
+                        ],
+                        "name": "bundle"
                     },
                     {
                         "type": "uint256",
@@ -1302,7 +1254,6 @@ export const ABI_JSON = [
             },
             {
                 "type": "tuple[]",
-                "name": "tokens",
                 "components": [
                     {
                         "type": "address",
@@ -1312,7 +1263,8 @@ export const ABI_JSON = [
                         "type": "uint256",
                         "name": "tokenId"
                     }
-                ]
+                ],
+                "name": "tokens"
             }
         ],
         "outputs": []
@@ -1331,8 +1283,7 @@ export const ABI_JSON = [
         ],
         "outputs": [
             {
-                "type": "bool",
-                "name": ""
+                "type": "bool"
             }
         ]
     },
@@ -1360,7 +1311,6 @@ export const ABI_JSON = [
                     },
                     {
                         "type": "tuple[]",
-                        "name": "has",
                         "components": [
                             {
                                 "type": "address",
@@ -1370,11 +1320,11 @@ export const ABI_JSON = [
                                 "type": "uint256",
                                 "name": "tokenId"
                             }
-                        ]
+                        ],
+                        "name": "has"
                     },
                     {
                         "type": "tuple[]",
-                        "name": "wants",
                         "components": [
                             {
                                 "type": "address",
@@ -1384,7 +1334,8 @@ export const ABI_JSON = [
                                 "type": "uint256",
                                 "name": "tokenId"
                             }
-                        ]
+                        ],
+                        "name": "wants"
                     }
                 ]
             },
@@ -1459,8 +1410,7 @@ export const ABI_JSON = [
         "inputs": [],
         "outputs": [
             {
-                "type": "address",
-                "name": ""
+                "type": "address"
             }
         ]
     },

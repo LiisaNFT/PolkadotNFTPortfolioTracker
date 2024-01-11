@@ -1,4 +1,4 @@
-import { SubstrateBatchProcessor, DataHandlerContext } from '@subsquid/substrate-processor'
+import { SubstrateBatchProcessor, BatchProcessorItem } from '@subsquid/substrate-processor'
 import { EntityManager } from 'typeorm'
 import { Store} from '@subsquid/typeorm-store'
 import _ from 'lodash'
@@ -43,17 +43,12 @@ export const processor = new SubstrateBatchProcessor()
         chain: process.env.CHAIN_ENDPOINT || 'wss://archive.matrix.blockchain.enjin.io',
     })
     .setBlockRange({ from: 0 })
-    .addEvent({
-        name: ['MultiTokens.AttributeSet', 'MultiTokens.Transferred', 'Marketplace.ListingCreated', 'Marketplace.ListingCancelled', 'Marketplace.ListingFilled', 'Marketplace.AuctionFinalized'],
-        extrinsic: true,
-        call: true
-      })
-    //.addEvent('MultiTokens.AttributeSet', eventOptions)
-    //.addEvent('MultiTokens.Transferred', eventOptions)
-    //.addEvent('Marketplace.ListingCreated', eventOptions)
-    //.addEvent('Marketplace.ListingCancelled', eventOptions)
-    //.addEvent('Marketplace.ListingFilled', eventOptions)
-    //.addEvent('Marketplace.AuctionFinalized', eventOptions)
+    .addEvent('MultiTokens.AttributeSet', eventOptions)   
+    .addEvent('MultiTokens.Transferred', eventOptions)
+    .addEvent('Marketplace.ListingCreated', eventOptions)
+    .addEvent('Marketplace.ListingCancelled', eventOptions)
+    .addEvent('Marketplace.ListingFilled', eventOptions)
+    .addEvent('Marketplace.AuctionFinalized', eventOptions)
 
-//export type Item = BatchProcessorItem<typeof processor>
-export type Context = DataHandlerContext<Store, typeof fields>
+export type Item = BatchProcessorItem<typeof processor>
+//export type Context = DataHandlerContext<Store, typeof fields>

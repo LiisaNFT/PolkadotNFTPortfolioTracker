@@ -12,6 +12,7 @@ import * as erc721abi from '../abi/erc721'
 import * as erc1155abi from '../abi/erc1155'
 import * as Moonbeans from '../abi/moonriverMoonbeans'
 import * as Seascape from '../abi/moonriverSeascape'
+import * as tofu from '../abi/moonbeamTofu'
 
 
 

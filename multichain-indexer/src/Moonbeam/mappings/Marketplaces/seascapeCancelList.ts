@@ -10,7 +10,7 @@ export async function handleSeascapeCancelList(transaction: Transaction, chain  
   const operator = '';
   let f = Seascape.functions['cancelSell'].decode(transaction.input);
 
-  const cancelList = await utils.entity.NftCancelListManager.getOrCreate({
+  const sale = await utils.entity.NftCancelListManager.getOrCreate({
     amount: BigInt('1'),
     contractStandard: ContractStandard.ERC721,
     isBatch: false,
