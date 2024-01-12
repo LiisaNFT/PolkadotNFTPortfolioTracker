@@ -14,9 +14,9 @@ import {
 } from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
-import { computeTraits } from '../../../jobs/compute-traits'
+import { computeTraits } from '../../../../jobs/compute-traits'
 import { getOrCreateAccount } from '../../util/entities'
-import { syncCollectionStats } from '../../../jobs/collection-stats'
+import { syncCollectionStats } from '../../../../jobs/collection-stats'
 
 interface EventData {
     collectionId: bigint

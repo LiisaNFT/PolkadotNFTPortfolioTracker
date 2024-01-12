@@ -1,6 +1,6 @@
 import Axios from 'axios'
 import https from 'https'
-import { safeString } from '../../src/common/tools'
+import { safeString } from '../../../common/tools'
 import { Attribute, Metadata, MetadataMedia } from '../../modelEnjin'
 
 type Media = {

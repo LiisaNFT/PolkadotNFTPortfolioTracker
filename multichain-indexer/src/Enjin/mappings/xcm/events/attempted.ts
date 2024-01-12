@@ -1,7 +1,7 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { hexToU8a } from '@polkadot/util'
-import { UnknownVersionError } from '../../../src/common/errors'
+import { UnknownVersionError } from '../../../../common/errors'
 import { Event as EventModel, Extrinsic, TeleportBalanceWithdrawn } from '../../../modelEnjin'
 import { Call } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
