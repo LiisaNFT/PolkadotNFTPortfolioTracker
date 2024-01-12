@@ -10,7 +10,7 @@ const chain = 'Enjin';
 
 processor.run(new TypeormDatabase({stateSchema: 'eth_processor'}), async (ctx) => {
         
-        utils.entity.initAllEntityManagers(ctx as unknown as CommonContext);
+        utils.entity.initAllEntityManagers(ctx);
         
         for (const block of ctx.blocks) {
             for (const item of block.items) {

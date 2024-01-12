@@ -14,7 +14,7 @@ import {
 import { Call } from '../../types/generated/support'
 import { CommonContext } from '../types/contexts'
 import { FuelTanksDispatchAndTouchCall, FuelTanksDispatchCall } from '../../types/generated/calls'
-import { UnknownVersionError } from '../../src/common/errors'
+import { UnknownVersionError } from '../../../common/errors'
 
 export function rulesToMap(
     ruleId: string,

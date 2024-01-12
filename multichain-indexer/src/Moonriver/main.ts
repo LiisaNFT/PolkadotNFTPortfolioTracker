@@ -7,7 +7,6 @@ import * as Seascape from '../abi/moonriverSeascape'
 import {processor} from './processor'
 import * as modules from './mappings';
 import * as utils from './mappings/utils'
-import {Log, Transaction} from './processor'
 
 // Chain
 const chain = 'Moonriver';

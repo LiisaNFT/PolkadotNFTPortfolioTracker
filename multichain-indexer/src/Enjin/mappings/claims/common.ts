@@ -1,6 +1,6 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { CommonContext } from '../types/contexts'
-import { UnknownVersionError } from '../../src/common/errors'
+import { UnknownVersionError } from '../../../common/errors'
 import {
     ClaimsDelayClaimsPeriodStorage,
     ClaimsExchangeRateStorage,

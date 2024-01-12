@@ -1,6 +1,6 @@
 import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
-import { UnknownVersionError } from '../../../src/common/errors'
+import { UnknownVersionError } from '../../../../common/errors'
 import { BalancesWithdrawEvent } from '../../../types/generated/events'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'

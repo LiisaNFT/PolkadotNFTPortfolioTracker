@@ -14,7 +14,7 @@ import {
 } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
-import { Sns } from '../../../src/common/sns'
+import { Sns } from '../../../../common/sns'
 import { getTotalUnclaimedAmount } from '../common'
 
 function getEventData(ctx: CommonContext, event: Event) {

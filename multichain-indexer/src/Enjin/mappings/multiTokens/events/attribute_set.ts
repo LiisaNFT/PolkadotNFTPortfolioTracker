@@ -19,8 +19,8 @@ import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import { getOrCreateAccount } from '../../util/entities'
 import { safeString } from '../../../../common/tools'
-import { computeTraits } from '../../../../../jobs/compute-traits'
-import { processMetadata } from '../../../../../jobs/process-metadata'
+import { computeTraits } from '../../../jobs/compute-traits'
+import { processMetadata } from '../../../jobs/process-metadata'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new MultiTokensAttributeSetEvent(ctx, event)

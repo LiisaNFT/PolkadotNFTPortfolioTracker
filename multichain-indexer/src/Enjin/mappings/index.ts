@@ -3,14 +3,6 @@ export {
   handleErc1155TransferBatch,
   handleErc1155TransferSingle
 } from './transfers';
-export {
-  handleMoonbeansSales,
-  handleMoonbeansCancelList,
-  handleSeascapeSales,
-  handleSeascapeCancelList,
-  handleSeascapeListings,
-  handleTofuSales
-} from './Marketplaces';
 export { handleErc1155UriChanged } from './uriUpdateActions';
 import multiTokens from './multiTokens'
 import balances from './balances'

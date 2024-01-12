@@ -1,10 +1,9 @@
-import { SubstrateBatchProcessor, BatchProcessorItem } from '@subsquid/substrate-processor'
-import { EntityManager } from 'typeorm'
-import { Store} from '@subsquid/typeorm-store'
+import {  BatchContext, SubstrateBatchProcessor, BatchProcessorItem } from '@subsquid/substrate-processor'
 import _ from 'lodash'
 import * as Sentry from '@sentry/node'
 import { RewriteFrames } from '@sentry/integrations'
 import config from './config'
+import { Store } from "@subsquid/typeorm-store";
 
 Sentry.init({
     dsn: config.sentryDsn,
@@ -50,5 +49,5 @@ export const processor = new SubstrateBatchProcessor()
     .addEvent('Marketplace.ListingFilled', eventOptions)
     .addEvent('Marketplace.AuctionFinalized', eventOptions)
 
-export type Item = BatchProcessorItem<typeof processor>
-//export type Context = DataHandlerContext<Store, typeof fields>
+export type Item = BatchProcessorItem<typeof processor>;
+export type Context = BatchContext<Store, Item>;

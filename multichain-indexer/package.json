@@ -5,9 +5,14 @@
     "build": "rm -rf lib && tsc"
   },
   "dependencies": {
+    "@aws-sdk/client-sns": "^3.490.0",
+    "@polkadot/keyring": "^12.6.2",
+    "@polkadot/util": "^12.6.2",
     "@subsquid/archive-registry": "^3.3.0",
     "@subsquid/evm-processor": "^1.8.5",
     "@subsquid/graphql-server": "^4.2.0",
+    "@subsquid/ink-abi": "^3.0.2",
+    "@subsquid/ss58": "^2.0.2",
     "@subsquid/substrate-processor": "^7.2.1",
     "@subsquid/typeorm-migration": "^1.2.0",
     "@subsquid/typeorm-store": "^1.2.0",

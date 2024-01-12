@@ -1,8 +1,8 @@
 import { hexToU8a, u8aToHex } from '@polkadot/util'
 import { SubstrateBlock } from '@subsquid/substrate-processor'
-import { UnknownVersionError } from '../../src/common/errors'
+import { UnknownVersionError } from '../../../common/errors'
 import { Account, Balance, Event as EventModel } from '../../modelEnjin'
-import { encodeId, isAddressSS58 } from '../../src/common/tools'
+import { encodeId, isAddressSS58 } from '../../../common/tools'
 import {
     BalancesBalanceSetEvent,
     BalancesDepositEvent,

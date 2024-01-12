@@ -1,7 +1,7 @@
 import { TypeormDatabase } from '@subsquid/typeorm-store';
 import * as ss58 from "@subsquid/ss58";
 import * as psp34_inkv4 from "../abi/psp34_inkv4";
-import { processor, Context } from './processor';
+import { processor } from './processor';
 import * as utils from './mappings/utils'
 import * as modules from './mappings';
 

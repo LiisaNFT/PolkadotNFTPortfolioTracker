@@ -5,8 +5,8 @@ import { MultiTokensAttributeRemovedEvent } from '../../../types/generated/event
 import { Attribute, Collection, Event as EventModel, Extrinsic, MultiTokensAttributeRemoved, Token } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
-import { processMetadata } from '../../../../../jobs/process-metadata'
-import { computeTraits } from '../../../../../jobs/compute-traits'
+import { processMetadata } from '../../../jobs/process-metadata'
+import { computeTraits } from '../../../jobs/compute-traits'
 
 interface EventData {
     collectionId: bigint

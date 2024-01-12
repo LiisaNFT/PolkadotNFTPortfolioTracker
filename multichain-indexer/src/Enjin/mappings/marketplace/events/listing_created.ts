@@ -23,8 +23,6 @@ import {
 } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
-import { getOrCreateAccount } from '../../util/entities'
-import { syncCollectionStats } from '../../../../../jobs/collection-stats'
 import * as utils from '../../utils';
 import {
     Collection,

@@ -2,7 +2,7 @@ import { SubstrateBlock } from '@subsquid/substrate-processor'
 import { EventItem } from '@subsquid/substrate-processor/lib/interfaces/dataSelection'
 import { u8aToHex, u8aToString } from '@polkadot/util'
 import { randomBytes } from 'crypto'
-import { CallNotDefinedError, UnknownVersionError } from '../../../src/common/errors'
+import { CallNotDefinedError, UnknownVersionError } from '../../../../common/errors'
 import { FuelTanksFuelTankCreatedEvent } from '../../../types/generated/events'
 import {
     Event as EventModel,
@@ -20,7 +20,7 @@ import { CommonContext } from '../../types/contexts'
 import { FuelTanksCreateFuelTankCall, FuelTanksForceCreateFuelTankCall } from '../../../types/generated/calls'
 import { getOrCreateAccount } from '../../util/entities'
 import { rulesToMap } from '../common'
-import { safeJsonString } from '../../../src/common/tools'
+import { safeJsonString } from '../../../../common/tools'
 
 function getEventData(ctx: CommonContext, event: Event) {
     const data = new FuelTanksFuelTankCreatedEvent(ctx, event)

@@ -18,14 +18,11 @@ import {
 } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
-import { getBestListing } from '../../util/entities'
-import { syncCollectionStats } from '../../../../../jobs/collection-stats'
 import * as utils from '../../utils';
 import {
     Collection,
     ContractStandard
   } from '../../../../model';
-import { encodeId, isAddressSS58 } from '../../../../common/tools'
 import {
     getNftTransferEntityId
   } from '../../utils/common';

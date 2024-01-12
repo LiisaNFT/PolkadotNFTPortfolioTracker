@@ -9,21 +9,15 @@ import {
     Event as EventModel,
     Extrinsic,
     Listing,
-    ListingSale,
-    ListingStatus,
-    ListingStatusType,
     MarketplaceAuctionFinalized,
 } from '../../../modelEnjin'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
-import { getBestListing } from '../../util/entities'
-import { syncCollectionStats } from '../../../../../jobs/collection-stats'
 import * as utils from '../../utils';
 import {
     Collection,
     ContractStandard
   } from '../../../../model';
-import { encodeId, isAddressSS58 } from '../../../../common/tools'
 import {
     getNftTransferEntityId
   } from '../../utils/common';
