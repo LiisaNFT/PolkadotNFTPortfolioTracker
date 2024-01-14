@@ -1,6 +1,5 @@
 import axios from 'axios';
 import fs from 'fs';
-import { forEach } from 'mathjs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -388,3 +387,4 @@ export function getLiquidity(host) {
 
     return weightedSum; // This is the weighted average score
 }
+

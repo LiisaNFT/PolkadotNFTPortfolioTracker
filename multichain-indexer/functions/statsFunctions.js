@@ -2,14 +2,7 @@ import { fetchAstarTofuSales, fetchMoonbeamMoonbeansSales, fetchMoonbeamSeascape
 
 // Variables for queiring graphql
 
-const hostAstarTofuNFT = "http://localhost:4350/graphql";
-const hostMoonbeamMoonbeans = "http://localhost:4351/graphql";
-const hostMoonbeamSeascape = "http://localhost:4353/graphql"; 
-const hostMoonbeamTofu = "http://localhost:4354/graphql";
-const hostMoonriverMoonbeans = "http://localhost:4355/graphql"; 
-const hostMoonriverSeascape = "http://localhost:4356/graphql"; 
-const hostBasilisk = "http://localhost:4358/graphql"; 
- 
+const host = "http://localhost:4350/graphql";
 
 
 

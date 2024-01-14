@@ -39,7 +39,9 @@ type Collection @entity {
   createdAtBlock: BigInt! @index
   createdAt: DateTime! @index
   name: String @index
+  stats: CollectionStats # Reference to CollectionStats
 }
+
 
 type NfToken @entity {
     id: ID!
@@ -92,4 +94,15 @@ type NfTokenAttribute @entity {
     id: ID!
     nftoken: NfToken!
     attribute: Attribute!
+}
+
+type CollectionStats @entity {
+  id: ID!
+  totalVolume: BigInt
+  floorPrice: BigInt
+  tokenCount: Int
+  marketCap: BigInt
+  highestSale: Float
+  lastSaleDate: DateTime
+  supply: BigInt
 }
