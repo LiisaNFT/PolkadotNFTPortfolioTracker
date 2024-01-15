@@ -6,14 +6,22 @@ import {
   } from "@subsquid/substrate-processor";
 import { Store } from "@subsquid/typeorm-store";
 
+const eventOptions = {  
+    data: {
+        event: {
+            args: true,
+            extrinsic: true,
+        },
+    } as const,
+} as const
+
 export const processor = new SubstrateBatchProcessor()
     .setDataSource({
-        archive: lookupArchive("astar", {
-            release: "FireSquid",
-            type: "Substrate",
-        }),
+        archive: lookupArchive('astar', {type: 'Substrate', release: 'ArrowSquid'}),
+        chain: "wss://astar-rpc.dwellir.com",
+        
     })
-    .addEvent("Contracts.ContractEmitted");
+    .addEvent("Contracts.ContractEmitted", eventOptions);
 
 export type Item = BatchProcessorItem<typeof processor>;
 export type Context = BatchContext<Store, Item>;

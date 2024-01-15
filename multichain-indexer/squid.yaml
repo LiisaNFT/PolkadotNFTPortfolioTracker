@@ -9,8 +9,14 @@ deploy:
   processor:
     - name: Moonbeam-processor
       cmd: [ "node", "lib/Moonbeam/main" ]
-    - name: bsc-processor
-      cmd: [ "node", "lib/bsc/main" ]
+    - name: Moonriver-processor
+      cmd: [ "node", "lib/Moonriver/main" ]
+    - name: Astar-processor
+      cmd: [ "node", "lib/Astar/main" ]
+    - name: AstarPSP-processor
+      cmd: [ "node", "lib/AstarPSP/main" ]
+    - name: Enjin-processor
+      cmd: [ "node", "lib/Enjin/main" ]
   api:
     cmd:
       - npx
