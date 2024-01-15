@@ -1,0 +1,1 @@
+export { handlePsp34Transfer } from './nftTransfers/psp34';

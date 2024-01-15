@@ -50,6 +50,7 @@ sqd migration:apply
 sqd process:Moonbeam
 sqd process:Moonriver
 sqd process:Astar
+sqd process:AstarPSP
 sqd process:Enjin
 sqd process:Basilisk 
 
