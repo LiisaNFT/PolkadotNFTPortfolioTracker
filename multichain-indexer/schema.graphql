@@ -44,17 +44,17 @@ type Collection @entity {
 
 
 type NfToken @entity {
-    id: ID!
-    nativeId: String! @index
-    name: String @index
-    symbol: String @index
-    collection: Collection! @index
-    image: String
-    uri: String
-    currentOwner: Account! 
-    amount: BigInt! @index
-    isBurned: Boolean! @index
-    attributes: [NfTokenAttribute!]! @derivedFrom(field: "nftoken")
+  id: ID!
+  nativeId: String! @index
+  name: String @index
+  symbol: String @index
+  collection: Collection! @index
+  image: String
+  uri: String
+  currentOwner: Account! 
+  amount: BigInt! @index
+  isBurned: Boolean! @index
+  attributes: [NfTokenAttribute!]! @derivedFrom(field: "nftoken")
 }
 
 type UriUpdateAction @entity {
@@ -82,18 +82,18 @@ type NftEvent @entity {
 }
 
 type Attribute @entity {
-    id: ID!
-    collection: Collection! @index
-    type: String! @index
-    value: String!
-    tokens: [NfTokenAttribute!]! @derivedFrom(field: "attribute")
-    rarity: Float! @index
+  id: ID!
+  collection: Collection! @index
+  type: String! @index
+  value: String!
+  tokens: [NfTokenAttribute!]! @derivedFrom(field: "attribute")
+  rarity: Float! @index
 }
 
 type NfTokenAttribute @entity {
-    id: ID!
-    nftoken: NfToken!
-    attribute: Attribute!
+  id: ID!
+  nftoken: NfToken!
+  attribute: Attribute!
 }
 
 type CollectionStats @entity {
