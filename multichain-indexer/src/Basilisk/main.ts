@@ -6,9 +6,7 @@ import * as utils from './mappings/utils'
 import * as modules from './mappings';
 
 
-const CONTRACT_ADDRESS_SS58 = "XnrLUQucQvzp5kaaWLG9Q3LbZw5DPwpGn69B5YcywSWVr5w";
-const SS58_PREFIX = ss58.decode(CONTRACT_ADDRESS_SS58).prefix;
-const chain = 'Astar';
+const chain = 'Basilisk';
 
 function convertToBigInt(tokenId: number | bigint | Uint8Array): bigint {
     if (typeof tokenId === 'bigint') {

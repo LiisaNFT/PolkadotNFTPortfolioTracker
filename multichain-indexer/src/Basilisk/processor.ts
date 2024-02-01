@@ -21,7 +21,13 @@ export const processor = new SubstrateBatchProcessor()
         chain: 'wss://rpc.basilisk.cloud',
         
     })
-    .addEvent("Contracts.ContractEmitted", eventOptions);
+    .setBlockRange({ from: 1790000 })
+    .addEvent("Contracts.ContractEmitted", eventOptions)
+    .addEvent('NFT.InstanceTransferred', eventOptions)
+    .addEvent('NFT.ItemTransferred', eventOptions)
+    .addEvent('Marketplace.TokenSold', eventOptions)
+    .addEvent('Marketplace.TokenPriceUpdated', eventOptions)
+    .addEvent('Marketplace.OfferAccepted', eventOptions)
 
 export type Item = BatchProcessorItem<typeof processor>;
 export type Context = BatchContext<Store, Item>;
