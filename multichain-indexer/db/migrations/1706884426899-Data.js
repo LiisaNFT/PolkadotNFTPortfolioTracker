@@ -1,7 +1,8 @@
-module.exports = class Data1698589560817 {
-    name = 'Data1698589560817'
+module.exports = class Data1706884426899 {
+    name = 'Data1706884426899'
 
     async up(db) {
+        await db.query(`CREATE TABLE "collection_stats" ("id" character varying NOT NULL, "total_volume" bigint, "floor_price" bigint, "token_count" integer, "market_cap" bigint, "highest_sale" numeric, "last_sale_date" TIMESTAMP WITH TIME ZONE, "supply" bigint, "collection_id" character varying, CONSTRAINT "REL_70047d7262d0a509d49d29eaae" UNIQUE ("collection_id"), CONSTRAINT "PK_dc02ef85275d24f9ce8238b85fd" PRIMARY KEY ("id"))`)
         await db.query(`CREATE TABLE "collection" ("id" character varying NOT NULL, "collection_type" character varying(7) NOT NULL, "created_at_block" numeric NOT NULL, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "name" text, CONSTRAINT "PK_ad3f485bbc99d875491f44d7c85" PRIMARY KEY ("id"))`)
         await db.query(`CREATE INDEX "IDX_3fecce93788f86b3c2d76f5bb2" ON "collection" ("collection_type") `)
         await db.query(`CREATE INDEX "IDX_035df96c8ad5c55e4e49b53705" ON "collection" ("created_at_block") `)
@@ -36,6 +37,7 @@ module.exports = class Data1698589560817 {
         await db.query(`CREATE INDEX "IDX_965dcd17b4c88dd66fb39df397" ON "nft_event" ("marketplace") `)
         await db.query(`CREATE INDEX "IDX_ada19c579e2d8bdce8b23dad15" ON "nft_event" ("price") `)
         await db.query(`CREATE INDEX "IDX_dabbd7d695ef95e6ef83f433a1" ON "nft_event" ("chain") `)
+        await db.query(`ALTER TABLE "collection_stats" ADD CONSTRAINT "FK_70047d7262d0a509d49d29eaaea" FOREIGN KEY ("collection_id") REFERENCES "collection"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`)
         await db.query(`ALTER TABLE "attribute" ADD CONSTRAINT "FK_adaba2bde1f917be8521c42ebc0" FOREIGN KEY ("collection_id") REFERENCES "collection"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`)
         await db.query(`ALTER TABLE "nf_token_attribute" ADD CONSTRAINT "FK_aa6394b7642a4003da7fe07cf74" FOREIGN KEY ("nftoken_id") REFERENCES "nf_token"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`)
         await db.query(`ALTER TABLE "nf_token_attribute" ADD CONSTRAINT "FK_e8ed82a576c20c5ff6cc09e6a69" FOREIGN KEY ("attribute_id") REFERENCES "attribute"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`)
@@ -48,6 +50,7 @@ module.exports = class Data1698589560817 {
     }
 
     async down(db) {
+        await db.query(`DROP TABLE "collection_stats"`)
         await db.query(`DROP TABLE "collection"`)
         await db.query(`DROP INDEX "public"."IDX_3fecce93788f86b3c2d76f5bb2"`)
         await db.query(`DROP INDEX "public"."IDX_035df96c8ad5c55e4e49b53705"`)
@@ -82,6 +85,7 @@ module.exports = class Data1698589560817 {
         await db.query(`DROP INDEX "public"."IDX_965dcd17b4c88dd66fb39df397"`)
         await db.query(`DROP INDEX "public"."IDX_ada19c579e2d8bdce8b23dad15"`)
         await db.query(`DROP INDEX "public"."IDX_dabbd7d695ef95e6ef83f433a1"`)
+        await db.query(`ALTER TABLE "collection_stats" DROP CONSTRAINT "FK_70047d7262d0a509d49d29eaaea"`)
         await db.query(`ALTER TABLE "attribute" DROP CONSTRAINT "FK_adaba2bde1f917be8521c42ebc0"`)
         await db.query(`ALTER TABLE "nf_token_attribute" DROP CONSTRAINT "FK_aa6394b7642a4003da7fe07cf74"`)
         await db.query(`ALTER TABLE "nf_token_attribute" DROP CONSTRAINT "FK_e8ed82a576c20c5ff6cc09e6a69"`)

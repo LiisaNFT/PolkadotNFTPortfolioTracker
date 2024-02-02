@@ -47,7 +47,7 @@ sqd up
 sqd migration:generate
 sqd migration:apply
 
-# 4. Build and start the processors in separate terminals
+# 4. Build and start the processors in separate terminals one at a time
 sqd process:Moonbeam
 sqd process:Moonriver
 sqd process:Astar

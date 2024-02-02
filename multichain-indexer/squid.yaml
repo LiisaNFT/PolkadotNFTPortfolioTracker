@@ -1,7 +1,7 @@
 manifestVersion: subsquid.io/v0.1
 name: multichain-transfers-squid
 version: 1
-description: 'A squid that indexes USDC transfers on ETH and BSC'
+description: 'A squid that indexes nft transfers, sales and listings on polkadot parachains'
 build: 
 deploy:
   addons:
@@ -17,6 +17,8 @@ deploy:
       cmd: [ "node", "lib/AstarPSP/main" ]
     - name: Enjin-processor
       cmd: [ "node", "lib/Enjin/main" ]
+    - name: Basilisk-processor
+      cmd: [ "node", "lib/Basilisk/main" ]
   api:
     cmd:
       - npx
