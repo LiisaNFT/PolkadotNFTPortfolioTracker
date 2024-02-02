@@ -23,6 +23,7 @@ export async function itemList(
   if (!event) return undefined
 
   const listing = await utils.entity.NftListManager.getOrCreate({
+    id: '',
     amount: BigInt(1),
     contractStandard: ContractStandard.UNIQUES,
     isBatch: false,

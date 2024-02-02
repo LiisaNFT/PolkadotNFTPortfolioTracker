@@ -4,7 +4,7 @@ import { EntityManager } from 'typeorm';
 import { Interaction } from '../../../../model/generated/_interaction';
 import { Attribute } from '../../../../model/generated/_attribute';
 import { CollectionType } from '../../../../model/generated/_collectionType';
-import { OfferInteraction } from '../../../../model';
+import { OfferInteraction } from '../../../../model/generated/_offerInteraction';
 
 export type BaseCall = {
   caller: string;

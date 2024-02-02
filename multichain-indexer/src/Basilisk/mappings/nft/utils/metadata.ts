@@ -1,10 +1,10 @@
 import { TokenMetadata } from '@kodadot1/metasquid/types';
 import { $obtain } from '@kodadot1/minipfs';
-import { MetadataEntity } from '../../../../model';
+import { MetadataEntity } from '../../../../model/generated/metadataEntity.model';
 import { EntityWithId } from './entity';
 import logger from './logger';
 import { attributeFrom, ensure } from './types';
-import { CollectionType } from '../../../../model/generated';
+import { CollectionType } from '../../../../model/generated/_collectionType';
 
 export const fetchMetadata = async <T>(metadata: string): Promise<T> => {
   try {
