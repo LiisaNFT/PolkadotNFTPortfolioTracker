@@ -1,8 +1,8 @@
-import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_, OneToMany as OneToMany_, OneToOne} from "typeorm"
+import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_, OneToMany as OneToMany_, ManyToOne as ManyToOne_} from "typeorm"
 import * as marshal from "./marshal"
 import {ContractStandard} from "./_contractStandard"
 import {NfToken} from "./nfToken.model"
-import { CollectionStats } from './collectionStats.model';
+import {CollectionStats} from "./collectionStats.model"
 
 @Entity_()
 export class Collection {
@@ -16,11 +16,6 @@ export class Collection {
     @Index_()
     @Column_("varchar", {length: 7, nullable: false})
     collectionType!: ContractStandard
-
-    @OneToOne(() => CollectionStats, stats => stats.collection, { 
-        // additional options like cascade or eager loading
-    })
-    stats!: CollectionStats;
 
     @OneToMany_(() => NfToken, e => e.collection)
     nfts!: NfToken[]
@@ -36,4 +31,8 @@ export class Collection {
     @Index_()
     @Column_("text", {nullable: true})
     name!: string | undefined | null
+
+    @Index_()
+    @ManyToOne_(() => CollectionStats, {nullable: true})
+    stats!: CollectionStats | undefined | null
 }

@@ -1,41 +1,33 @@
-import { Entity, Column, PrimaryColumn, OneToOne, JoinColumn } from 'typeorm';
-import * as marshal from './marshal';
-import { Collection } from './collection.model';
+import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_} from "typeorm"
+import * as marshal from "./marshal"
 
-@Entity()
+@Entity_()
 export class CollectionStats {
     constructor(props?: Partial<CollectionStats>) {
-        Object.assign(this, props);
+        Object.assign(this, props)
     }
 
-    @PrimaryColumn()
-    id!: string;
+    @PrimaryColumn_()
+    id!: string
 
-    @OneToOne(() => Collection, collection => collection.stats)
-    @JoinColumn()
-    collection!: Collection;
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
+    totalVolume!: bigint | undefined | null
 
-    @Column('bigint', { nullable: true, transformer: marshal.bigintTransformer })
-    totalVolume?: bigint;
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
+    floorPrice!: bigint | undefined | null
 
-    @Column('bigint', { nullable: true, transformer: marshal.bigintTransformer })
-    floorPrice?: bigint;
+    @Column_("int4", {nullable: true})
+    tokenCount!: number | undefined | null
 
-    @Column('int', { nullable: true })
-    tokenCount?: number;
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
+    marketCap!: bigint | undefined | null
 
-    @Column('bigint', { nullable: true, transformer: marshal.bigintTransformer })
-    marketCap?: bigint;
+    @Column_("numeric", {transformer: marshal.floatTransformer, nullable: true})
+    highestSale!: number | undefined | null
 
-    @Column('numeric', { nullable: true })
-    highestSale?: number;
+    @Column_("timestamp with time zone", {nullable: true})
+    lastSaleDate!: Date | undefined | null
 
-    @Column('timestamp with time zone', { nullable: true })
-    lastSaleDate?: Date;
-
-    @Column('bigint', { nullable: true, transformer: marshal.bigintTransformer })
-    supply?: bigint;
-
-    // Additional fields can be added here based on the data you need to store
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
+    supply!: bigint | undefined | null
 }
-

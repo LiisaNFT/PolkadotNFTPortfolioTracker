@@ -18,7 +18,7 @@ const eventOptions = {
 export const processor = new SubstrateBatchProcessor()
     .setDataSource({
         archive: lookupArchive('astar', {type: 'Substrate', release: 'ArrowSquid'}),
-        chain: "wss://astar-rpc.dwellir.com",
+        chain: "wss://rpc.astar.network",
         
     })
     .addEvent("Contracts.ContractEmitted", eventOptions);

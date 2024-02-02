@@ -5,15 +5,6 @@ import { RewriteFrames } from '@sentry/integrations'
 import config from './config'
 import { Store } from "@subsquid/typeorm-store";
 
-Sentry.init({
-    dsn: config.sentryDsn,
-    tracesSampleRate: 1.0,
-    integrations: [
-        new RewriteFrames({
-            root: global.__dirname,
-        }),
-    ],
-})
 
 export const fields = {
     call: {

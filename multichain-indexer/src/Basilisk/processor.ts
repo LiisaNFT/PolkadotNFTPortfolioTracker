@@ -17,11 +17,11 @@ const eventOptions = {
 
 export const processor = new SubstrateBatchProcessor()
     .setDataSource({
-        archive: lookupArchive('basilisk', {type: 'Substrate', release: 'FireSquid'}),
-        chain: 'wss://rpc.basilisk.cloud',
+        archive: lookupArchive('basilisk', { release: 'FireSquid' }),
+        chain: 'wss://basilisk-rococo-rpc.play.hydration.cloud',
         
     })
-    .setBlockRange({ from: 1790000 })
+    .setBlockRange({ from: 179000 })
     .addEvent('NFT.InstanceTransferred', eventOptions)
     .addEvent('NFT.ItemTransferred', eventOptions)
     .addEvent('Marketplace.TokenSold', eventOptions)

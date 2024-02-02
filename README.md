@@ -26,6 +26,7 @@ The project uses a modular architecture with these main components:
 The project is open source under Apache 2.0 license. To run it locally:
 
 ```bash
+# For each chain repeat steps 4, 5, 6 and 7
 # 0. Install @subsquid/cli a.k.a. the sqd command globally
 npm i -g @subsquid/cli
 
@@ -43,11 +44,11 @@ sqd build
 sqd down
 sqd up
 
-# 4. Generate the schema migrations
+# 5. Generate the schema migrations
 sqd migration:generate
 sqd migration:apply
 
-# 4. Build and start the processors in separate terminals one at a time
+# 6. Start the processors in separate terminals one at a time. 
 sqd process:Moonbeam
 sqd process:Moonriver
 sqd process:Astar
@@ -55,7 +56,7 @@ sqd process:AstarPSP
 sqd process:Enjin
 sqd process:Basilisk 
 
-# 5. Start the GraphQL server by running in yet another terminal
+# 7. Start the GraphQL server by running in yet another terminal
 sqd serve
 sqd open #in a separate terminal
 
