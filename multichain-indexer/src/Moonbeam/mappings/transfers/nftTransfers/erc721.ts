@@ -1,5 +1,3 @@
-import * as ethers from 'ethers'
-import {ABI_JSON} from '../../../../abi/erc721.abi'
 import * as erc721 from '../../../../abi/erc721';
 import { ContractStandard } from '../../../../model';
 import * as utils from '../../utils';

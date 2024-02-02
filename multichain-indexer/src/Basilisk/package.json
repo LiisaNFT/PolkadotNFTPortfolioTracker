@@ -12,6 +12,7 @@
     "@subsquid/archive-registry": "^3.3.0",
     "@subsquid/ss58": "^2.0.2",
     "@subsquid/substrate-processor": "2.4.1",
-    "@subsquid/typeorm-store": "0.2.2"
+    "@subsquid/typeorm-store": "0.2.2",
+    "signale": "^1.4.0"
   }
 }

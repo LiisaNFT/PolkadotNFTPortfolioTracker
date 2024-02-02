@@ -40,6 +40,7 @@ npm ci
 sqd build
 
 # 4. Start a Postgres database container and detach
+sqd down
 sqd up
 
 # 4. Generate the schema migrations
@@ -70,4 +71,3 @@ This project is licensed under Apache 2.0. See [LICENSE](LICENSE.md) file for de
 Visit our [Website](https://www.liisa.io), follow us on [Twitter](https://https://twitter.com/liisa_io) and join our [Discord](https://discord.gg/6wHSEyc9NX). 
 =======
 This project is licensed under Apache 2.0. See [LICENSE](LICENSE.md) file for details.
->>>>>>> f6e5858 (update Readme, functions and queries)

@@ -2,13 +2,18 @@ import {
   ContractStandard,
   NftEvent,
   EventType,
+  NfTokenAttribute,
+  Attribute
 } from '../../../../model';
 import { accountsManager, nfTokenManager, collectionManager, attributeManager, nfTokenAttributeManager } from '../entityUtils';
 import { EntitiesManager } from './common';
 import {
   getNftTransferEntityId,
   getTokenTotalSupply,
-  getNftMetadata
+  getTokenBurnedStatus,
+  getEventType,
+  getNftMetadata,
+  nftMetadata
 } from '../common';
 
 export class NftCancelListManager extends EntitiesManager<NftEvent> {
@@ -51,7 +56,6 @@ export class NftCancelListManager extends EntitiesManager<NftEvent> {
   }): Promise<NftEvent> {
 
     
-
     // Fetch or create accounts
     const fromAccount = await accountsManager.getOrCreate(from);
     const toAccount = await accountsManager.getOrCreate(to);
@@ -119,7 +123,7 @@ export class NftCancelListManager extends EntitiesManager<NftEvent> {
     nfTokenManager.add(token);
 
     // Create the sale instance
-    const sale = new NftEvent({
+    const list = new NftEvent({
       id: getNftTransferEntityId(logId, tokenId.toString()),
       blockNumber: blockHeight,
       timestamp: new Date(blockTimestamp),
@@ -134,8 +138,8 @@ export class NftCancelListManager extends EntitiesManager<NftEvent> {
     });
     
 
-    this.add(sale);
+    this.add(list);
 
-    return sale;
+    return list;
   }
 }

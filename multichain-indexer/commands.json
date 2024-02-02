@@ -69,6 +69,11 @@
       "deps": ["build", "migration:apply"],
       "cmd": ["node", "--require=dotenv/config", "lib/Enjin/main.js"]
     },
+    "process:Basilisk": {
+      "description": "Load .env and start the Astar squid processor",
+      "deps": ["build", "migration:apply"],
+      "cmd": ["node", "--require=dotenv/config", "lib/Basilisk/main.js"]
+    },
     "serve": {
       "description": "Start the GraphQL API server",
       "cmd": ["squid-graphql-server"]

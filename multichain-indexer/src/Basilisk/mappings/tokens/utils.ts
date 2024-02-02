@@ -1,10 +1,8 @@
-import assert from 'assert';
 import { ContractStandard } from '../../../model';
 import { Context } from '../../processor';
 import { addTimeout } from '@subsquid/util-timeout';
 import { TokenDetails } from '../../../common/types';
 import * as contracts from '../contracts';
-import { Log } from 'ethers';
 
 function clearNullBytes(rawStr: string): string {
   /**

@@ -7,7 +7,6 @@ import {
   collectionManager,
   initAllEntityManagers,
   saveAllEntities,
-  prefetchEntities,
   NftSaleManager,
   NftListManager,
   NftCancelListManager
@@ -23,7 +22,6 @@ export const entity = {
   collectionManager,
   initAllEntityManagers,
   saveAllEntities,
-  prefetchEntities,
   NftSaleManager,
   NftListManager,
   NftCancelListManager
