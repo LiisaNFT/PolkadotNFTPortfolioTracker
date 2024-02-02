@@ -16,5 +16,8 @@
     "@subsquid/typeorm-store": "0.2.2",
     "nanoid": "^5.0.5",
     "signale": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/signale": "^1.4.7"
   }
 }

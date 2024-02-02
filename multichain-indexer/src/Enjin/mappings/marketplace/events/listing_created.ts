@@ -7,17 +7,8 @@ import { MarketplaceListingCreatedEvent } from '../../../types/generated/events'
 import {
     Account,
     AccountTokenEvent,
-    AuctionData,
-    AuctionState,
     Event as EventModel,
     Extrinsic,
-    FeeSide,
-    FixedPriceData,
-    FixedPriceState,
-    Listing,
-    ListingStatus,
-    ListingStatusType,
-    ListingType,
     MarketplaceListingCreated,
     Token,
 } from '../../../modelEnjin'

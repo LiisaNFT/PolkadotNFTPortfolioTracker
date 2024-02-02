@@ -8,12 +8,7 @@ import {
     AccountTokenEvent,
     Event as EventModel,
     Extrinsic,
-    FixedPriceState,
     Listing,
-    ListingSale,
-    ListingStatus,
-    ListingStatusType,
-    ListingType,
     MarketplaceListingFilled,
 } from '../../../modelEnjin'
 import { Event } from '../../../types/generated/support'
