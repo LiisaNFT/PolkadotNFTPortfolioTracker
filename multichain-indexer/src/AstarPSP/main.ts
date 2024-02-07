@@ -8,7 +8,7 @@ import * as modules from './mappings';
 
 const CONTRACT_ADDRESS_SS58 = "XnrLUQucQvzp5kaaWLG9Q3LbZw5DPwpGn69B5YcywSWVr5w";
 const SS58_PREFIX = ss58.decode(CONTRACT_ADDRESS_SS58).prefix;
-const chain = 'Astar';
+const chain = 'AstarPSP';
 
 function convertToBigInt(tokenId: number | bigint | Uint8Array): bigint {
     if (typeof tokenId === 'bigint') {
@@ -25,13 +25,14 @@ function convertToBigInt(tokenId: number | bigint | Uint8Array): bigint {
 }
 
 
-processor.run(new TypeormDatabase(), async (ctx) => {
+processor.run(new TypeormDatabase({stateSchema: 'eth_processor'}), async (ctx) => {
 
     utils.entity.initAllEntityManagers(ctx);
     await utils.entity.prefetchEntities(ctx);
 
     for (const block of ctx.blocks) {
         for (const item of block.items) {
+            //console.log('item: ', item);
             if (item.name === "Contracts.ContractEmitted") {
                 
                 let event;
@@ -52,6 +53,10 @@ processor.run(new TypeormDatabase(), async (ctx) => {
                     const tokenId = convertToBigInt(event.id.value);
                     const from = event.from ? ss58.codec(SS58_PREFIX).encode(event.from).toString() : '';
                     const to = event.to ? ss58.codec(SS58_PREFIX).encode(event.to).toString() : '';
+                    console.log('contractAddress: ', contractAddress);
+                    console.log('tokenId: ', tokenId);
+                    console.log('from: ', from);
+                    console.log('to: ', to);
 
                     try {
                         await modules.handlePsp34Transfer(contractAddress, block.header.height, tokenId, from, to, block.header.timestamp, chain);

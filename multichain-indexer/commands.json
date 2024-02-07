@@ -60,17 +60,17 @@
       "cmd": ["node", "--require=dotenv/config", "lib/Astar/main.js"]
     },
     "process:AstarPSP": {
-      "description": "Load .env and start the Astar squid processor",
+      "description": "Load .env and start the AstarPSP squid processor",
       "deps": ["build", "migration:apply"],
       "cmd": ["node", "--require=dotenv/config", "lib/AstarPSP/main.js"]
     },
     "process:Enjin": {
-      "description": "Load .env and start the Astar squid processor",
+      "description": "Load .env and start the Enjin squid processor",
       "deps": ["build", "migration:apply"],
       "cmd": ["node", "--require=dotenv/config", "lib/Enjin/main.js"]
     },
     "process:Basilisk": {
-      "description": "Load .env and start the Astar squid processor",
+      "description": "Load .env and start the Basilisk squid processor",
       "deps": ["build", "migration:apply"],
       "cmd": ["node", "--require=dotenv/config", "lib/Basilisk/main.js"]
     },
