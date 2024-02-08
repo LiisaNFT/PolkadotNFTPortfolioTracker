@@ -1,1 +1,0 @@
-export { createNfTokenAttribute } from './nfTokenAttribute';

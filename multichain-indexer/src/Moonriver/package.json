@@ -1,5 +1,5 @@
 {
-  "name": "astar",
+  "name": "moonriver",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@subsquid/archive-registry": "^3.3.0",
-    "@subsquid/evm-processor": "^1.12.0",
+    "@subsquid/evm-processor": "^1.4.0",
     "@subsquid/typeorm-store": "^1.2.6"
   }
 }

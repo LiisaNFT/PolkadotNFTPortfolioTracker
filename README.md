@@ -49,16 +49,10 @@ sqd migration:generate
 sqd migration:apply
 
 # 6. Run all squids at the same time. 
-sqd process:Moonbeam
-sqd process:Moonriver
-sqd process:Astar
-sqd process:AstarPSP
-sqd process:Enjin
-sqd process:Basilisk 
+sqd run
 
 # 7. Start the GraphQL server by running in yet another terminal
 sqd serve
-sqd open #in a separate terminal
 
 A GraphiQL playground will be available at [localhost:4350/graphql](http://localhost:4350/graphql).
 ```

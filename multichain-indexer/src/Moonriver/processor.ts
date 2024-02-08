@@ -16,9 +16,9 @@ import * as Seascape from '../abi/moonriverSeascape'
 
 export const processor = new EvmBatchProcessor()
     .setDataSource({
-        archive: lookupArchive('moonriver', {type: 'EVM'}),
-        chain: 'https://moonriver.public.blastapi.io',
-    })  
+        archive: lookupArchive('moonriver', {type: 'EVM'})
+    }) 
+    .setBlockRange({ from: 1670997 })
     .setFinalityConfirmation(75)
     .setFields({
             log: {

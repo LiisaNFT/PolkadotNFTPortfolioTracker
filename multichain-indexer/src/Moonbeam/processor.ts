@@ -19,7 +19,7 @@ import * as tofu from '../abi/moonbeamTofu'
 export const processor = new EvmBatchProcessor()
     .setDataSource({
         archive: lookupArchive('moonbeam', {type: 'EVM'}),
-        chain: 'wss://moonbeam.public.blastapi.io',
+        chain: 'https://moonbeam-evm.archive.subsquid.io',
     })
     .setBlockRange({ from: 1670997 })
     .setFinalityConfirmation(75)
