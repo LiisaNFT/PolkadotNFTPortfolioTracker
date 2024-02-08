@@ -7,6 +7,16 @@ deploy:
   addons:
     postgres: 
   processor:
+    - name: Moonbeam-processor
+      cmd: [ "sqd", "process:Moonbeam" ]
+    - name: Moonriver-processor
+      cmd: [ "sqd", "process:Moonriver" ]
+    - name: Astar-processor
+      cmd: [ "sqd", "process:Astar" ]
+    - name: AstarPSP-processor
+      cmd: [ "sqd", "process:AstarPSP" ]
+    - name: Enjin-processor
+      cmd: [ "sqd", "process:Enjin" ]
     - name: Basilisk-processor
       cmd: [ "sqd", "process:Basilisk" ]
   api:

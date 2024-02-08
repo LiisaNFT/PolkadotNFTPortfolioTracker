@@ -21,6 +21,7 @@ export const processor = new EvmBatchProcessor()
         archive: lookupArchive('moonbeam', {type: 'EVM'}),
         chain: 'wss://moonbeam.public.blastapi.io',
     })
+    .setBlockRange({ from: 1670997 })
     .setFinalityConfirmation(75)
     .setFields({
             log: {

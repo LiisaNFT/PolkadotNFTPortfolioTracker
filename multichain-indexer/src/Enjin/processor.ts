@@ -1,7 +1,6 @@
 import {  BatchContext, SubstrateBatchProcessor, BatchProcessorItem } from '@subsquid/substrate-processor'
+import { lookupArchive } from "@subsquid/archive-registry";
 import _ from 'lodash'
-import * as Sentry from '@sentry/node'
-import { RewriteFrames } from '@sentry/integrations'
 import config from './config'
 import { Store } from "@subsquid/typeorm-store";
 
@@ -29,8 +28,8 @@ const eventOptions = {
 
 export const processor = new SubstrateBatchProcessor()
     .setDataSource({
-        archive: process.env.ARCHIVE_ENDPOINT || 'https://matrixchain.archive.subsquid.io/graphql',
-        chain: process.env.CHAIN_ENDPOINT || 'wss://archive.matrix.blockchain.enjin.io',
+        archive: lookupArchive('enjin-matrix'),
+        chain: 'wss://archive.matrix.blockchain.enjin.io',
     })
     .setBlockRange({ from: 0 })
     .addEvent('MultiTokens.AttributeSet', eventOptions)   

@@ -18,7 +18,7 @@ export async function itemList(
   block: SubstrateBlock,
   chain: string
 ): Promise<void> {
-
+  console.log('itemList ctx:', ctx);
   const event = unwrap(ctx, getListTokenEvent);
   if (!event) return undefined
 

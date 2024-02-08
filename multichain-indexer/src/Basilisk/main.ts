@@ -14,6 +14,7 @@ processor.run(new TypeormDatabase(), async (ctx) => {
 
     for (const block of ctx.blocks) {
         for (const item of block.items) {
+            console.log('item:', item);
             switch (item.name) {
                 case 'NFT.ItemTransferred':
                     return map.nft.events.nftTransferred(ctx as unknown as Context, block.header, chain)

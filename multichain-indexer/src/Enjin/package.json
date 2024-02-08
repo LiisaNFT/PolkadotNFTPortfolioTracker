@@ -13,6 +13,7 @@
     "@bull-board/express": "^5.13.0",
     "@polkadot/util": "^12.6.2",
     "@sentry/integrations": "^7.93.0",
+    "@subsquid/archive-registry": "^3.3.0",
     "@subsquid/substrate-processor": "^2.4.1",
     "@subsquid/typeorm-store": "^0.2.2",
     "bull": "^4.12.0",

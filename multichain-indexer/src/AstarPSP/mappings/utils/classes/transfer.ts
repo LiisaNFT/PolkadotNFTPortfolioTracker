@@ -93,7 +93,7 @@ export class NftTransferManager extends EntitiesManager<NftEvent> {
         transferType
       );
       token.isBurned =
-        contractStandard === ContractStandard.ERC721
+        contractStandard === ContractStandard.PSP34
           ? transferType === EventType.BURN
           : getTokenBurnedStatus(token.amount);
       
