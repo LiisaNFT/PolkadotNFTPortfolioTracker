@@ -8,7 +8,7 @@ import { Context } from './mappings/nft/utils/types';
 // Chain
 const chain = 'Basilisk';
 
-processor.run(new TypeormDatabase(), async (ctx) => {
+processor.run(new TypeormDatabase({stateSchema: 'basilisk_processor'}), async (ctx) => {
 
     utils.entity.initAllEntityManagers(ctx);
 

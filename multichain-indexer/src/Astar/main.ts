@@ -12,7 +12,7 @@ const chain = 'Astar';
 // Marketplace addresses
 const tofuAddress = '0x7cae7feb55349feadb8f84468f692450d92597bc';
 
-processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_processor'}), async (ctx) => {
+processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'astar_processor'}), async (ctx) => {
 
     utils.entity.initAllEntityManagers(ctx);
     await utils.entity.prefetchEntities(ctx);

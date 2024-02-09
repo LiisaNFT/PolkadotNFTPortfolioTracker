@@ -25,7 +25,7 @@ function convertToBigInt(tokenId: number | bigint | Uint8Array): bigint {
 }
 
 
-processor.run(new TypeormDatabase({stateSchema: 'eth_processor'}), async (ctx) => {
+processor.run(new TypeormDatabase({stateSchema: 'astarPSP_processor'}), async (ctx) => {
 
     utils.entity.initAllEntityManagers(ctx);
     await utils.entity.prefetchEntities(ctx);

@@ -16,7 +16,7 @@ const moonbeansAddress = '0x9ff0cf19f66ab00774de20b311825b7f65f23972';
 const seascapeAddress = '0x65763702806143a5326b40ecded5b17796696cb3';
 const tofuAddress = '0x7bc8b1b5aba4df3be9f9a32dae501214dc0e4f3f';
 
-processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_processor'}), async (ctx) => {
+processor.run(new TypeormDatabase({supportHotBlocks: true, stateSchema: 'moonbeam_processor'}), async (ctx) => {
 
     utils.entity.initAllEntityManagers(ctx);
     await utils.entity.prefetchEntities(ctx);

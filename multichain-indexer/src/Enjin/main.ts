@@ -8,7 +8,7 @@ import { CommonContext } from './mappings/types/contexts'
 // Chain
 const chain = 'Enjin';
 
-processor.run(new TypeormDatabase({stateSchema: 'eth_processor'}), async (ctx) => {
+processor.run(new TypeormDatabase({stateSchema: 'enjin_processor'}), async (ctx) => {
         
         utils.entity.initAllEntityManagers(ctx);
         
