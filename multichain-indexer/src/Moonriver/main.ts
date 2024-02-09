@@ -15,7 +15,7 @@ const chain = 'Moonriver';
 const moonbeansAddress = '0x16d7edd3a562bb60aa0b3af357a2c195ce2aa974';
 const seascapeAddress = '0xdfd76e798d072ac187636b0a7e7fddc2f161642b';
 
-processor.run(new TypeormDatabase({supportHotBlocks: false, stateSchema: 'eth_processor'}), async (ctx) => {
+processor.run(new TypeormDatabase({supportHotBlocks: true, stateSchema: 'moonriver_processor' }), async (ctx) => {
 
     utils.entity.initAllEntityManagers(ctx);
     await utils.entity.prefetchEntities(ctx);
