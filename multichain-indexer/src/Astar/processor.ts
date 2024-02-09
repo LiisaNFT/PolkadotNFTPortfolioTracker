@@ -16,7 +16,8 @@ import * as tofu from '../abi/astarTofu'
 
 export const processor = new EvmBatchProcessor()
     .setDataSource({
-        archive: lookupArchive('astar', {type: 'EVM'})
+        archive: lookupArchive('astar', {type: 'EVM'}),
+        chain: 'wss://astar.public.blastapi.io',
     })
     .setBlockRange({ from: 1670997 })
     .setFinalityConfirmation(75)

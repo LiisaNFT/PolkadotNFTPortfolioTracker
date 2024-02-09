@@ -15,7 +15,10 @@ import * as Seascape from '../abi/moonriverSeascape'
 
 
 export const processor = new EvmBatchProcessor()
-    .setGateway('https://v2.archive.subsquid.io/network/moonbeam-mainnet')
+    .setDataSource({
+        archive: lookupArchive('moonriver', {type: 'EVM'}),
+        chain: 'https://moonriver.public.blastapi.io',
+    }) 
     .setBlockRange({ from: 1670997 })
     .setFinalityConfirmation(75)
     .setFields({

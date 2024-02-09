@@ -11,18 +11,6 @@ deploy:
       cmd:
         - node
         - lib/Astar/main
-    - name: AstarPSP-processor
-      cmd:
-        - node
-        - lib/AstarPSP/main
-    - name: Basilisk-processor
-      cmd:
-        - node
-        - lib/Basilisk/main
-    - name: Enjin-processor
-      cmd:
-        - node
-        - lib/Enjin/main
     - name: Moonbeam-processor
       cmd:
         - node

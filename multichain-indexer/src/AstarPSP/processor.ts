@@ -9,6 +9,7 @@ import { Store } from "@subsquid/typeorm-store";
 export const processor = new SubstrateBatchProcessor()
     .setDataSource({
         archive: lookupArchive('astar', {type: 'Substrate', release: 'FireSquid'}),
+        chain: "wss://rpc.astar.network",
     })
     .setBlockRange({ from: 0 })
     .addEvent('Contracts.ContractEmitted')

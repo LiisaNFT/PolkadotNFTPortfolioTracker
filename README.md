@@ -51,7 +51,8 @@ sqd migration:apply
 # 6. Run all squids at the same time. 
 sqd run
 
-# 7. Start the GraphQL server by running in yet another terminal
+# 7. Start the GraphQL server by running in yet another terminal when the squids are stopped,
+# otherwise just open in a browser http://localhost:4350/graphql
 sqd serve
 
 A GraphiQL playground will be available at [localhost:4350/graphql](http://localhost:4350/graphql).
