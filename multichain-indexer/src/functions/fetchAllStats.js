@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //Stats - Fetch all
-export async function fetchAllStats(host) {
+async function fetchAllStats(host) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/getNftCollectionStats.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -21,4 +21,4 @@ export async function fetchAllStats(host) {
     }
 }
 
-fetchAllStats('http://localhost:4350');
+module.exports = { fetchAllStats };

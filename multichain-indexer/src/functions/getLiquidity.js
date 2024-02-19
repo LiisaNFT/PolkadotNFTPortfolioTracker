@@ -2,7 +2,7 @@ const { fetchAllStats } = require('./fetchAllStats.js');
 
 
 //Stats - Liquidity
-export async function getLiquidity(host) {
+async function getLiquidity(host) {
     
     // Get all collections
     const stats = fetchAllStats(host);
@@ -23,3 +23,5 @@ export async function getLiquidity(host) {
 
     return weightedSum; // This is the weighted average score
 }
+
+module.exports = { getLiquidity };

@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //Collection - FP change 
-export function fetchFloorPriceChange(host, collectionId, include1h, include24h, include7d, include30d, inUSD) {
+async function fetchFloorPriceChange(host, collectionId, include1h, include24h, include7d, include30d, inUSD) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/getFloorChanges.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -29,5 +29,7 @@ export function fetchFloorPriceChange(host, collectionId, include1h, include24h,
         }
     }
 }
+
+module.exports = { fetchFloorPriceChange };
 
 fetchFloorPriceChange('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', true, true, true, true, false)

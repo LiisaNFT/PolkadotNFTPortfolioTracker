@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //Collection - Last Sale per trait
-export async function fetchLastTraitSale(host, collectionId, attributeType) {
+async function fetchLastTraitSale(host, collectionId, attributeType) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/getLastTraitSale.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -25,3 +25,5 @@ export async function fetchLastTraitSale(host, collectionId, attributeType) {
         }
     }
 }
+
+module.exports = { fetchLastTraitSale };

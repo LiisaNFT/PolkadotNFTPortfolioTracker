@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //NFT - Metadata
-export async function fetchNftMetadata(host, nftId, chain) {
+async function fetchNftMetadata(host, nftId, chain) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/getNftMetadata.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -25,3 +25,5 @@ export async function fetchNftMetadata(host, nftId, chain) {
         }
     }
 }
+
+module.exports = { fetchNftMetadata };

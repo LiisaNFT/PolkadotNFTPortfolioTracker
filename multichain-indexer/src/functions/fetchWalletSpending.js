@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //Wallet - Invested value/ Total Revenue
-export async function fetchWalletSpending(host, userId) {
+async function fetchWalletSpending(host, userId) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/getRevenueSpending.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -24,3 +24,5 @@ export async function fetchWalletSpending(host, userId) {
         }
     }
 }
+
+module.exports = { fetchWalletSpending };

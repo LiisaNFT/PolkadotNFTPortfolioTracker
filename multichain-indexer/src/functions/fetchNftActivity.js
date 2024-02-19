@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //NFT - Activity
-export async function fetchNftActivity(host, nftId) {
+async function fetchNftActivity(host, nftId) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/getTransactions.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -24,3 +24,5 @@ export async function fetchNftActivity(host, nftId) {
         }
     }
 }
+
+module.exports = { fetchNftActivity };

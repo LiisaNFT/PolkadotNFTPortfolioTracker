@@ -2,7 +2,7 @@ const { fetchNftAcquisitionPrice } = require('./fetchNftAcquisitionPrice.js');
 const { nftEstimatedValue } = require('./nftEstimatedValue.js');
 
 //NFT - Unrealized P&L
-export function fetchNftUnrealizedPnL(host, nftId, collectionId) {
+async function fetchNftUnrealizedPnL(host, nftId, collectionId) {
     
     //Last Acquisition price
     const acquisitionPrice = fetchNftAcquisitionPrice(host, nftId);
@@ -15,3 +15,5 @@ export function fetchNftUnrealizedPnL(host, nftId, collectionId) {
 
     return unrealizedPnL;
 }
+
+module.exports = { fetchNftUnrealizedPnL };

@@ -1,17 +1,17 @@
-import { fetchAllStats } from './fetchAllStats.js';
-import { fetchCollectionNfts } from './fetchCollectionNfts.js';
-import { fetchCollectionSales } from './fetchCollectionSales.js';
-import { fetchFloorPrice } from './fetchFloorPrice.js';
-import { fetchFloorPriceChange } from './fetchFloorPriceChange.js';
-import { fetchLastTraitSale } from './fetchLastTraitSale.js';
-import { fetchNftAcquisitionPrice } from './fetchNftAcquisitionPrice.js';
-import { fetchNftActivity } from './fetchNftActivity.js';
-import { fetchNftMetadata } from './fetchNftMetadata.js';
-import { fetchNftUnrealizedPnL } from './fetchNftUnrealizedPnL.js';
-import { fetchWalletActivity } from './fetchWalletActivity.js';
-import { fetchWalletSpending } from './fetchWalletSpending.js';
-import { getLiquidity } from './getLiquidity.js';
-import { nftEstimatedValue } from './nftEstimatedValue.js';
+const { fetchAllStats } = require('./fetchAllStats.js');
+const { fetchCollectionNfts } = require('./fetchCollectionNfts.js');
+const { fetchCollectionSales } = require('./fetchCollectionSales.js');
+const { fetchFloorPrice } = require('./fetchFloorPrice.js');
+const { fetchFloorPriceChange } = require('./fetchFloorPriceChange.js');
+const { fetchLastTraitSale } = require('./fetchLastTraitSale.js');
+const { fetchNftAcquisitionPrice } = require('./fetchNftAcquisitionPrice.js');
+const { fetchNftActivity } = require('./fetchNftActivity.js');
+const { fetchNftMetadata } = require('./fetchNftMetadata.js');
+const { fetchNftUnrealizedPnL } = require('./fetchNftUnrealizedPnL.js');
+const { fetchWalletActivity } = require('./fetchWalletActivity.js');
+const { fetchWalletSpending } = require('./fetchWalletSpending.js');
+const { getLiquidity } = require('./getLiquidity.js');
+const { nftEstimatedValue } = require('./nftEstimatedValue.js');
 
 module.exports = {  
     fetchAllStats, 

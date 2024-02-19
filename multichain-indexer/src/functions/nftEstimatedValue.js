@@ -3,7 +3,7 @@ const { fetchFloorPrice } = require('./fetchFloorPrice');
 const { fetchNftMetadata } = require('./fetchNftMetadata');
 
 //NFT - Estimated Value
-export function nftEstimatedValue(host, nftId, collectionId) {
+async function nftEstimatedValue(host, nftId, collectionId) {
     
     const endTime = Date.now();
     const startTime = endTime - (24 * 3600 * 1000);
@@ -30,3 +30,5 @@ export function nftEstimatedValue(host, nftId, collectionId) {
 
     return estimatedValue;
 }
+
+module.exports = { nftEstimatedValue };

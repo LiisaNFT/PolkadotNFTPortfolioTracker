@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //NFT - Acquisition price
-export async function fetchNftAcquisitionPrice(host, nftId) {
+async function fetchNftAcquisitionPrice(host, nftId) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/LastNftTransaction.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -24,3 +24,5 @@ export async function fetchNftAcquisitionPrice(host, nftId) {
         }
     }
 }
+
+module.exports = { fetchNftAcquisitionPrice };

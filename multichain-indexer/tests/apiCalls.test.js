@@ -1,6 +1,10 @@
-import * as functions from '../src/functions';
+const { fetchAllStats } = require('../src/functions');
 
-functions.fetch24hSales('http://localhost:4350', {
-    collectionId: '0x51737fa634e26f5687e45c6ca07604e064076350',
-    chain: 'Moonbeam', 
-});
+
+describe('fetchData', () => {
+    it('should return data successfully', async () => {
+      const data = await fetchAllStats('http://localhost:4350');
+      expect(data).not.toBe(null);
+      // Add more assertions as necessary
+    });
+  });
