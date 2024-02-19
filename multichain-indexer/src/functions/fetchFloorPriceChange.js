@@ -2,16 +2,19 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
-//Stats - Current Floor/Sales floor
-export async function fetchFloorPrice(host, collectionId, startTime, endTime) {
+//Collection - FP change 
+export function fetchFloorPriceChange(host, collectionId, include1h, include24h, include7d, include30d, inUSD) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/queries/getSalesFloor.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/getFloorChanges.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
         collectionId: collectionId,
-        startTime: startTime,
-        endTime: endTime
+        include1h: include1h,
+        include24h: include24h,
+        include7d: include7d,
+        include30d: include30d,
+        inUSD: inUSD
     };
 
     try {
@@ -27,5 +30,4 @@ export async function fetchFloorPrice(host, collectionId, startTime, endTime) {
     }
 }
 
-// Example usage
-fetchFloorPrice('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', '2024-01-01T00:00:00Z', '2024-01-31T23:59:59Z');
+fetchFloorPriceChange('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', true, true, true, true, false)

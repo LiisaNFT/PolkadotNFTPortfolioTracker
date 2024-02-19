@@ -2,14 +2,14 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
-//NFT - Activity
-export async function fetchNftActivity(host, nftId) {
+//Wallet - Activity
+export async function fetchWalletActivity(host, userId) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/queries/getTransactions.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/getTransactions.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
-        nftId: nftId
+        userId: userId
     };
 
     try {

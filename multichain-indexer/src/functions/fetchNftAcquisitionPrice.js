@@ -2,15 +2,14 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
-//NFT - Metadata
-export async function fetchNftMetadata(host, nftId, chain) {
+//NFT - Acquisition price
+export async function fetchNftAcquisitionPrice(host, nftId) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/queries/getNftMetadata.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/LastNftTransaction.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
-        nftId: nftId,
-        chain: chain
+        nftId: nftId
     };
 
     try {

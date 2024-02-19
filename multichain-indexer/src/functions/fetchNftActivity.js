@@ -2,15 +2,14 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
-//Collection - Last Sale per trait
-export async function fetchLastTraitSale(host, collectionId, attributeType) {
+//NFT - Activity
+export async function fetchNftActivity(host, nftId) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/queries/getLastTraitSale.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/getTransactions.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
-        collectionId: collectionId,
-        attributeType: attributeType
+        nftId: nftId
     };
 
     try {

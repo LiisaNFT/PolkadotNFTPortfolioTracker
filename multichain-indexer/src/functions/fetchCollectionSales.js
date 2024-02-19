@@ -5,7 +5,7 @@ const path = require('path');
 //NFT - 24h collection trades
 export async function fetchCollectionSales(host, filters) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/queries/getTransactions.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/getTransactions.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
 
     // Prepare variables based on filters provided

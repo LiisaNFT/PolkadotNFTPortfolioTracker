@@ -2,7 +2,7 @@ const { fetchAllStats } = require('./fetchAllStats.js');
 
 
 //Stats - Liquidity
-export function getLiquidity(host) {
+export async function getLiquidity(host) {
     
     // Get all collections
     const stats = fetchAllStats(host);

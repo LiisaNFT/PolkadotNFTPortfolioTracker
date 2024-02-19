@@ -2,14 +2,15 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
-//Wallet - Invested value/ Total Revenue
-export async function fetchWalletSpending(host, userId) {
+//Collection - Last Sale per trait
+export async function fetchLastTraitSale(host, collectionId, attributeType) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/queries/getRevenueSpending.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/getLastTraitSale.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
-        userId: userId
+        collectionId: collectionId,
+        attributeType: attributeType
     };
 
     try {

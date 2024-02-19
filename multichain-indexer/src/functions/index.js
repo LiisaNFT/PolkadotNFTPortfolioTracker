@@ -1,8 +1,6 @@
-import { fetch24hSales } from './fetchCollectionSales.js';
 import { fetchAllStats } from './fetchAllStats.js';
 import { fetchCollectionNfts } from './fetchCollectionNfts.js';
 import { fetchCollectionSales } from './fetchCollectionSales.js';
-import { fetchCollectionVolume } from './fetchCollectionVolume.js';
 import { fetchFloorPrice } from './fetchFloorPrice.js';
 import { fetchFloorPriceChange } from './fetchFloorPriceChange.js';
 import { fetchLastTraitSale } from './fetchLastTraitSale.js';
@@ -19,7 +17,6 @@ module.exports = {
     fetchAllStats, 
     fetchCollectionNfts, 
     fetchCollectionSales, 
-    fetchCollectionVolume, 
     fetchFloorPrice, 
     fetchFloorPriceChange, 
     fetchLastTraitSale, 

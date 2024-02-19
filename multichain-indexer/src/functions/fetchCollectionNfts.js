@@ -2,16 +2,20 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
-//Stats - Fetch all
-export async function fetchAllStats(host) {
+//Wallet - NFTs owned per collection
+export async function fetchCollectionNfts(host, userId) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/queries/getNftCollectionStats.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/getPortfolio.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
+    
+    const variables = {
+        userId: userId
+    };
 
     try {
-        const endpoint = `${host}/graphql`
-
-        const response = await request(endpoint, query);
+        const endpoint = `${host}/graphql`;
+        
+        const response = await request(endpoint, query, variables);
         console.log(JSON.stringify(response, null, 4));
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
@@ -21,4 +25,4 @@ export async function fetchAllStats(host) {
     }
 }
 
-fetchAllStats('http://localhost:4350');
+fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');
