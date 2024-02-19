@@ -1,4 +1,4 @@
-const { request, gql } = require('graphql-request');
+const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 

@@ -1,31 +1,28 @@
-import axios from 'axios';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const { request } = require('graphql-request');
+const fs = require('fs');
+const path = require('path');
 
 //Wallet - NFTs owned per collection
-export function fetchCollectionNfts(host, userId) {
+ async function fetchCollectionNfts(host, userId) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../src/queries/getPortfolio.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
-        userId: userId,
-        responseType: 'BOTH'
+        userId: userId
     };
 
-    // Make the request to receive data from 
-    axios.post(host, { query: query, variables: variables })
-        .then(response => {
-            console.log(JSON.stringify(response.data, null, 4));
-        })
-        .catch(error => {
-            console.error("Error querying GraphQL:", error.message);
-            if (error.response && error.response.data && error.response.data.errors) {
-                console.error("GraphQL Errors:", JSON.stringify(error.response.data.errors, null, 2));
-            }
-        });
+    try {
+        const endpoint = `${host}/graphql`;
+        
+        const response = await request(endpoint, query, variables);
+        console.log(JSON.stringify(response, null, 4));
+    } catch (error) {
+        console.error("Error querying GraphQL:", error.message);
+        if (error.response && error.response.errors) {
+            console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
+        }
+    }
 }
+
+fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');

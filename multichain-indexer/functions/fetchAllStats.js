@@ -1,9 +1,9 @@
-const { request, gql } = require('graphql-request');
+const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
 //Stats - Fetch all
-function fetchAllStats(host) {
+export async function fetchAllStats(host) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../src/queries/getNftCollectionStats.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -11,7 +11,7 @@ function fetchAllStats(host) {
     try {
         const endpoint = `${host}/graphql`
 
-        const response =  request(endpoint, gql`${query}`);
+        const response = await request(endpoint, query);
         console.log(JSON.stringify(response, null, 4));
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
