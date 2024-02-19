@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 //Wallet - NFTs owned per collection
 export function fetchCollectionNfts(host, userId) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/getPortfolio.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/getPortfolio.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {

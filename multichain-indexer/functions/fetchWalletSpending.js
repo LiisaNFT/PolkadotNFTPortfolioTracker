@@ -10,7 +10,7 @@ const __dirname = path.dirname(__filename);
 //Wallet - Invested value/ Total Revenue
 export function fetchWalletSpending(host, userId) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/getRevenueSpending.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/getRevenueSpending.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {

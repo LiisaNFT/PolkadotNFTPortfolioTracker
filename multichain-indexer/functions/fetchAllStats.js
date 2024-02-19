@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 //Stats - Fetxh all
 export function fetchAllStats(host) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/getNftCollectionStats.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/getNftCollectionStats.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
 
 

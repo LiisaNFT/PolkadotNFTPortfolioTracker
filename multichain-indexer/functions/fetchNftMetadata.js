@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 //NFT - Metadata
 export function fetchNftMetadata(host, nftId, chain) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/getNftMetadata.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/getNftMetadata.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {

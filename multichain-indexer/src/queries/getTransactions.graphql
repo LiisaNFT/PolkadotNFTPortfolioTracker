@@ -1,19 +1,20 @@
-query ActivityQuery($userId: ID, $collectionId: ID, $nftId: ID, $startTimestamp: DateTime, $endTimestamp: DateTime, $chain: Chain) {
+query ActivityQuery($userId: String, $collectionId: String, $nftId: String, $startTimestamp: DateTime, $endTimestamp: DateTime, $chain: String, $eventType: EventType) {
   nftEvents(
-    orderBy: { timestamp: DESC },
+    orderBy: timestamp_DESC,
     where: {
       AND: [
         {
           OR: [
-            { from: { id: $userId } },
-            { to: { id: $userId } },
-            { nfToken: { id: $nftId } },
-            { nfToken: { collection: { id: $collectionId } } }
+            { from: { id_eq: $userId } },
+            { to: { id_eq: $userId } },
+            { nfToken: { id_eq: $nftId } },
+            { nfToken: { collection: { id_eq: $collectionId } } }
           ]
         },
         { timestamp_gte: $startTimestamp },
         { timestamp_lte: $endTimestamp },
-        { chain: $chain }
+        { chain_eq: $chain },
+        { eventType_eq: $eventType } 
       ]
     }
   ) {
@@ -37,6 +38,9 @@ query ActivityQuery($userId: ID, $collectionId: ID, $nftId: ID, $startTimestamp:
     chain
   }
 }
+
+
+
 
 #This query, named ActivityQuery, retrieves a list of NFT-related events based on various optional filters: a user ID, a collection ID, an individual NFT ID, a specific blockchain chain, and a date range (specified by start and end timestamps). 
 #Events are ordered by timestamp in descending order. 

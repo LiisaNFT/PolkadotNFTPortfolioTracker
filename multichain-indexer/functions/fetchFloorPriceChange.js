@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 //Collection - FP change 
 export function fetchFloorPriceChange(host, collectionId, include1h, include24h, include7d, include30d, inUSD) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/getFloorChanges.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/getFloorChanges.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {

@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 //Collection - Last Sale per trait
 export function fetchLastTraitSale(host, collectionId, attributeType) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/getLastTraitSale.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/getLastTraitSale.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {

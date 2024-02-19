@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 //Stats - Current Floor/Sales floor
 export function fetchFloorPrice(host, collectionId, startTime, endTime) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/getSalesFloor.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/getSalesFloor.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {

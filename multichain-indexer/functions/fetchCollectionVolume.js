@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 //Collection - Volume
 export function fetchCollectionVolume(host, collectionId, startTime, endTime) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/getTransactions.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/getTransactions.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {

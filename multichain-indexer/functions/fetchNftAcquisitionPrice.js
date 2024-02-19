@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 //NFT - Acquisition price
 export function fetchNftAcquisitionPrice(host, nftId) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../src/LastNftTransaction.graphql');
+    const queryFilePath = path.join(__dirname, '../src/queries/LastNftTransaction.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
