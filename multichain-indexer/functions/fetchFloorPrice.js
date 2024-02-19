@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //Stats - Current Floor/Sales floor
-function fetchFloorPrice(host, collectionId, startTime, endTime) {
+export async function fetchFloorPrice(host, collectionId, startTime, endTime) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../src/queries/getSalesFloor.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
