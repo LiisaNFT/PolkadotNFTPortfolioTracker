@@ -106,4 +106,8 @@ type CollectionStats @entity {
   highestSale: Float
   lastSaleDate: DateTime
   supply: BigInt
+  date: DateTime 
+  salesCount24h: Int 
+  floorPriceChange: Float 
 }
+
