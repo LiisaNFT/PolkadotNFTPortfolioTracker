@@ -1,4 +1,4 @@
-import { fetch24hSales } from './fetch24hSales.js';
+import { fetch24hSales } from './fetchCollectionSales.js';
 import { fetchAllStats } from './fetchAllStats.js';
 import { fetchCollectionNfts } from './fetchCollectionNfts.js';
 import { fetchCollectionSales } from './fetchCollectionSales.js';
@@ -16,7 +16,6 @@ import { getLiquidity } from './getLiquidity.js';
 import { nftEstimatedValue } from './nftEstimatedValue.js';
 
 module.exports = {  
-    fetch24hSales, 
     fetchAllStats, 
     fetchCollectionNfts, 
     fetchCollectionSales, 

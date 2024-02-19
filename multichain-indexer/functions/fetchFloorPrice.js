@@ -1,13 +1,9 @@
-import axios from 'axios';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const { request } = require('graphql-request');
+const fs = require('fs');
+const path = require('path');
 
 //Stats - Current Floor/Sales floor
-export function fetchFloorPrice(host, collectionId, startTime, endTime) {
+function fetchFloorPrice(host, collectionId, startTime, endTime) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../src/queries/getSalesFloor.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -18,15 +14,18 @@ export function fetchFloorPrice(host, collectionId, startTime, endTime) {
         endTime: endTime
     };
 
-    // Make the request to receive data from 
-    axios.post(host, { query: query, variables: variables })
-        .then(response => {
-            console.log(JSON.stringify(response.data, null, 4));
-        })
-        .catch(error => {
-            console.error("Error querying GraphQL:", error.message);
-            if (error.response && error.response.data && error.response.data.errors) {
-                console.error("GraphQL Errors:", JSON.stringify(error.response.data.errors, null, 2));
-            }
-        });
+    try {
+        const endpoint = `${host}/graphql`;
+        
+        const response =  request(endpoint, query, variables);
+        console.log(JSON.stringify(response, null, 4));
+    } catch (error) {
+        console.error("Error querying GraphQL:", error.message);
+        if (error.response && error.response.errors) {
+            console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
+        }
+    }
 }
+
+// Example usage
+fetchFloorPrice('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', '2024-01-01T00:00:00Z', '2024-01-31T23:59:59Z');

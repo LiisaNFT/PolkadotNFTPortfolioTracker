@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //Wallet - NFTs owned per collection
- async function fetchCollectionNfts(host, userId) {
+export async function fetchCollectionNfts(host, userId) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../src/queries/getPortfolio.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');

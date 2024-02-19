@@ -1,33 +1,39 @@
-import axios from 'axios';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+const { request } = require('graphql-request');
+const fs = require('fs');
+const path = require('path');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-//Collection - Sales
-export function fetchCollectionSales(host, collectionId, startTime, endTime) {
+//NFT - 24h collection trades
+export async function fetchCollectionSales(host, filters) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../src/queries/getTransactions.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
-    
+
+    // Prepare variables based on filters provided
     const variables = {
-        collectionId: collectionId,
-        startTimestamp: startTime,
-        endTimestamp: endTime,
-        eventType: 'SALE'
+        userId: filters.userId, // Optional: only include if you want to filter by user ID
+        collectionId: filters.collectionId, // Required: the ID of the collection to filter by
+        nftId: filters.nftId, // Optional: only include if you want to filter by specific NFT ID
+        startTimestamp: filters.startTimestamp, // Optional: only include if you want to filter by start date/time
+        endTimestamp: filters.endTimestamp, // Optional: only include if you want to filter by end date/time
+        chain: filters.chain, // Optional: only include if you want to filter by blockchain
+        eventType: 'SALE' // Assuming you always want to filter by sales events
     };
 
-    // Make the request to receive data from 
-    axios.post(host, { query: query, variables: variables })
-        .then(response => {
-            console.log(JSON.stringify(response.data, null, 4));
-        })
-        .catch(error => {
-            console.error("Error querying GraphQL:", error.message);
-            if (error.response && error.response.data && error.response.data.errors) {
-                console.error("GraphQL Errors:", JSON.stringify(error.response.data.errors, null, 2));
-            }
-        });
+    try {
+        const endpoint = `${host}/graphql`;
+        
+        const response = await request(endpoint, query, variables);
+        console.log(JSON.stringify(response, null, 4));
+    } catch (error) {
+        console.error("Error querying GraphQL:", error.message);
+        if (error.response && error.response.errors) {
+            console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
+        }
+    }
 }
+// Example usage
+fetchCollectionSales('http://localhost:4350', {
+    collectionId: '0x51737fa634e26f5687e45c6ca07604e064076350',
+    chain: 'Moonbeam', 
+});
+
