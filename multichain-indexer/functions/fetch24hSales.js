@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 //NFT - 24h collection trades
-export function fetch24hSales(host, filters) {
+export async function fetch24hSales(host, filters) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../src/queries/getTransactions.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
@@ -16,13 +16,13 @@ export function fetch24hSales(host, filters) {
         startTimestamp: filters.startTimestamp, // Optional: only include if you want to filter by start date/time
         endTimestamp: filters.endTimestamp, // Optional: only include if you want to filter by end date/time
         chain: filters.chain, // Optional: only include if you want to filter by blockchain
-        eventType: 'SALE' 
+        eventType: 'SALE' // Assuming you always want to filter by sales events
     };
 
     try {
         const endpoint = `${host}/graphql`;
         
-        const response = request(endpoint, query, variables);
+        const response = await request(endpoint, query, variables);
         console.log(JSON.stringify(response, null, 4));
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
@@ -31,7 +31,6 @@ export function fetch24hSales(host, filters) {
         }
     }
 }
-
 // Example usage
 fetch24hSales('http://localhost:4350', {
     collectionId: '0x51737fa634e26f5687e45c6ca07604e064076350',

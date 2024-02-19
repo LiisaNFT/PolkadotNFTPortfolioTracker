@@ -1,6 +1,6 @@
 query FetchNftCollectionStats {
-  nftCollectionStats(orderBy: {stat_timestamp: desc}) {
-    floor_price
-    stat_timestamp
+  nftCollectionStats(orderBy: date_DESC) {
+    floorPrice
+    date
   }
 }
