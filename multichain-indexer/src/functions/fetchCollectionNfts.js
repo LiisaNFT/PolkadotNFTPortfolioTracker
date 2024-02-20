@@ -28,4 +28,4 @@ async function fetchCollectionNfts(host, userId) {
 
 module.exports = { fetchCollectionNfts };
 
-fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');
+//fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');

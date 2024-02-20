@@ -3,19 +3,19 @@ const fs = require('fs');
 const path = require('path');
 
 //NFT - 24h collection trades
-async function fetchCollectionSales(host, filters) {
+async function fetchCollectionSales(host, userId, nftId, collectionId, startTime, endTime, chain) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/getTransactions.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
 
     // Prepare variables based on filters provided
     const variables = {
-        userId: filters.userId, // Optional: only include if you want to filter by user ID
-        collectionId: filters.collectionId, // Required: the ID of the collection to filter by
-        nftId: filters.nftId, // Optional: only include if you want to filter by specific NFT ID
-        startTimestamp: filters.startTimestamp, // Optional: only include if you want to filter by start date/time
-        endTimestamp: filters.endTimestamp, // Optional: only include if you want to filter by end date/time
-        chain: filters.chain, // Optional: only include if you want to filter by blockchain
+        userId: userId, // Optional: only include if you want to filter by user ID
+        collectionId: collectionId, // Required: the ID of the collection to filter by
+        nftId: nftId, // Optional: only include if you want to filter by specific NFT ID
+        startTimestamp: startTime, // Optional: only include if you want to filter by start date/time
+        endTimestamp: endTime, // Optional: only include if you want to filter by end date/time
+        chain: chain, // Optional: only include if you want to filter by blockchain
         eventType: 'SALE' // Assuming you always want to filter by sales events
     };
 
@@ -37,8 +37,5 @@ module.exports = { fetchCollectionSales };
 
 
 // Example usage
-fetchCollectionSales('http://localhost:4350', {
-    collectionId: '0x51737fa634e26f5687e45c6ca07604e064076350',
-    chain: 'Moonbeam', 
-});
+//fetchCollectionSales('http://localhost:4350', '', '', '0x51737fa634e26f5687e45c6ca07604e064076350','','', 'Moonbeam');
 

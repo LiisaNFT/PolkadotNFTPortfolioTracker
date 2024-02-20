@@ -24,4 +24,4 @@ async function fetchAllStats(host) {
 
 module.exports = { fetchAllStats };
 
-fetchAllStats('http://localhost:4350');
+//fetchAllStats('http://localhost:4350');
