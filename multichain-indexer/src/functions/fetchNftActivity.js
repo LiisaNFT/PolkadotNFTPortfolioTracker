@@ -26,3 +26,5 @@ async function fetchNftActivity(host, nftId) {
 }
 
 module.exports = { fetchNftActivity };
+
+fetchNftActivity('http://localhost:4350', '0x5173-076350-38733');

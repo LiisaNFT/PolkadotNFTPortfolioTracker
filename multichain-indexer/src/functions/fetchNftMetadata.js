@@ -27,3 +27,5 @@ async function fetchNftMetadata(host, nftId, chain) {
 }
 
 module.exports = { fetchNftMetadata };
+
+fetchNftMetadata('http://localhost:4350', '0x5173-076350-38733');

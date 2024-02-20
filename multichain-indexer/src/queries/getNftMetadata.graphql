@@ -1,5 +1,5 @@
-query NftMetadata($nftId: ID!, $chain: Chain) {
-  nfToken(id: $nftId, where: { chain: $chain }) {
+query NftMetadata($nftId: String!) {
+  nfTokens(where: {id_eq: $nftId}) {
     id
     nativeId
     name
@@ -16,7 +16,6 @@ query NftMetadata($nftId: ID!, $chain: Chain) {
         rarity
       }
     }
-    chain
   }
 }
 
