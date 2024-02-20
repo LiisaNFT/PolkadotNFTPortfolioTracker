@@ -1,14 +1,14 @@
-query WalletSalesStats($userId: ID!, $breakdownByCollection: Boolean = true, $chain: Chain!) {
+query WalletSalesStats($userId: String!, $breakdownByCollection: Boolean = true, $chain: String!) {
   # Fetch sales where the wallet was the buyer
   bought: nftEvents(
     where: { 
-      to: { id: $userId },
-      eventType: SALE,
-      chain: $chain
+      to: { id_eq: $userId },
+      eventType_eq: SALE,
+      chain_eq: $chain
     }
   ) {
     price
-    collection: NfToken {
+    collection: nfToken {
       collection @include(if: $breakdownByCollection) {
         id
         name
@@ -19,13 +19,13 @@ query WalletSalesStats($userId: ID!, $breakdownByCollection: Boolean = true, $ch
   # Fetch sales where the wallet was the seller
   sold: nftEvents(
     where: { 
-      from: { id: $userId },
-      eventType: SALE,
-      chain: $chain
+      from: { id_eq: $userId },
+      eventType_eq: SALE,
+      chain_eq: $chain
     }
   ) {
     price
-    collection: NfToken {
+    collection: nfToken {
       collection @include(if: $breakdownByCollection) {
         id
         name

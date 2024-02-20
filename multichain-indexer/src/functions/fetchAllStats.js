@@ -13,6 +13,7 @@ async function fetchAllStats(host) {
 
         const response = await request(endpoint, query);
         console.log(JSON.stringify(response, null, 4));
+        return response;
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
         if (error.response && error.response.errors) {
@@ -22,3 +23,5 @@ async function fetchAllStats(host) {
 }
 
 module.exports = { fetchAllStats };
+
+fetchAllStats('http://localhost:4350');

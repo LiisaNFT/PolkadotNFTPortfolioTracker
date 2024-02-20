@@ -2,6 +2,7 @@ query LastTraitSale($collectionId: String!, $attributeType: String!, $attributeV
   nftEvents(
   orderBy: timestamp_DESC,
   where: {
+    eventType_eq: SALE,
     nfToken: {
       attributes_some: {
         attribute: {

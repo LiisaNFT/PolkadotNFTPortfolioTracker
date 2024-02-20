@@ -25,3 +25,5 @@ async function getLiquidity(host) {
 }
 
 module.exports = { getLiquidity };
+
+getLiquidity('http://localhost:4350');

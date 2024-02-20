@@ -19,6 +19,7 @@ async function fetchFloorPrice(host, collectionId, startTime, endTime) {
         
         const response =  request(endpoint, query, variables);
         console.log(JSON.stringify(response, null, 4));
+        return response;
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
         if (error.response && error.response.errors) {
