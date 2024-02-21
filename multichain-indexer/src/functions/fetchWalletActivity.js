@@ -28,4 +28,4 @@ async function fetchWalletActivity(host, userId) {
 
 module.exports = { fetchWalletActivity };
 
-fetchWalletActivity('http://localhost:4350', '0x02AFA2DCE36a911741467D3cc8688Afcc9a5D3A6');
+//fetchWalletActivity('http://localhost:4350', '0x02AFA2DCE36a911741467D3cc8688Afcc9a5D3A6');
