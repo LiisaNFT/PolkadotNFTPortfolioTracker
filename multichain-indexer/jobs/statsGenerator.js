@@ -1,48 +1,57 @@
-const { request, gql } = require('graphql-request');
-const BigInteger = require('big-integer');
+const { fetchFloorPrice } = require('./fetchFloorPrice');
+const { fetchFloorPriceChange } = require('./fetchFloorPriceChange');
+const { fetchCollectionNfts } = require('./fetchCollectionNfts');
+const { fetchCollectionSales } = require('./fetchCollectionSales');
+const { fetchLastTraitSale } = require('./fetchLastTraitSale');
+// Other imports as necessary
 
-// GraphQL endpoint
-const endpoint = 'http://localhost:4350/graphql';
+// Function to generate CollectionStats
+async function generateCollectionStats(host, collectionId) {
+    const dateNow = new Date();
+    const startTime = dateNow.toISOString();
+    const endTime = new Date(dateNow.getTime() - (24 * 3600 * 1000)).toISOString(); // 24 hours ago
 
-// Function to fetch collection data
-async function fetchCollectionData() {
-    const query = gql`
-        {
-            collections {
-                id
-                nfts {
-                    id
-                }
-                stats {
-                    totalVolume
-                    floorPrice
-                    tokenCount
-                    marketCap
-                    highestSale
-                    lastSaleDate
-                    supply
-                }
-            }
-        }
-    `;
-    return request(endpoint, query);
-}
+    try {
+        // Fetch current floor price and related metrics
+        const currentFloorPrice = await fetchFloorPrice(host, collectionId, startTime, endTime);
+        const floorPriceChangeMetrics = await fetchFloorPriceChange(host, collectionId, true, true, true, true, true);
 
-// Function to compute metrics (example: computing market cap as totalVolume * floorPrice)
-async function computeMetrics(collections) {
-    return collections.map(collection => {
-        const { totalVolume, floorPrice } = collection.stats;
-        const marketCap = BigInteger(totalVolume).multiply(floorPrice);
-        // Update other metrics as necessary
-        return {
-            ...collection,
-            stats: {
-                ...collection.stats,
-                marketCap: marketCap.toString(),
-                // other updated metrics
-            },
+        // Fetch collection NFTs and sales data
+        const nfts = await fetchCollectionNfts(host, collectionId);
+        const salesData = await fetchCollectionSales(host, collectionId, startTime, endTime);
+
+        // Calculate additional metrics as necessary
+        const totalVolume = salesData.reduce((acc, sale) => acc + sale.price, 0);
+        const highestSale = Math.max(...salesData.map(sale => sale.price));
+        const lastSaleDate = salesData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))[0].timestamp;
+
+        // Compile the CollectionStats object
+        const collectionStats = {
+            id: collectionId,
+            totalVolume,
+            floorPrice: currentFloorPrice.floorPrice,
+            floorPriceUSD: currentFloorPrice.floorPriceUSD,
+            tokenCount: nfts.length,
+            marketCap: totalVolume * nfts.length, // Simplified calculation; adjust as needed
+            highestSale,
+            lastSaleDate,
+            supply: nfts.length, // Assuming supply is the count of NFTs
+            date: dateNow,
+            salesCount24h: salesData.length,
+            floorPriceChange: floorPriceChangeMetrics.floorPriceChange,
+            ...floorPriceChangeMetrics, // Spread the remaining floor price change metrics
         };
-    });
+
+        // Store or process the generated CollectionStats as needed
+        console.log('Generated CollectionStats:', collectionStats);
+        return collectionStats;
+    } catch (error) {
+        console.error('Failed to generate CollectionStats:', error);
+        throw error; // Rethrow or handle as appropriate
+    }
 }
 
-module.exports = { fetchCollectionData, computeMetrics };
+module.exports = { generateCollectionStats };
+
+// Example usage: generateCollectionStats('http://localhost:4350', '0xCollectionId123');
+
