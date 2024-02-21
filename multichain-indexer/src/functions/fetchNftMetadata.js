@@ -3,20 +3,16 @@ const fs = require('fs');
 const path = require('path');
 
 //NFT - Metadata
-async function fetchNftMetadata(host, nftId, chain) {
+async function fetchNftMetadata(host, nftId) {
     // Load the GraphQL query from the file
     const queryFilePath = path.join(__dirname, '../queries/getNftMetadata.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
-    
-    const variables = {
-        nftId: nftId,
-        chain: chain
-    };
+
 
     try {
         const endpoint = `${host}/graphql`;
         
-        const response = await request(endpoint, query, variables);
+        const response = await request(endpoint, query, nftId);
         console.log(JSON.stringify(response, null, 4));
         return response;
     } catch (error) {
@@ -29,4 +25,4 @@ async function fetchNftMetadata(host, nftId, chain) {
 
 module.exports = { fetchNftMetadata };
 
-fetchNftMetadata('http://localhost:4350', '0x5173-076350-38733');
+//fetchNftMetadata('http://localhost:4350', '0x5173-076350-38733');
