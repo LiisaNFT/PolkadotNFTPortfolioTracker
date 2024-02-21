@@ -51,3 +51,4 @@ describe('fetchAllStats', () => {
     expect(request).toHaveBeenCalledTimes(1);
   });
 });
+
