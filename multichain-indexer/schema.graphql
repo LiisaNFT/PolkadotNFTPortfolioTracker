@@ -110,14 +110,14 @@ type CollectionStats @entity {
   date: DateTime
   salesCount24h: Int
   floorPriceChange: Float
-  floor_1h_dif: Float
-  floor_1h_dif_usd: Float
-  floor_24h_dif: Float
-  floor_24h_dif_usd: Float
-  floor_7d_dif: Float
-  floor_7d_dif_usd: Float
-  floor_30d_dif: Float
-  floor_30d_dif_usd: Float
+  floor1hDif: Float
+  floor1hDifUsd: Float
+  floor24hDif: Float
+  floor24hDifUsd: Float
+  floor7dDif: Float
+  floor7dDifUsd: Float
+  floor30dDif: Float
+  floor30dDifUsd: Float
 }
 
 

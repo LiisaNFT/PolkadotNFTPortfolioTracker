@@ -35,27 +35,27 @@ export class CollectionStats {
     supply!: bigint | undefined | null
 
     @Column_("float", {nullable: true})
-    floor_1h_dif!: number | undefined | null
+    floor1hDif!: number | undefined | null
 
     @Column_("float", {nullable: true})
-    floor_1h_dif_usd!: number | undefined | null
+    floor1hDifUsd!: number | undefined | null
 
     @Column_("float", {nullable: true})
-    floor_24h_dif!: number | undefined | null
+    floor24hDif!: number | undefined | null
 
     @Column_("float", {nullable: true})
-    floor_24h_dif_usd!: number | undefined | null
+    floor24hDifUsd!: number | undefined | null
 
     @Column_("float", {nullable: true})
-    floor_7d_dif!: number | undefined | null
+    floor7dDif!: number | undefined | null
 
     @Column_("float", {nullable: true})
-    floor_7d_dif_usd!: number | undefined | null
+    floor7dDifUsd!: number | undefined | null
 
     @Column_("float", {nullable: true})
-    floor_30d_dif!: number | undefined | null
+    floor30dDif!: number | undefined | null
 
     @Column_("float", {nullable: true})
-    floor_30d_dif_usd!: number | undefined | null
+    floor30dDifUsd!: number | undefined | null
 }
 
