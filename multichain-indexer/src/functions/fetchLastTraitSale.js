@@ -30,4 +30,4 @@ async function fetchLastTraitSale(host, collectionId, attributeType, attributeVa
 
 module.exports = { fetchLastTraitSale };
 
-fetchLastTraitSale('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', 'birthday', '1660734790')
+//fetchLastTraitSale('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', 'birthday', '1660734790')
