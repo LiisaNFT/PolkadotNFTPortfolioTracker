@@ -1,19 +1,14 @@
 import {
   ContractStandard,
   NftEvent,
-  EventType,
-  NfTokenAttribute,
-  Attribute
+  EventType
 } from '../../../../model';
 import { accountsManager, nfTokenManager, collectionManager, attributeManager, nfTokenAttributeManager } from '../entityUtils';
 import { EntitiesManager } from './common';
 import {
   getNftTransferEntityId,
   getTokenTotalSupply,
-  getTokenBurnedStatus,
-  getEventType,
-  getNftMetadata,
-  nftMetadata
+  getNftMetadata
 } from '../common';
 
 export class NftCancelListManager extends EntitiesManager<NftEvent> {

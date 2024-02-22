@@ -1,5 +1,4 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, ManyToOne as ManyToOne_, Index as Index_, OneToMany as OneToMany_} from "typeorm"
-import * as marshal from "./marshal"
 import {FuelTank} from "./fuelTank.model"
 import {MaxFuelBurnPerTransaction} from "./_maxFuelBurnPerTransaction"
 import {UserFuelBudget} from "./_userFuelBudget"

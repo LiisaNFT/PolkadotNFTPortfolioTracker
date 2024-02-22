@@ -15,7 +15,6 @@ import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import * as utils from '../../utils';
 import {
-    Collection,
     ContractStandard
   } from '../../../../model';
 import {

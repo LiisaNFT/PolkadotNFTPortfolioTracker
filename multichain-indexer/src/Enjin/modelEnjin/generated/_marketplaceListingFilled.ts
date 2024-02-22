@@ -1,7 +1,5 @@
 import assert from "assert"
 import * as marshal from "./marshal"
-import {Listing} from "./listing.model"
-import {Account} from "./account.model"
 
 export class MarketplaceListingFilled {
     public readonly isTypeOf = 'MarketplaceListingFilled'

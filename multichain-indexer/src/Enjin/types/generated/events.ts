@@ -1,5 +1,5 @@
 import assert from 'assert'
-import {Chain, ChainContext, EventContext, Event, Result, Option} from './support'
+import {Chain, ChainContext, EventContext, Event } from './support'
 import * as matrixEnjinV603 from './matrixEnjinV603'
 import * as v500 from './v500'
 import * as v600 from './v600'

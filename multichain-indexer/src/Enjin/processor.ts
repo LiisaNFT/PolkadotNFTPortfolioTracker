@@ -1,7 +1,6 @@
 import {  BatchContext, SubstrateBatchProcessor, BatchProcessorItem } from '@subsquid/substrate-processor'
 import { lookupArchive } from "@subsquid/archive-registry";
 import _ from 'lodash'
-import config from './config'
 import { Store } from "@subsquid/typeorm-store";
 
 

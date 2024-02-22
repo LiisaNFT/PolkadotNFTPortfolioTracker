@@ -1,6 +1,5 @@
 import assert from "assert"
 import * as marshal from "./marshal"
-import {Account} from "./account.model"
 
 export class MultiTokensTokenCreated {
     public readonly isTypeOf = 'MultiTokensTokenCreated'

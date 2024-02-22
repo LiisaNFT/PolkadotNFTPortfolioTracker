@@ -1,6 +1,4 @@
 import { Collection, ContractStandard } from '../../../model';
-import * as utils from '../utils';
-
 
 export function createCollection({
   id,

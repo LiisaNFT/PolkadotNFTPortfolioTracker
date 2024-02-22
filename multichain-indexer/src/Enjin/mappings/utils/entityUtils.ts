@@ -1,8 +1,5 @@
 import * as entityManagerClasses from './classes';
 import { Context } from '../../processor';
-import * as erc721 from '../../../abi/erc721';
-import * as erc1155 from '../../../abi/erc1155';
-import { getTokenEntityId } from './common';
 import {
   Account,
   Collection,

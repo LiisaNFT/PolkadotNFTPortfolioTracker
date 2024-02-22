@@ -10,31 +10,22 @@ import {
     MultiTokensForceCreateCollectionCall,
 } from '../../../types/generated/calls'
 import {
-    CollectionFlags,
-    CollectionSocials,
-    CollectionStats,
     Event as EventModel,
     Extrinsic,
     MarketPolicy,
-    MintPolicy,
     MultiTokensCollectionCreated,
-    Royalty,
-    RoyaltyCurrency,
-    Token,
-    TransferPolicy,
+    Royalty
 } from '../../../modelEnjin'
 import { Call, Event } from '../../../types/generated/support'
 import { CommonContext } from '../../types/contexts'
 import { getOrCreateAccount } from '../../util/entities'
 import { DefaultRoyalty } from '../../../types/generated/v500'
-import * as utils from '../../utils';
-import { accountsManager, nfTokenManager, collectionManager, attributeManager, nfTokenAttributeManager } from '../../utils/entityUtils';
+import { collectionManager } from '../../utils/entityUtils';
 
 import {
     Collection,
     ContractStandard
   } from '../../../../model';
-import { createCollection } from '../../collections';
 
 interface EventData {
     collectionId: bigint

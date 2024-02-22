@@ -1,4 +1,3 @@
-import assert from "assert"
 import * as marshal from "./marshal"
 
 export class CollectionSocials {

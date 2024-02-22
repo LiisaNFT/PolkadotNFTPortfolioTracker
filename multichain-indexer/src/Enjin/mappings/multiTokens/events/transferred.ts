@@ -6,7 +6,6 @@ import { MultiTokensTransferredEvent } from '../../../types/generated/events'
 import { CommonContext } from '../../types/contexts'
 import { Event } from '../../../types/generated/support'
 import {
-    Collection,
     ContractStandard
   } from '../../../../model';
 import * as utils from '../../utils';

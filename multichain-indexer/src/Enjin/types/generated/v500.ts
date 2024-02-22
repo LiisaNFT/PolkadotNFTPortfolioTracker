@@ -1,4 +1,3 @@
-import type {Result, Option} from './support'
 
 export type Type_32 = Type_32_Ok | Type_32_Err
 

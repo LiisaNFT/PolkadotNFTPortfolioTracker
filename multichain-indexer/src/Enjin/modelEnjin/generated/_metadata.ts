@@ -1,4 +1,3 @@
-import assert from "assert"
 import * as marshal from "./marshal"
 import {MetadataMedia} from "./_metadataMedia"
 import {MetadataMeta} from "./_metadataMeta"

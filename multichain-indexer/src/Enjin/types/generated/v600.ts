@@ -1,5 +1,4 @@
-import type {Result, Option} from './support'
-
+ 
 export interface Token {
     supply: bigint
     cap: (TokenCap | undefined)

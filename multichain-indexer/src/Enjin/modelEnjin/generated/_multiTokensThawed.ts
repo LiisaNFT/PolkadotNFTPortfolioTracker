@@ -1,6 +1,4 @@
-import assert from "assert"
 import * as marshal from "./marshal"
-import {Extrinsic} from "./extrinsic.model"
 
 export class MultiTokensThawed {
     public readonly isTypeOf = 'MultiTokensThawed'

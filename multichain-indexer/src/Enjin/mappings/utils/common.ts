@@ -1,4 +1,4 @@
-import { EventType, NfToken, NfTokenAttribute } from '../../../model';
+import { EventType, NfToken } from '../../../model';
 import axios from 'axios';
 
 export const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000';
