@@ -1,4 +1,4 @@
-import type { FindOptionsRelations } from 'typeorm';
+import { FindOptionsRelations } from 'typeorm';
 import { FindOneOptions, EntityClass } from '@subsquid/typeorm-store';
 import { Context } from '../../../processor';
 import { FindOptionsWhere } from 'typeorm';

@@ -57,5 +57,9 @@ export class CollectionStats {
 
     @Column_("float", {nullable: true})
     floor30dDifUsd!: number | undefined | null
+
+    @Column_("timestamp with time zone", {nullable: true})
+    date!: Date | undefined | null;
+
 }
 

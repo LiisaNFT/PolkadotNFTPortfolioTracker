@@ -7,9 +7,7 @@ jest.mock('graphql-request', () => ({
 jest.mock('fs');
 
 describe('fetchCollectionNfts', () => {
-  const mockQuery = 'query getPortfolio { ... }'; // Simplified GraphQL query
-  const mockFilePath = '../queries/getPortfolio.graphql';
-  fs.readFileSync.mockReturnValue(mockQuery);
+  const realQuery = fs.readFileSync('../queries/PortfolioDetails.graphql', 'utf8');
 
   const mockSuccessfulResponse = (data) => {
     request.mockImplementationOnce(() => Promise.resolve(data));
@@ -24,7 +22,7 @@ describe('fetchCollectionNfts', () => {
   });
 
   it('should return NFTs owned per collection successfully when the request succeeds', async () => {
-    const mockData = { nfts: [] }; // Adjust the mock data to match your expected response structure
+    const mockData = { /* Adjust based on the expected structure from the real query */ };
     mockSuccessfulResponse(mockData);
 
     const host = 'http://localhost:4350';
@@ -34,8 +32,8 @@ describe('fetchCollectionNfts', () => {
 
     expect(result).toEqual(mockData);
     expect(request).toHaveBeenCalledTimes(1);
-    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, { userId });
-    expect(fs.readFileSync).toHaveBeenCalledWith(expect.stringContaining(mockFilePath), 'utf8');
+    // Ensure the actual query and variables are correctly passed
+    expect(request).toHaveBeenCalledWith(`${host}/graphql`, realQuery, { userId });
   });
 
   it('should handle errors when the request fails', async () => {

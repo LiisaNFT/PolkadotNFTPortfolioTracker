@@ -6,7 +6,6 @@ query PortfolioDetails($userId: String!) {
       collection {
         id
         name
-        # Assuming stats are directly accessible and relevant
         stats {
           floorPrice
           totalVolume
@@ -20,10 +19,8 @@ query PortfolioDetails($userId: String!) {
           floorPriceChange
         }
       }
-      # If attributes have a nested structure
       attributes {
         attribute {
-          # Assuming these fields exist within the linked Attribute entity
           id
           value
         }
