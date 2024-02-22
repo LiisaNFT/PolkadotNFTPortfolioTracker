@@ -1,4 +1,4 @@
-const { fetchFloorPriceChange } = require('../src/functions');
+const { fetchFloorPriceChange } = require('../../src/functions');
 const { request } = require('graphql-request');
 const fs = require('fs');
 jest.mock('graphql-request', () => ({

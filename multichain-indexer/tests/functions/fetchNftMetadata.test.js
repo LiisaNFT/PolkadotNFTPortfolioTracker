@@ -1,4 +1,4 @@
-const { fetchNftAcquisitionPrice } = require('../src/functions');
+const { fetchNftMetadata } = require('../../src/functions');
 const { request } = require('graphql-request');
 const fs = require('fs');
 jest.mock('graphql-request', () => ({
@@ -6,9 +6,9 @@ jest.mock('graphql-request', () => ({
 }));
 jest.mock('fs');
 
-describe('fetchNftAcquisitionPrice', () => {
-  const mockQuery = 'query getNftAcquisitionPrice { ... }'; // Simplified GraphQL query
-  const mockFilePath = '../queries/lastNftTransaction.graphql';
+describe('fetchNftMetadata', () => {
+  const mockQuery = 'query getNftMetadata { ... }'; // Simplified GraphQL query
+  const mockFilePath = '../queries/getNftMetadata.graphql';
   fs.readFileSync.mockReturnValue(mockQuery);
 
   const mockSuccessfulResponse = (data) => {
@@ -23,20 +23,18 @@ describe('fetchNftAcquisitionPrice', () => {
     jest.clearAllMocks();
   });
 
-  it('should return NFT acquisition price successfully when the request succeeds', async () => {
-    const mockData = { acquisitionPrice: { amount: 100, currency: 'ETH' } };
+  it('should return NFT metadata successfully when the request succeeds', async () => {
+    const mockData = { metadata: {} }; // Adjust this to match your expected GraphQL response structure
     mockSuccessfulResponse(mockData);
 
     const host = 'http://localhost:4350';
     const nftId = '0x5173-076350-38733';
 
-    const result = await fetchNftAcquisitionPrice(host, nftId);
+    const result = await fetchNftMetadata(host, nftId);
 
     expect(result).toEqual(mockData);
     expect(request).toHaveBeenCalledTimes(1);
-    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, {
-      nftId,
-    });
+    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, nftId);
     expect(fs.readFileSync).toHaveBeenCalledWith(expect.stringContaining(mockFilePath), 'utf8');
   });
 
@@ -47,10 +45,12 @@ describe('fetchNftAcquisitionPrice', () => {
     const host = 'http://localhost:4350';
     const nftId = '0x5173-076350-38733';
 
-    await expect(fetchNftAcquisitionPrice(host, nftId)).rejects.toThrow(mockError);
+    await expect(fetchNftMetadata(host, nftId)).rejects.toThrow(mockError);
     expect(request).toHaveBeenCalledTimes(1);
     expect(fs.readFileSync).toHaveBeenCalledWith(expect.stringContaining(mockFilePath), 'utf8');
   });
 });
+
+
 
 

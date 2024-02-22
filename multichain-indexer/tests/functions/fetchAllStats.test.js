@@ -1,4 +1,4 @@
-const { fetchAllStats } = require('../src/functions');
+const { fetchAllStats } = require('../../src/functions');
 const { request } = require('graphql-request');
 
 // Mock the 'graphql-request' module to prevent actual HTTP requests during testing

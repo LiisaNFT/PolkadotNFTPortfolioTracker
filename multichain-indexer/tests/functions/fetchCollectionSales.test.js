@@ -1,4 +1,4 @@
-const { fetchCollectionSales } = require('../src/functions');
+const { fetchCollectionSales } = require('../../src/functions');
 const { request } = require('graphql-request');
 const fs = require('fs');
 

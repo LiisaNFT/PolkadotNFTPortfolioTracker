@@ -1,7 +1,7 @@
-const { nftEstimatedValue } = require('../src/functions/nftEstimatedValue');
-const { fetchNftMetadata } = require('../src/functions/fetchNftMetadata');
-const { fetchLastTraitSale } = require('../src/functions/fetchLastTraitSale');
-const { fetchFloorPrice } = require('../src/functions/fetchFloorPrice');
+const { nftEstimatedValue } = require('../../src/functions/nftEstimatedValue');
+const { fetchNftMetadata } = require('../../src/functions/fetchNftMetadata');
+const { fetchLastTraitSale } = require('../../src/functions/fetchLastTraitSale');
+const { fetchFloorPrice } = require('../../src/functions/fetchFloorPrice');
 
 
 describe('nftEstimatedValue', () => {

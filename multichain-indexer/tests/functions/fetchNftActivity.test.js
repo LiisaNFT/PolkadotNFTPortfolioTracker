@@ -1,4 +1,4 @@
-const { fetchNftMetadata } = require('../src/functions');
+const { fetchNftActivity } = require('../../src/functions');
 const { request } = require('graphql-request');
 const fs = require('fs');
 jest.mock('graphql-request', () => ({
@@ -6,9 +6,9 @@ jest.mock('graphql-request', () => ({
 }));
 jest.mock('fs');
 
-describe('fetchNftMetadata', () => {
-  const mockQuery = 'query getNftMetadata { ... }'; // Simplified GraphQL query
-  const mockFilePath = '../queries/getNftMetadata.graphql';
+describe('fetchNftActivity', () => {
+  const mockQuery = 'query getNftActivity { ... }'; // Simplified GraphQL query
+  const mockFilePath = '../queries/getTransactions.graphql';
   fs.readFileSync.mockReturnValue(mockQuery);
 
   const mockSuccessfulResponse = (data) => {
@@ -23,18 +23,20 @@ describe('fetchNftMetadata', () => {
     jest.clearAllMocks();
   });
 
-  it('should return NFT metadata successfully when the request succeeds', async () => {
-    const mockData = { metadata: {} }; // Adjust this to match your expected GraphQL response structure
+  it('should return NFT activity successfully when the request succeeds', async () => {
+    const mockData = { transactions: [] }; // Adjust this to match your expected GraphQL response structure
     mockSuccessfulResponse(mockData);
 
     const host = 'http://localhost:4350';
     const nftId = '0x5173-076350-38733';
 
-    const result = await fetchNftMetadata(host, nftId);
+    const result = await fetchNftActivity(host, nftId);
 
     expect(result).toEqual(mockData);
     expect(request).toHaveBeenCalledTimes(1);
-    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, nftId);
+    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, {
+      nftId,
+    });
     expect(fs.readFileSync).toHaveBeenCalledWith(expect.stringContaining(mockFilePath), 'utf8');
   });
 
@@ -45,12 +47,11 @@ describe('fetchNftMetadata', () => {
     const host = 'http://localhost:4350';
     const nftId = '0x5173-076350-38733';
 
-    await expect(fetchNftMetadata(host, nftId)).rejects.toThrow(mockError);
+    await expect(fetchNftActivity(host, nftId)).rejects.toThrow(mockError);
     expect(request).toHaveBeenCalledTimes(1);
     expect(fs.readFileSync).toHaveBeenCalledWith(expect.stringContaining(mockFilePath), 'utf8');
   });
 });
-
 
 
 

@@ -1,4 +1,4 @@
-const { fetchWalletActivity } = require('../src/functions/fetchWalletActivity');
+const { fetchWalletActivity } = require('../../src/functions/fetchWalletActivity');
 
 // Mocking the graphql-request and fs modules
 jest.mock('graphql-request', () => ({

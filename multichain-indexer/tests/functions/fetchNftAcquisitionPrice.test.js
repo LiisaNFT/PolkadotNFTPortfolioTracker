@@ -1,4 +1,4 @@
-const { fetchNftActivity } = require('../src/functions');
+const { fetchNftAcquisitionPrice } = require('../../src/functions');
 const { request } = require('graphql-request');
 const fs = require('fs');
 jest.mock('graphql-request', () => ({
@@ -6,9 +6,9 @@ jest.mock('graphql-request', () => ({
 }));
 jest.mock('fs');
 
-describe('fetchNftActivity', () => {
-  const mockQuery = 'query getNftActivity { ... }'; // Simplified GraphQL query
-  const mockFilePath = '../queries/getTransactions.graphql';
+describe('fetchNftAcquisitionPrice', () => {
+  const mockQuery = 'query getNftAcquisitionPrice { ... }'; // Simplified GraphQL query
+  const mockFilePath = '../queries/lastNftTransaction.graphql';
   fs.readFileSync.mockReturnValue(mockQuery);
 
   const mockSuccessfulResponse = (data) => {
@@ -23,14 +23,14 @@ describe('fetchNftActivity', () => {
     jest.clearAllMocks();
   });
 
-  it('should return NFT activity successfully when the request succeeds', async () => {
-    const mockData = { transactions: [] }; // Adjust this to match your expected GraphQL response structure
+  it('should return NFT acquisition price successfully when the request succeeds', async () => {
+    const mockData = { acquisitionPrice: { amount: 100, currency: 'ETH' } };
     mockSuccessfulResponse(mockData);
 
     const host = 'http://localhost:4350';
     const nftId = '0x5173-076350-38733';
 
-    const result = await fetchNftActivity(host, nftId);
+    const result = await fetchNftAcquisitionPrice(host, nftId);
 
     expect(result).toEqual(mockData);
     expect(request).toHaveBeenCalledTimes(1);
@@ -47,11 +47,10 @@ describe('fetchNftActivity', () => {
     const host = 'http://localhost:4350';
     const nftId = '0x5173-076350-38733';
 
-    await expect(fetchNftActivity(host, nftId)).rejects.toThrow(mockError);
+    await expect(fetchNftAcquisitionPrice(host, nftId)).rejects.toThrow(mockError);
     expect(request).toHaveBeenCalledTimes(1);
     expect(fs.readFileSync).toHaveBeenCalledWith(expect.stringContaining(mockFilePath), 'utf8');
   });
 });
-
 
 

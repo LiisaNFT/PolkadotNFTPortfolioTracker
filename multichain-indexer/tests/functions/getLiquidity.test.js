@@ -1,4 +1,4 @@
-const { getLiquidity } = require('../src/functions/getLiquidity');
+const { getLiquidity } = require('../../src/functions/getLiquidity');
 
 // Mocking the fetchAllStats function dependency
 jest.mock('../src/functions/fetchAllStats', () => ({
@@ -8,7 +8,7 @@ jest.mock('../src/functions/fetchAllStats', () => ({
 describe('getLiquidity', () => {
   // Helper function for mocking fetchAllStats responses
   const mockFetchAllStatsResponse = (data) => {
-    const { fetchAllStats } = require('../src/functions/fetchAllStats');
+    const { fetchAllStats } = require('../../src/functions/fetchAllStats');
     fetchAllStats.mockImplementation(() => Promise.resolve(data));
   };
 
@@ -40,8 +40,8 @@ describe('getLiquidity', () => {
 
     // Verifying the function's behavior
     expect(liquidity).toEqual(expectedWeightedSum);
-    expect(require('../src/functions/fetchAllStats').fetchAllStats).toHaveBeenCalledTimes(1);
-    expect(require('../src/functions/fetchAllStats').fetchAllStats).toHaveBeenCalledWith(host);
+    expect(require('../../src/functions/fetchAllStats').fetchAllStats).toHaveBeenCalledTimes(1);
+    expect(require('../../src/functions/fetchAllStats').fetchAllStats).toHaveBeenCalledWith(host);
   });
 
   it('should handle empty stats data gracefully', async () => {
@@ -54,7 +54,7 @@ describe('getLiquidity', () => {
 
     // Verifying the function's behavior for empty data
     expect(liquidity).toEqual(0); // Expected liquidity is 0 when there are no stats
-    expect(require('../src/functions/fetchAllStats').fetchAllStats).toHaveBeenCalledTimes(1);
+    expect(require('../../src/functions/fetchAllStats').fetchAllStats).toHaveBeenCalledTimes(1);
   });
 });
 
