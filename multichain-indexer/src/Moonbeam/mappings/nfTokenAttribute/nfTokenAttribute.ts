@@ -1,5 +1,4 @@
 import { NfToken, Attribute, NfTokenAttribute } from '../../../model';
-import { Context } from '../../processor';
 
 export function createNfTokenAttribute({
   id,

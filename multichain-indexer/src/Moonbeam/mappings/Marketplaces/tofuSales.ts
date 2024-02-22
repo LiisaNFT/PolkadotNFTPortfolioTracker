@@ -1,9 +1,7 @@
-import * as ethers from 'ethers'
-import {ABI_JSON} from '../../../abi/moonbeamSeascape.abi'
 import * as tofu from '../../../abi/moonbeamTofu';
 import { ContractStandard } from '../../../model';
 import * as utils from '../utils';
-import {Log, Transaction} from '../../processor'
+import { Transaction } from '../../processor'
 
 
 export async function handleTofuSales(transaction: Transaction, chain: string): Promise<void> {

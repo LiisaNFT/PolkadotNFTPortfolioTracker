@@ -1,9 +1,7 @@
-import * as ethers from 'ethers'
-import {ABI_JSON} from '../../../abi/moonbeamMoonbeans.abi'
 import * as Moonbeans from '../../../abi/moonbeamMoonbeans';
 import { ContractStandard } from '../../../model';
 import * as utils from '../utils';
-import {Log, Transaction} from '../../processor'
+import { Log } from '../../processor'
 
 export async function handleMoonbeansCancelList(log: Log, chain  : string): Promise<void> {
   
