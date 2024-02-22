@@ -1,6 +1,4 @@
 import {
-  NfToken,
-  NfTokenAttribute,
   Attribute,
   Collection
 } from '../../../../model';

@@ -1,10 +1,42 @@
 import { Event } from '../../../processable';
 import {
-  MarketplaceOfferAcceptedEvent, MarketplaceOfferPlacedEvent, MarketplaceOfferWithdrawnEvent, MarketplaceRoyaltyAddedEvent, MarketplaceRoyaltyPaidEvent, MarketplaceTokenPriceUpdatedEvent, MarketplaceTokenSoldEvent, NftClassCreatedEvent, NftClassDestroyedEvent, NftCollectionCreatedEvent, NftCollectionDestroyedEvent, NftInstanceBurnedEvent, NftInstanceMintedEvent, NftInstanceTransferredEvent, NftItemBurnedEvent, NftItemMintedEvent, NftItemTransferredEvent,
+    MarketplaceOfferAcceptedEvent, 
+    MarketplaceOfferPlacedEvent, 
+    MarketplaceOfferWithdrawnEvent, 
+    MarketplaceRoyaltyAddedEvent, 
+    MarketplaceRoyaltyPaidEvent, 
+    MarketplaceTokenPriceUpdatedEvent, 
+    MarketplaceTokenSoldEvent, 
+    NftClassCreatedEvent, 
+    NftClassDestroyedEvent, 
+    NftCollectionCreatedEvent, 
+    NftCollectionDestroyedEvent, 
+    NftInstanceBurnedEvent, 
+    NftInstanceMintedEvent, 
+    NftInstanceTransferredEvent, 
+    NftItemBurnedEvent, 
+    NftItemMintedEvent, 
+    NftItemTransferredEvent,
 } from '../../types/snek/events';
-import { addressOf, isNewUnique, toPercent } from '../utils/helper';
+import { 
+    addressOf, 
+    isNewUnique, 
+    toPercent 
+} from '../utils/helper';
 import {
-  BurnTokenEvent, CreateCollectionEvent, CreateTokenEvent, DestroyCollectionEvent, TransferTokenEvent, Context, ListTokenEvent, BuyTokenEvent, AddRoyaltyEvent, PayRoyaltyEvent, WithdrawOfferEvent, MakeOfferEvent, AcceptOfferEvent,
+    BurnTokenEvent, 
+    CreateCollectionEvent, 
+    CreateTokenEvent, 
+    DestroyCollectionEvent, 
+    TransferTokenEvent, 
+    Context, 
+    ListTokenEvent, 
+    BuyTokenEvent, 
+    AddRoyaltyEvent, 
+    PayRoyaltyEvent, 
+    WithdrawOfferEvent, 
+    MakeOfferEvent, 
+    AcceptOfferEvent,
 } from '../utils/types';
 
 export function getCreateCollectionEvent(ctx: Context): CreateCollectionEvent {
