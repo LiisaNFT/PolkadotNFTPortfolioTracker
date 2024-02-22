@@ -7,7 +7,6 @@ import {
 import { createNfToken } from '../../tokens';
 import { getTokenEntityId } from '../common';
 import { EntitiesManager } from './common';
-import { getTokenDetails } from '../../tokens/utils';
 
 
 export class NfTokenManager extends EntitiesManager<NfToken> {

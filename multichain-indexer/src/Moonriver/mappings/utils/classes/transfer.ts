@@ -2,9 +2,6 @@ import {
   ContractStandard,
   NftEvent,
   EventType,
-  NfTokenAttribute,
-  Attribute,
-  NfToken
 } from '../../../../model';
 import { accountsManager, nfTokenManager, collectionManager, attributeManager, nfTokenAttributeManager } from '../entityUtils';
 import { EntitiesManager } from './common';
@@ -14,7 +11,6 @@ import {
   getTokenBurnedStatus,
   getEventType,
   getNftMetadata,
-  nftMetadata
 } from '../common';
 
 

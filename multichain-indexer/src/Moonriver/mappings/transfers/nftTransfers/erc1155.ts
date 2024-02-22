@@ -1,7 +1,7 @@
 import * as erc1155 from '../../../../abi/erc1155';
 import * as utils from '../../utils';
 import { ContractStandard} from '../../../../model';
-import {Log, Transaction} from '../../../processor'
+import { Log } from '../../../processor'
 
 
 export async function handleErc1155TransferSingle(log: Log, chain: string): Promise<void> {

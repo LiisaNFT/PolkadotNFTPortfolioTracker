@@ -1,8 +1,7 @@
-import * as ethers from 'ethers'
 import * as Seascape from '../../../abi/moonriverSeascape';
 import { ContractStandard } from '../../../model';
 import * as utils from '../utils';
-import {Log, Transaction} from '../../processor'
+import { Log } from '../../processor'
 
 
 export async function handleSeascapeListings(log: Log, chain: string): Promise<void> {

@@ -1,8 +1,8 @@
-module.exports = class Data1708447515353 {
-    name = 'Data1708447515353'
+module.exports = class Data1708616624931 {
+    name = 'Data1708616624931'
 
     async up(db) {
-        await db.query(`CREATE TABLE "collection_stats" ("id" character varying NOT NULL, "total_volume" numeric, "floor_price" double precision, "floor_price_usd" double precision, "token_count" integer, "market_cap" numeric, "highest_sale" numeric, "last_sale_date" TIMESTAMP WITH TIME ZONE, "supply" numeric, "floor1h_dif" double precision, "floor1h_dif_usd" double precision, "floor24h_dif" double precision, "floor24h_dif_usd" double precision, "floor7d_dif" double precision, "floor7d_dif_usd" double precision, "floor30d_dif" double precision, "floor30d_dif_usd" double precision, CONSTRAINT "PK_dc02ef85275d24f9ce8238b85fd" PRIMARY KEY ("id"))`)
+        await db.query(`CREATE TABLE "collection_stats" ("id" character varying NOT NULL, "total_volume" numeric, "floor_price" double precision, "floor_price_usd" double precision, "token_count" integer, "market_cap" numeric, "highest_sale" numeric, "last_sale_date" TIMESTAMP WITH TIME ZONE, "supply" numeric, "floor1h_dif" double precision, "floor1h_dif_usd" double precision, "floor24h_dif" double precision, "floor24h_dif_usd" double precision, "floor7d_dif" double precision, "floor7d_dif_usd" double precision, "floor30d_dif" double precision, "floor30d_dif_usd" double precision, "date" TIMESTAMP WITH TIME ZONE, CONSTRAINT "PK_dc02ef85275d24f9ce8238b85fd" PRIMARY KEY ("id"))`)
         await db.query(`CREATE TABLE "collection" ("id" character varying NOT NULL, "collection_type" character varying(7) NOT NULL, "created_at_block" numeric NOT NULL, "created_at" TIMESTAMP WITH TIME ZONE NOT NULL, "name" text, "stats_id" character varying, CONSTRAINT "PK_ad3f485bbc99d875491f44d7c85" PRIMARY KEY ("id"))`)
         await db.query(`CREATE INDEX "IDX_3fecce93788f86b3c2d76f5bb2" ON "collection" ("collection_type") `)
         await db.query(`CREATE INDEX "IDX_035df96c8ad5c55e4e49b53705" ON "collection" ("created_at_block") `)
