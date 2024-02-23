@@ -61,7 +61,7 @@ async function nftEstimatedValue(host, nftId, collectionId) {
             throw new Error('Failed to fetch floor prices');
         }
 
-        const estimatedValue = (lastTraitSalePrice / lastFloor.nftEvents[0].price) * currentFloor.price;
+        const estimatedValue = (lastTraitSalePrice / lastFloor.price) * currentFloor.price;
         console.log('Estimated Value: ', estimatedValue);
         return estimatedValue;
     } catch (error) {

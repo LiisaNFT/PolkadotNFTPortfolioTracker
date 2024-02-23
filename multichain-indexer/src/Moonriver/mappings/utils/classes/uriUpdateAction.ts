@@ -20,7 +20,7 @@ type LogType = {
   transaction?: {
       //... whatever properties this has
   } | undefined;
-}
+};
 
 export class UriUpdateActionsManager extends EntitiesManager<UriUpdateAction> {
   constructor(entity: typeof UriUpdateAction) {

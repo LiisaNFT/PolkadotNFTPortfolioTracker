@@ -1,12 +1,12 @@
-const { fetchNftUnrealizedPnL } = require('../src/fetchNftUnrealizedPnL');
-const { fetchNftAcquisitionPrice } = require('../src/fetchNftAcquisitionPrice');
-const { nftEstimatedValue } = require('../src/nftEstimatedValue');
-
+const { fetchNftUnrealizedPnL } = require('../../src/functions/fetchNftUnrealizedPnL');
+const { fetchNftAcquisitionPrice } = require('../../src/functions/fetchNftAcquisitionPrice');
+const { nftEstimatedValue } = require('../../src/functions/nftEstimatedValue');
+ 
 // Mock the dependent functions
-jest.mock('../src/fetchNftAcquisitionPrice', () => ({
+jest.mock('../../src/functions/fetchNftAcquisitionPrice', () => ({
   fetchNftAcquisitionPrice: jest.fn(),
 }));
-jest.mock('../src/nftEstimatedValue', () => ({
+jest.mock('../../src/functions/nftEstimatedValue', () => ({
   nftEstimatedValue: jest.fn(),
 }));
 

@@ -3,6 +3,18 @@ const { fetchNftMetadata } = require('../../src/functions/fetchNftMetadata');
 const { fetchLastTraitSale } = require('../../src/functions/fetchLastTraitSale');
 const { fetchFloorPrice } = require('../../src/functions/fetchFloorPrice');
 
+jest.mock('../../src/functions/fetchNftMetadata', () => ({
+    fetchNftMetadata: jest.fn(),
+}));
+
+jest.mock('../../src/functions/fetchLastTraitSale', () => ({
+    fetchLastTraitSale: jest.fn(),
+}));
+
+jest.mock('../../src/functions/fetchFloorPrice', () => ({
+    fetchFloorPrice: jest.fn(),
+}));
+
 
 describe('nftEstimatedValue', () => {
     beforeEach(() => {
@@ -55,7 +67,6 @@ describe('nftEstimatedValue', () => {
         expect(estimatedValue).toEqual(expectedEstimatedValue);
     });
 
-    // Add more tests as necessary, e.g., for handling errors or edge cases
 });
 
 

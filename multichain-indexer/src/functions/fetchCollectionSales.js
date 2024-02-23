@@ -24,12 +24,15 @@ async function fetchCollectionSales(host, userId, nftId, collectionId, startTime
         
         const response = await request(endpoint, query, variables);
         console.log(JSON.stringify(response, null, 4));
+
         return response;
+
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
         if (error.response && error.response.errors) {
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
         }
+        throw error;
     }
 }
 
@@ -37,5 +40,5 @@ module.exports = { fetchCollectionSales };
 
 
 // Example usage
-//fetchCollectionSales('http://localhost:4350', '', '', '0x51737fa634e26f5687e45c6ca07604e064076350','','', 'Moonbeam');
+fetchCollectionSales('http://localhost:4350', '', '', '0x51737fa634e26f5687e45c6ca07604e064076350','2023-01-01T00:00:00Z','2024-01-01T00:00:00Z', 'Moonbeam');
 

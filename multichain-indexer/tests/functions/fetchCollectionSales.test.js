@@ -11,68 +11,50 @@ jest.mock('fs', () => ({
 }));
 
 describe('fetchCollectionSales', () => {
-  // Define a helper function to mock successful responses
-  const mockSuccessfulResponse = (data) => {
-    request.mockImplementationOnce(() => Promise.resolve(data));
-  };
-
-  // Define a helper function to mock failed responses
-  const mockFailedResponse = (error) => {
-    request.mockImplementationOnce(() => Promise.reject(error));
-  };
-
-    // Mock the GraphQL query file content
-  const mockQuery = 'query getTransactions { ... }'; // Simplified GraphQL query
+  const mockQuery = `query ActivityQuery(...) {...}`; // Your actual query string
+  const host = 'http://localhost:4350'; // Example host, adjust as necessary
+  const userId = 'testUserId'; // Example userId, adjust as necessary
+  const nftId = 'testNftId'; // Example nftId, adjust as necessary
+  const collectionId = '0x51737fa634e26f5687e45c6ca07604e064076350'; // Example collectionId
+  const startTime = '2022-01-01T00:00:00Z'; // Example startTime
+  const endTime = '2024-01-02T00:00:00Z'; // Example endTime
+  const chain = 'Moonbeam'; // Example chain, adjust as necessary
+  
   fs.readFileSync.mockReturnValue(mockQuery);
 
-  afterEach(() => {
+  beforeEach(() => {
     jest.clearAllMocks();
   });
 
   it('should return data successfully when the request succeeds', async () => {
-    // Mock the successful response
-    const mockData = { sales: [] }; // Adjust the mock data to match your expected response structure
-    mockSuccessfulResponse(mockData);
+      const mockData = {
+        nftEvents: []
+      };
+      request.mockResolvedValue(mockData);
 
-    const host = 'http://localhost:4350';
-    const userId = '';
-    const nftId = '';
-    const collectionId = '0x51737fa634e26f5687e45c6ca07604e064076350';
-    const startTime = '';
-    const endTime = '';
-    const chain = 'Moonbeam';
+      const result = await fetchCollectionSales(host, userId, nftId, collectionId, startTime, endTime, chain);
 
-    const result = await fetchCollectionSales(host, userId, nftId, collectionId, startTime, endTime, chain);
-
-    // Assertions
-    expect(result).toEqual(mockData);
-    expect(request).toHaveBeenCalledTimes(1);
-    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, expect.any(Object));
+      expect(result).toEqual(mockData);
+      expect(request).toHaveBeenCalledTimes(1);
+      expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, {
+        userId: "testUserId",
+        collectionId: "0x51737fa634e26f5687e45c6ca07604e064076350",
+        nftId: "testNftId",
+        startTimestamp: "2022-01-01T00:00:00Z",
+        endTimestamp: "2024-01-02T00:00:00Z",
+        chain: "Moonbeam",
+        eventType: "SALE", 
+      });
   });
 
   it('should handle errors when the request fails', async () => {
-    // Mock a failed response
     const mockError = new Error('Network error');
-    mockFailedResponse(mockError);
-
-    const host = 'http://localhost:4350';
-    const userId = '';
-    const nftId = '';
-    const collectionId = '0x51737fa634e26f5687e45c6ca07604e064076350';
-    const startTime = '';
-    const endTime = '';
-    const chain = 'Moonbeam';
-
-    // Since the function might not explicitly handle errors, wrap the call in a try-catch to test error behavior
-    let error;
-    try {
-      await fetchCollectionSales(host, userId, nftId, collectionId, startTime, endTime, chain);
-    } catch (e) {
-      error = e;
-    }
-
-    // Assertions
-    expect(error).toEqual(mockError);
+    request.mockRejectedValue(mockError);
+  
+    // Using variables defined at the describe level within this test case
+    await expect(fetchCollectionSales(host, userId, nftId, collectionId, startTime, endTime, chain)).rejects.toThrow('Network error');
     expect(request).toHaveBeenCalledTimes(1);
   });
+  
 });
+
