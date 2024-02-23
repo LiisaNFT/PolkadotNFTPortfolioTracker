@@ -15,14 +15,11 @@ describe('fetchNftUnrealizedPnL', () => {
   });
 
   it('should handle errors gracefully', async () => {
-    // Simulate a situation where one of the functions throws an error
     fetchNftAcquisitionPrice.mockRejectedValue(new Error('Network error'));
     nftEstimatedValue.mockResolvedValue(150); // This call might not even be reached due to the error
 
     const result = await fetchNftUnrealizedPnL(host, nftId, collectionId);
-
-    // Expect the function to handle the error gracefully and return a specific value, e.g., 0
-    expect(result).toBe(0);
+    expect(result).toBe(0); // Expect the function to return 0 on error
   });
 
   it('should correctly calculate unrealized P&L', async () => {

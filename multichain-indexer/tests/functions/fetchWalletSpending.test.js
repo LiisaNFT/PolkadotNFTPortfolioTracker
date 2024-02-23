@@ -2,8 +2,9 @@ const { fetchWalletSpending } = require('../../src/functions/fetchWalletSpending
 
 // Mocking necessary modules
 jest.mock('graphql-request', () => ({
-  request: jest.fn(),
+  request: jest.fn().mockRejectedValue(new Error('Network error')),
 }));
+
 jest.mock('fs', () => ({
   readFileSync: jest.fn(),
 }));
