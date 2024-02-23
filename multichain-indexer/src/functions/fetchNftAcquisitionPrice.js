@@ -28,4 +28,4 @@ async function fetchNftAcquisitionPrice(host, nftId) {
 
 module.exports = { fetchNftAcquisitionPrice };
 
-//fetchNftAcquisitionPrice('http://localhost:4350', '0x5173-076350-38733')
+fetchNftAcquisitionPrice('http://localhost:4350', '0xcB13-ac49cA-1700')

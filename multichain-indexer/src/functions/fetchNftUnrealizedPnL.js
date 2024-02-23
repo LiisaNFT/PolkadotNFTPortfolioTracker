@@ -9,6 +9,7 @@ async function fetchNftUnrealizedPnL(host, nftId, collectionId) {
             fetchNftAcquisitionPrice(host, nftId),
             nftEstimatedValue(host, nftId, collectionId)
         ]);
+        console.log({acquisitionPriceResponse, estimatedPriceResponse});
 
         // Check if both functions returned valid data
         if (typeof acquisitionPriceResponse !== 'number' || typeof estimatedPriceResponse !== 'number') {
@@ -20,14 +21,12 @@ async function fetchNftUnrealizedPnL(host, nftId, collectionId) {
         
         return unrealizedPnL;
     } catch (error) {
-        console.error(`Error calculating unrealized P&L: ${error.message}`);
-        // Depending on your error handling strategy, you could return a default value, null, or rethrow the error
-        // For example, return null to indicate that the calculation could not be completed
-        return 0;
+        console.error(`Error calculating unrealized P&L: `, error);
+
+        throw error;
     }
 }
 
 module.exports = { fetchNftUnrealizedPnL };
 
-// Example usage (uncomment to test)
-// fetchNftUnrealizedPnL('http://localhost:4350', '0x5173-076350-38733', '0x51737fa634e26f5687e45c6ca07604e064076350').then(console.log).catch(console.error);
+fetchNftUnrealizedPnL('http://localhost:4350', '0xcB13-ac49cA-1700', '0xcB13945Ca8104f813992e4315F8fFeFE64ac49cA');

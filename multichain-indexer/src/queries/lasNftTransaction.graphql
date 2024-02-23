@@ -1,6 +1,6 @@
 query LastNftTransaction($nftId: String!) {
   nftEvents(
-    where: { nfToken: { id_eq: $nftId } },
+    where: { nfToken: { id_eq: $nftId }, eventType_eq: SALE },
     orderBy: timestamp_DESC,
     limit: 1
   ) {
