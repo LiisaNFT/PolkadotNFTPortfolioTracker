@@ -56,6 +56,9 @@ sqd run
 sqd serve
 
 A GraphiQL playground will be available at [localhost:4350/graphql](http://localhost:4350/graphql).
+
+# 8. Run all tests
+npm test
 ```
 
 ## License

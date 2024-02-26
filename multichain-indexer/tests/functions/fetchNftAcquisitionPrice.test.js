@@ -8,7 +8,6 @@ jest.mock('fs');
 describe('fetchNftAcquisitionPrice', () => {
   const host = 'http://localhost:4350';
   const nftId = '0x5173-076350-38733';
-  const mockFilePath = '../../src/queries/lastNftTransaction.graphql';
   const mockData = { acquisitionPrice: { amount: 100, currency: 'ETH' } };
   const mockQuery = `
     query LastNftTransaction($nftId: String!) {
@@ -40,7 +39,7 @@ describe('fetchNftAcquisitionPrice', () => {
 
     expect(result).toEqual(mockData);
     expect(request).toHaveBeenCalledTimes(1);
-    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, { nftId });
+    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, { nftId: nftId });
   });
 
   it('should handle errors when the request fails', async () => {
@@ -49,6 +48,7 @@ describe('fetchNftAcquisitionPrice', () => {
 
     await expect(fetchNftAcquisitionPrice(host, nftId)).rejects.toThrow('Network error');
     expect(request).toHaveBeenCalledTimes(1);
-    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, { nftId });
+    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, { nftId: nftId });
+
   });
 });

@@ -29,16 +29,17 @@ describe('fetchNftActivity', () => {
     expect(request).toHaveBeenCalledTimes(1);
     expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, { nftId });
   });
-
   it('should handle errors when the request fails', async () => {
     const mockError = new Error('Network error');
-    request.mockRejectedValueOnce(mockError); // Ensure the mock simulates a failure
-
+    request.mockRejectedValueOnce(mockError); // Simulate error for this test case
+  
     const host = 'http://localhost:4350';
     const nftId = '0x5173-076350-38733';
-
+  
+    // The function under test should throw an error, leading to the test passing
     await expect(fetchNftActivity(host, nftId)).rejects.toThrow('Network error');
+    
     expect(request).toHaveBeenCalledTimes(1);
-    // Ensure the fs.readFileSync mock is called with the correct parameters if needed
+    // No need to check fs.readFileSync if not relevant for the error scenario
   });
 });

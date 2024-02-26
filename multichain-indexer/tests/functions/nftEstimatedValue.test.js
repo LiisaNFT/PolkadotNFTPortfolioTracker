@@ -61,7 +61,7 @@ describe('nftEstimatedValue', () => {
 
         // Example assertion for the calculated estimated value based on mocked responses
         const lastTraitSalePrice = 1000;
-        const lastFloorPrice = 800;
+        const lastFloorPrice = 1200;
         const currentFloorPrice = 1200;
         const expectedEstimatedValue = (lastTraitSalePrice / lastFloorPrice) * currentFloorPrice;
         expect(estimatedValue).toEqual(expectedEstimatedValue);

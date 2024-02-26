@@ -1,54 +1,41 @@
 const { fetchAllStats } = require('../../src/functions');
 const { request } = require('graphql-request');
+const fs = require('fs');
 
-// Mock the 'graphql-request' module to prevent actual HTTP requests during testing
-jest.mock('graphql-request', () => ({
-  request: jest.fn(),
-}));
+jest.mock('graphql-request');
+jest.mock('fs');
+
 
 describe('fetchAllStats', () => {
-  // Define a helper function to mock successful responses
-  const mockSuccessfulResponse = (data) => {
-    request.mockImplementationOnce(() => Promise.resolve(data));
-  };
+  const mockData = { stats: [] }; // Adjust as per actual expected data
+  const mockQuery = 'query GetStats { ... }'; // Adjust with your actual query
+  const mockError = new Error('Network error');
 
-  // Define a helper function to mock failed responses
-  const mockFailedResponse = (error) => {
-    request.mockImplementationOnce(() => Promise.reject(error));
-  };
-
-  afterEach(() => {
-    jest.clearAllMocks();
+  beforeEach(() => {
+    fs.readFileSync.mockReturnValue(mockQuery);
+    request.mockClear();
   });
 
   it('should return data successfully when the request succeeds', async () => {
-    // Mock the successful response
-    const mockData = { stats: [] }; // Adjust the mock data to match your expected response structure
-    mockSuccessfulResponse(mockData);
+    request.mockResolvedValue(mockData);
 
-    const result = await fetchAllStats('http://localhost:4350');
+    const host = 'http://localhost:4350';
+    const result = await fetchAllStats(host); // Adjust function call as necessary
 
-    // Assertions
     expect(result).toEqual(mockData);
     expect(request).toHaveBeenCalledTimes(1);
+    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, expect.any(Object)); // Adjust if your function uses variables
   });
 
   it('should handle errors when the request fails', async () => {
-    // Mock a failed response
-    const mockError = new Error('Network error');
-    mockFailedResponse(mockError);
+    request.mockRejectedValue(new Error('Network error'));
 
-    // Since the function might not explicitly handle errors, wrap the call in a try-catch to test error behavior
-    let error;
-    try {
-      await fetchAllStats('http://localhost:4350');
-    } catch (e) {
-      error = e;
-    }
 
-    // Assertions
-    expect(error).toEqual(mockError);
+    const host = 'http://localhost:4350';
+    await expect(fetchAllStats(host)).rejects.toThrow('Network error'); // Adjust function call as necessary
+
     expect(request).toHaveBeenCalledTimes(1);
   });
 });
+
 
