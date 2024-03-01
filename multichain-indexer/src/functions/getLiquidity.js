@@ -7,6 +7,11 @@ async function getLiquidity(host) {
     // Get all collections
     const stats = fetchAllStats(host);
 
+    if (!Array.isArray(stats)) {
+        console.error('Expected stats to be an array, received:', stats);
+        return; 
+    }
+
     // Get max and min sales count
     const maxSalesCount = Math.max(...stats.map(s => s.sales_count_24h));
     const minSalesCount = Math.min(...stats.map(s => s.sales_count_24h));

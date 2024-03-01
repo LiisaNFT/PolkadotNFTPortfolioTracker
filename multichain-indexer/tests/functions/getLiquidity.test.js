@@ -1,7 +1,7 @@
 const { getLiquidity } = require('../../src/functions/getLiquidity');
 
 // Mocking the fetchAllStats function dependency
-jest.mock('../src/functions/fetchAllStats', () => ({
+jest.mock('../../src/functions/fetchAllStats', () => ({
   fetchAllStats: jest.fn(),
 }));
 

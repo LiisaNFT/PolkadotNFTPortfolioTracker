@@ -20,12 +20,17 @@ async function fetchNftActivity(host, nftId) {
         return response;
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
-        if (error.response && error.response.errors) {
+        if (error.response) {
+            console.error("Response Status:", error.response.status);
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
+        } else if (error.request) {
+            console.error("Request was made but no response was received");
+        } else {
+            console.error("Error setting up request:", error.message);
         }
     }
 }
 
 module.exports = { fetchNftActivity };
 
-//fetchNftActivity('http://localhost:4350', '0x5173-076350-38733');
+//fetchNftActivity('http://localhost:4350', '0xcB13-ac49cA-1700');
