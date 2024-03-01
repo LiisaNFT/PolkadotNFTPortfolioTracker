@@ -19,6 +19,7 @@ async function fetchAllStats(host) {
         if (error.response && error.response.errors) {
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
         }
+        throw new Error(error.message);
     }
 }
 

@@ -24,7 +24,8 @@ describe('fetchAllStats', () => {
 
     expect(result).toEqual(mockData);
     expect(request).toHaveBeenCalledTimes(1);
-    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, expect.any(Object)); // Adjust if your function uses variables
+    // If no third argument is expected, adjust the expectation:
+    expect(request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery); 
   });
 
   it('should handle errors when the request fails', async () => {
