@@ -61,7 +61,7 @@ async function nftEstimatedValue(host, nftId, collectionId) {
             throw new Error('Failed to fetch floor prices');
         }
 
-        const estimatedValue = (lastTraitSalePrice / lastFloor.nftEvents[0].price) * currentFloor.nftEvents[0].price;
+        const estimatedValue = (lastTraitSalePrice / lastFloor.price) * currentFloor.price;
         console.log('Estimated Value: ', estimatedValue);
         return estimatedValue;
     } catch (error) {
@@ -71,4 +71,4 @@ async function nftEstimatedValue(host, nftId, collectionId) {
 
 module.exports = { nftEstimatedValue };
 
-nftEstimatedValue('http://localhost:4350', '0xcB13-ac49cA-1700', '0xcB13945Ca8104f813992e4315F8fFeFE64ac49cA');
+//nftEstimatedValue('http://localhost:4350', '0x5173-076350-38733', '0x51737fa634e26f5687e45c6ca07604e064076350');
