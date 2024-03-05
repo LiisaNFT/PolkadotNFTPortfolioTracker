@@ -8,11 +8,14 @@ async function fetchNftMetadata(host, nftId) {
     const queryFilePath = path.join(__dirname, '../queries/getNftMetadata.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
 
+    const variables = {
+        nftId: nftId
+    };
 
     try {
         const endpoint = `${host}/graphql`;
         
-        const response = await request(endpoint, query, nftId);
+        const response = await request(endpoint, query, variables);
         console.log(JSON.stringify(response, null, 4));
         return response;
     } catch (error) {
@@ -20,6 +23,7 @@ async function fetchNftMetadata(host, nftId) {
         if (error.response && error.response.errors) {
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
         }
+        throw error;
     }
 }
 

@@ -25,6 +25,7 @@ async function fetchLastTraitSale(host, collectionId, attributeType, attributeVa
         if (error.response && error.response.errors) {
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
         }
+        throw error;
     }
 }
 

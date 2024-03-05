@@ -13,14 +13,14 @@ async function getLiquidity(host) {
     }
 
     // Get max and min sales count
-    const maxSalesCount = Math.max(...stats.map(s => s.sales_count_24h));
-    const minSalesCount = Math.min(...stats.map(s => s.sales_count_24h));
+    const maxSalesCount = Math.max(...stats.map(s => s.salesCount24h));
+    const minSalesCount = Math.min(...stats.map(s => s.salesCount24h));
 
     let totalEstimatedValue = stats.reduce((sum, collection) => sum + collection.estimated_value, 0);
     let weightedSum = 0;
 
     for (const collection of stats) {
-        const salesCount = collection.sales_count_24h;
+        const salesCount = collection.salesCount24h;
         const score = 100 * ((salesCount - minSalesCount) / (maxSalesCount - minSalesCount));
         const weight = collection.estimated_value / totalEstimatedValue;
         weightedSum += score * weight;

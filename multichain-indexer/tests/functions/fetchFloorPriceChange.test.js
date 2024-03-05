@@ -1,27 +1,21 @@
 const { fetchFloorPriceChange } = require('../../src/functions');
 const { request } = require('graphql-request');
 const fs = require('fs');
+const path = require('path');
+
 jest.mock('graphql-request', () => ({
   request: jest.fn(),
 }));
 jest.mock('fs');
 
 describe('fetchFloorPriceChange', () => {
-  const mockQuery = 'query getFloorChanges { ... }'; // Simplified GraphQL query
-  const mockFilePath = '../queries/getFloorChanges.graphql';
-  fs.readFileSync.mockReturnValue(mockQuery);
-
-  const mockSuccessfulResponse = (data) => {
-    request.mockResolvedValueOnce(data); // Use mockResolvedValueOnce for async promise resolution
-  };
-
-  const mockFailedResponse = (error) => {
-    request.mockRejectedValueOnce(error); // Use mockRejectedValueOnce for async promise rejection
-  };
-
-  afterEach(() => {
-    jest.clearAllMocks();
+  beforeEach(() => {
+    jest.clearAllMocks(); // Reset mocks before each test
   });
+
+  const mockQuery = 'query getFloorChanges { ... }'; // Simplified GraphQL query
+  const mockFilePath = path.join(__dirname, '../../src/queries/getFloorChanges.graphql');
+  fs.readFileSync.mockReturnValue(mockQuery);
 
   it('should return floor price changes successfully when the request succeeds', async () => {
     const mockData = { floorPriceChanges: { include1h: 1, include24h: 2, include7d: 3, include30d: 4, inUSD: false } };

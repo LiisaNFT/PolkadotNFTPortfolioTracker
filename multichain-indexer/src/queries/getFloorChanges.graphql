@@ -1,5 +1,5 @@
 query FetchFloorPriceDifferences(
-  $collectionId: ID!,
+  $collectionId: String!,
   $include1h: Boolean!,
   $include24h: Boolean!,
   $include7d: Boolean!,

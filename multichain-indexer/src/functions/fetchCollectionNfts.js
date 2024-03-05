@@ -20,12 +20,14 @@ async function fetchCollectionNfts(host, userId) {
         return response;
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
+        
         if (error.response && error.response.errors) {
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
         }
+        throw error;
     }
 }
 
 module.exports = { fetchCollectionNfts };
 
-fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');
+//fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');

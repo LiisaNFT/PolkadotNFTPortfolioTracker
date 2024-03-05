@@ -33,4 +33,4 @@ async function fetchFloorPriceChange(host, collectionId, include1h, include24h, 
 
 module.exports = { fetchFloorPriceChange };
 
-//fetchFloorPriceChange('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', true, true, true, true, false)
+fetchFloorPriceChange('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', true, true, true, true, false)

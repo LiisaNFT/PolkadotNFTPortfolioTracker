@@ -1,31 +1,25 @@
 const { fetchLastTraitSale } = require('../../src/functions');
 const { request } = require('graphql-request');
 const fs = require('fs');
+const path = require('path');
+
 jest.mock('graphql-request', () => ({
   request: jest.fn(),
 }));
 jest.mock('fs');
 
 describe('fetchLastTraitSale', () => {
-  const mockQuery = 'query getLastTraitSale { ... }'; // Simplified GraphQL query
-  const mockFilePath = '../queries/getLastTraitSale.graphql';
-  fs.readFileSync.mockReturnValue(mockQuery);
-
-  const mockSuccessfulResponse = (data) => {
-    request.mockResolvedValueOnce(data);
-  };
-
-  const mockFailedResponse = (error) => {
-    request.mockRejectedValueOnce(error);
-  };
-
-  afterEach(() => {
-    jest.clearAllMocks();
+  beforeEach(() => {
+    jest.clearAllMocks(); // Reset mocks before each test
   });
+
+  const mockQuery = 'query getLastTraitSale { ... }'; // Simplified GraphQL query
+  const mockFilePath = path.join(__dirname, '../../src/queries/getLastTraitSale.graphql');
+  fs.readFileSync.mockReturnValue(mockQuery);
 
   it('should return last trait sale successfully when the request succeeds', async () => {
     const mockData = { lastTraitSale: { salePrice: 100, saleDate: '2024-01-01T00:00:00Z' } };
-    mockSuccessfulResponse(mockData);
+    request.mockResolvedValue(mockData);
 
     const host = 'http://localhost:4350';
     const collectionId = '0x51737fa634e26f5687e45c6ca07604e064076350';
@@ -46,7 +40,7 @@ describe('fetchLastTraitSale', () => {
 
   it('should handle errors when the request fails', async () => {
     const mockError = new Error('Network error');
-    mockFailedResponse(mockError);
+    request.mockRejectedValue(mockError);
 
     const host = 'http://localhost:4350';
     const collectionId = '0x51737fa634e26f5687e45c6ca07604e064076350';

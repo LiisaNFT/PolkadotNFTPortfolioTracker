@@ -17,17 +17,15 @@ async function fetchNftActivity(host, nftId) {
         
         const response = await request(endpoint, query, variables);
         console.log(JSON.stringify(response, null, 4));
+        
         return response;
+
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
-        if (error.response) {
-            console.error("Response Status:", error.response.status);
+        if (error.response && error.response.errors) {
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
-        } else if (error.request) {
-            console.error("Request was made but no response was received");
-        } else {
-            console.error("Error setting up request:", error.message);
         }
+        throw error; 
     }
 }
 
