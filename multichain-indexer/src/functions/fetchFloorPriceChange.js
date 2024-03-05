@@ -20,7 +20,7 @@ async function fetchFloorPriceChange(host, collectionId, include1h, include24h, 
     try {
         const endpoint = `${host}/graphql`;
         
-        const response =  request(endpoint, query, variables);
+        const response = request(endpoint, query, variables);
         console.log(JSON.stringify(response, null, 4));
         return response;
     } catch (error) {

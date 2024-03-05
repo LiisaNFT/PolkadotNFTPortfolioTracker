@@ -11,7 +11,17 @@ jest.mock('fs');
 describe('fetchFloorPriceChange', () => {
   beforeEach(() => {
     jest.clearAllMocks(); // Reset mocks before each test
+    fs.readFileSync.mockReturnValue(mockQuery);
   });
+
+  // Define mock functions
+  const mockSuccessfulResponse = (data) => {
+      request.mockResolvedValue(data);
+  };
+
+  const mockFailedResponse = (error) => {
+      request.mockRejectedValue(error);
+  };
 
   const mockQuery = 'query getFloorChanges { ... }'; // Simplified GraphQL query
   const mockFilePath = path.join(__dirname, '../../src/queries/getFloorChanges.graphql');
@@ -46,7 +56,7 @@ describe('fetchFloorPriceChange', () => {
 
   it('should handle errors when the request fails', async () => {
     const mockError = new Error('Network error');
-    mockFailedResponse(mockError);
+    mockFailedResponse(mockError)
 
     const host = 'http://localhost:4350';
     const collectionId = '0x51737fa634e26f5687e45c6ca07604e064076350';
