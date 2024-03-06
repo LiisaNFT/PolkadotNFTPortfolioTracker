@@ -37,11 +37,11 @@ describe('fetchWalletSpending', () => {
     // Mocking the query content and GraphQL response
     const mockQuery = 'query getRevenueSpending { ... }'; // Simplified GraphQL query
     mockReadFileSync(mockQuery);
-    const mockData = { spending: [], revenue: [] }; // Example response data
+    const mockData = { spending: [], revenue: [] }; 
     mockSuccessfulResponse(mockData);
 
     const host = 'http://localhost:4350';
-    const userId = '0x02AFA2DCE36a911741467D3cc8688Afcc9a5D3A6';
+    const userId = '0x85b03CA16a7B59B392e54bbe4dEF189F6bF6F16b';
     const chain = 'Moonbeam';
 
     // Calling the function with mocked data
@@ -50,7 +50,7 @@ describe('fetchWalletSpending', () => {
     // Verifying the function's behavior
     expect(result).toEqual(mockData);
     expect(require('graphql-request').request).toHaveBeenCalledTimes(1);
-    expect(require('graphql-request').request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, { userId, chain });
+    expect(require('graphql-request').request).toHaveBeenCalledWith(`${host}/graphql`, mockQuery, { userId: userId, chain: chain });
   });
 
   it('should handle errors when the request fails', async () => {
