@@ -1,13 +1,45 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
+
+// Load the GraphQL query from the file
+const query = `query WalletSalesStats($userId: String!, $breakdownByCollection: Boolean = true, $chain: String!) {
+    # Fetch sales where the wallet was the buyer
+    bought: nftEvents(
+      where: { 
+        to: { id_eq: $userId },
+        eventType_eq: SALE,
+        chain_eq: $chain
+      }
+    ) {
+      price
+      collection: nfToken {
+        collection @include(if: $breakdownByCollection) {
+          id
+          name
+        }
+      }
+    }
+    
+    # Fetch sales where the wallet was the seller
+    sold: nftEvents(
+      where: { 
+        from: { id_eq: $userId },
+        eventType_eq: SALE,
+        chain_eq: $chain
+      }
+    ) {
+      price
+      collection: nfToken {
+        collection @include(if: $breakdownByCollection) {
+          id
+          name
+        }
+      }
+    }
+  }`;
 
 //Wallet - Invested value/ Total Revenue
 async function fetchWalletSpending(host, userId, chain) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getRevenueSpending.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
-    
+
     const variables = {
         userId: userId,
         chain: chain
