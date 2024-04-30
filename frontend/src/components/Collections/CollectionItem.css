@@ -1,0 +1,53 @@
+/* src/components/Collections/CollectionItem.css */
+.collection-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    color: white;
+}
+
+.name-column {
+    flex: 2; /* More space for the name column, includes image + name */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Ensures content aligns to the left */
+}
+
+.collection-image {
+    width: 30px; /* Adjust as needed */
+    height: 30px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
+
+.collection-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px; /* Optional rounded corners */
+}
+
+/* Apply left alignment for the name within the .name-column */
+.name {
+    text-align: left !important; /* Force text alignment to the left */
+    flex-grow: 1; /* Allows the container to expand, filling the available space */
+    display: inline-block; /* Adjust the display if necessary */
+}
+
+/* Ensure remaining cells are centered */
+.collection-item div:not(:first-child) {
+    text-align: center; /* Center-aligns the content of all cells except the first */
+    flex: 1; /* Ensures equal distribution */
+}
+ 
+  .collection-item .positive {
+    color: #4CAF50; /* Green for positive values */
+  }
+  
+  .collection-item .negative {
+    color: #F44336; /* Red for negative values */
+  }
+  

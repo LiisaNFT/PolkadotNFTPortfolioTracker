@@ -1,0 +1,118 @@
+.App {
+  text-align: center;
+  background-color: black;
+}
+
+body {
+  background-color: #000; /* Sets the body's background to black */
+}
+
+.App-header {
+  background-color: #000;
+  min-height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjusted to space-between */
+  padding: 0 20px; /* Add padding on the sides of the header */
+  color: white;
+  width: 100%;
+  position: fixed;
+  z-index: 1000; /* Ensures the header stays on top of other content */
+  box-sizing: border-box;
+  top: 0;
+}
+
+/* Styles for the logo, if needed */
+.logo img {
+  height: 20px; /* Example size, adjust as necessary */
+}
+
+/* Styles for the connect wallet button */
+.connect-wallet button {
+  padding: 10px 20px;
+  background-color: #61dafb; /* Example color, adjust as necessary */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #282c34; /* Text color */
+}
+
+.connect-wallet button:hover {
+  background-color: #51cbeb; /* Slightly lighter on hover */
+}
+
+@media (min-width: 1200px) {
+  .dashboard-middle {
+    display: flex;
+    justify-content: stretch; /* This will make the items stretch to fill the parent */
+    align-items: stretch; /* This will ensure the items have equal height */
+    margin-bottom: 20px;
+  }
+
+  .dashboard-middle > div {
+    flex-basis: 33.3333%; /* Divide the space equally between the three components */
+    margin: 0 10px; /* You can adjust this for the gap between the components */
+  }
+
+  /* Remove any individual margin styles from these components to prevent them from causing misalignment */
+  .portfolio-scorecard-block,
+  .portfolio-evolution,
+  .inventory {
+    margin: 0; 
+  }
+}
+
+.dashboard-bottom {
+  display: flex;
+  justify-content: space-around; /* This spreads out the child elements evenly */
+  align-items: stretch; /* Makes children of .dashboard-bottom have equal height */
+  flex-wrap: wrap; /* Allows items to wrap onto the next line if the screen is too narrow */
+  gap: 20px;
+
+}
+
+.dashboard-bottom > div {
+  flex-grow: 1; /* Allows the child elements to grow and fill the container */
+  flex-basis: 0; /* Starts the sizing from 0, so they grow equally */
+  padding: 10px; /* Optional: Adds some spacing inside each child component */
+  margin-bottom: 20px; /* Adds 20px margin at the bottom */
+}
+
+main {
+  padding-top: 20px; /* Adjust this value based on your header's height plus some extra space */
+}
+
+.tabs {
+  margin-top: 80px; /* Adjust this value to the height of your .App-header */
+  display: flex;
+  justify-content: left;
+  padding: 10px;
+  /* other styles for tabs */
+}
+
+.tabs button {
+  background-color: #000000; /* Light grey background */
+  border: 1px solid #000000; /* Slight border for definition */
+  padding: 10px 20px; /* Spacing inside the buttons */
+  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  outline: none; /* Remove the outline to avoid the default focus outline */
+  font-size: 16px; /* Increase font size for better readability */
+  margin-right: 8px; /* Space between buttons */
+  color: white;
+}
+
+.tabs button:last-child {
+  margin-right: 0; /* Remove margin for the last button */
+}
+
+.tabs button:hover {
+  font-weight: bolder;
+}
+
+.tabs button.active {
+  color: rgb(255, 255, 255); /* White text color for better contrast */
+  font-weight: bolder;
+  border-bottom: 2px solid #ffffff; 
+}
+

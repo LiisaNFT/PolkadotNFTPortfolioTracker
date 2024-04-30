@@ -1,0 +1,58 @@
+[
+    {
+      "id": 1,
+      "name": "MoonPets",
+      "nftsOwned": 3,
+      "salesFloor": 40.0,
+      "fpChange": 39,
+      "investedValue": 113.6,
+      "estimatedValue": 120.0,
+      "unrealizedPnl": 6.4,
+      "volume": "32.35K"
+    },
+    {
+      "id": 2,
+      "name": "NeonCrisis",
+      "nftsOwned": 1,
+      "salesFloor": 7.5,
+      "fpChange": 24,
+      "investedValue": 3.5,
+      "estimatedValue": 7.5,
+      "unrealizedPnl": 4.0,
+      "volume": "28.42K"
+    },
+    {
+        "id": 3,
+        "name": "Bored Ape Yacht Club",
+        "nftsOwned": 1,
+        "salesFloor": 7.5,
+        "fpChange": -24,
+        "investedValue": 3.5,
+        "estimatedValue": 7.5,
+        "unrealizedPnl": -4.0,
+        "volume": "28.42K"
+      },
+      {
+        "id": 2,
+        "name": "Paulo Peixoto",
+        "nftsOwned": 1,
+        "salesFloor": 7.5,
+        "fpChange": 24,
+        "investedValue": 3.5,
+        "estimatedValue": 7.5,
+        "unrealizedPnl": 4.0,
+        "volume": "28.42K"
+      },
+      {
+        "id": 2,
+        "name": "Kerim Tumkaya",
+        "nftsOwned": 1,
+        "salesFloor": 7.5,
+        "fpChange": 24,
+        "investedValue": 3.5,
+        "estimatedValue": 7.5,
+        "unrealizedPnl": 4.0,
+        "volume": "28.42K"
+      } 
+  ]
+  

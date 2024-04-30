@@ -1,0 +1,143 @@
+.popup-content {
+  display: flex;
+  flex-direction: row; /* Keeps the landscape orientation */
+  align-items: flex-start; /* Aligns children to the start */
+  justify-content: space-between; /* Separates the left and right blocks */
+  width: 80vw; /* Example width, adjust as needed */
+  max-width: 1200px; /* Example max width */
+  padding: 20px;
+  border-radius: 5px;
+  background-color: white;
+  position: relative;
+  overflow-y: auto; /* Allows scrolling if needed */
+  max-height: 90vh;
+  background-color: black;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* RIGHT BLOCK */
+
+.popup-right-block {
+  flex: 2; /* Takes up 2/3 of the popup width */
+  display: flex;
+  flex-direction: column;
+  padding: 0px 10px;
+  justify-content: space-between; /* Distributes space evenly */
+}
+
+.data-cards {
+  display: flex;
+  justify-content: space-between; /* Adjusts space between cards */
+  align-items: center; /* Aligns cards vertically */
+  gap: 10px; /* Minimal space between the cards */
+}
+
+.data-cards .card {
+  flex: 1; /* Each card takes equal space */
+  background-color: #2a2a2a;
+  padding: 20px;
+  border-radius: 5px;
+  color: white;
+}
+
+.nft-value-chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* This centers the chart within the container, adjust as needed */
+  width: 100%; /* Ensure it takes the full width of its parent */
+  margin-top: 20px; /* Space above the chart container */
+  background: #1e1e1e; /* Background color for the chart area */
+  border-radius: 5px; /* For rounded corners */
+  padding: 15px; /* Padding around the chart, adjust as needed */
+}
+
+.nft-value-chart-title {
+  text-align: center;
+  margin-bottom: 10px; /* Adjust as needed */
+  color: #fff; /* Assuming a light color for visibility against a dark background */
+  font-size: 18px; /* Adjust as needed */
+}
+
+  .table-title {
+    margin-top: 20px;
+    color: white;
+    font-size: 20px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  
+  .activity-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0px; /* Spacing between title and table */
+    color: white;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+  
+  .activity-table th, .activity-table td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #ddd; /* Styling for table rows */
+  }  
+  
+  .popup-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 24px;
+    color:white;
+  }
+
+  /* LEFT BLOCK*/
+
+  .popup-left-block {
+    flex: 1; /* Takes up 1/3 of the space */
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    align-items: center; /* Center children horizontally */
+  }
+  
+  .popup-left-block img {
+    max-width: 100%; /* Ensures the image fits within the block */
+    object-fit: contain; /* Adjusts the image to fit nicely */
+    margin-bottom: 20px; /* Add space between image and cards */
+  }
+  
+  .collection-info {
+    text-align: center; /* Aligns content in the center */
+    margin-top: 10px; /* Adds space between image and collection info */
+  }
+  
+  .collection-name {
+    font-size: 18px; /* Adjust font size as needed */
+    font-weight: bold; /* Makes the collection name bold */
+    color: white;
+  }
+  
+  .rarity-rank {
+    font-size: 16px; /* Adjust font size as needed */
+    color: #ffffff; /* Adjust color as needed */
+  }

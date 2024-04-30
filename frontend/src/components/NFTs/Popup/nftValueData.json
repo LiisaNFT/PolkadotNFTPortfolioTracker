@@ -1,0 +1,18 @@
+[
+    { "date": "2023-01-01", "nftEstimatedValue": 10000 },
+    { "date": "2023-01-02", "nftEstimatedValue": 10250 },
+    { "date": "2023-01-03", "nftEstimatedValue": 12000 },
+    { "date": "2023-01-04", "nftEstimatedValue": 12250 },
+    { "date": "2023-01-05", "nftEstimatedValue": 12250 },
+    { "date": "2023-01-06", "nftEstimatedValue": 12250 },
+    { "date": "2023-01-07", "nftEstimatedValue": 13250 },
+    { "date": "2023-01-08", "nftEstimatedValue": 12250 },
+    { "date": "2023-01-09", "nftEstimatedValue": 11250 },
+    { "date": "2023-01-10", "nftEstimatedValue": 10250 },
+    { "date": "2023-01-11", "nftEstimatedValue": 9250 },
+    { "date": "2023-01-12", "nftEstimatedValue": 10250 },
+    { "date": "2023-01-13", "nftEstimatedValue": 10250 },
+    { "date": "2023-01-14", "nftEstimatedValue": 8250 },
+    { "date": "2023-01-15", "nftEstimatedValue": 8250 }    
+  ]
+  

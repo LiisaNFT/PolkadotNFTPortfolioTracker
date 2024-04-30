@@ -1,0 +1,31 @@
+/* In NFTCard.css */
+.nft-card {
+    background: #2a2a2a;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px;
+    width: 250px; /* Adjust size as needed */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+  }
+  
+  .nft-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1; /* Ensures the image is cropped to a square */
+    object-fit: cover; /* Ensures the image covers the square area */
+  }
+  
+  .nft-details {
+    padding: 16px;
+    color: #ffffff;
+    font-size: 0.9em; /* Adjust font size as needed */
+    align-self: center; /* Align text to the start (left) */
+    width: 100%; /* Ensure text block spans the full width */
+  }
+
+  .rarity-rank{
+    color: white
+  }
+  

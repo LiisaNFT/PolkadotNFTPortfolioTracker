@@ -1,0 +1,35 @@
+.overview-card {
+  background: #1e1e1e;
+  color: white;
+  border-radius: 8px;
+  padding: 8px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex: 1; /* Make the card flexible */
+  min-width: 180px; /* Minimum width for very small screens */
+  max-width: calc(20% - 20px); /* Maximum width for 5 cards in a row */
+}
+  
+  .overview-card h3 {
+    margin: 0;
+    color: #aaa;
+  }
+  
+  .overview-card .value {
+    font-size: 1em;
+    font-weight: bold;
+    margin: 0 0;
+  }
+  
+  .overview-card .change {
+    font-size: 1em;
+  }
+  
+  .overview-card .change.positive {
+    color: #4caf50; /* Green for positive numbers */
+  }
+  
+  .overview-card .change.negative {
+    color: #f44336; /* Red for negative numbers */
+  }
+  

@@ -1,0 +1,15 @@
+.overview-block {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  @media (min-width: 1200px) {
+    .overview-block {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  }
+  

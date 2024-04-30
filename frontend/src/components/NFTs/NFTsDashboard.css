@@ -1,0 +1,8 @@
+/* In src/components/NFTs/NFTsDashboard.css */
+.nft-dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left; /* Centers cards on the page */
+    gap: 16px; /* Spacing between cards */
+  }
+  

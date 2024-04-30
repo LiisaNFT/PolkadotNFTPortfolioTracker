@@ -1,0 +1,25 @@
+.portfolio-scorecard {
+  background-color: #1e1e1e;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-scorecard-title {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.gauge-chart-container {
+  margin-bottom: 20px; /* Spacing between each gauge */
+}
+
+.gauge-title {
+  font-weight: normal; /* Remove bold styling */
+  text-align: left; /* Align the title to the left */
+  margin-bottom: 10px; /* Spacing between title and gauge */
+}
+
+/* Existing styles for gauge-chart-container, gauge-arc, and gauge-needle remain unchanged */

@@ -1,0 +1,49 @@
+.top-list {
+  background: #1e1e1e;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.collection-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid transparent; /* Make border transparent */
+}
+
+.name-column {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.collection-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.collection-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.name {
+  text-align: left;
+}
+
+.change {
+  margin-left: auto; /* Pushes the change to the right */
+}
+
+.positive {
+  color: #4CAF50; /* Green for positive values */
+}
+
+.negative {
+  color: #F44336; /* Red for negative values */
+}

@@ -1,0 +1,21 @@
+.inventory {
+  background-color: #1e1e1e;
+  color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; /* Ensure the position is relative */
+}
+
+.inventory-title {
+  color: white;
+}
+
+.donut-chart-container {
+  height: 400px;
+  width: 100%;
+  background: transparent;
+  position: absolute; /* Ensure the position is absolute */
+  top: 50px; /* Adjust the top value to move the chart up */
+  left: 0;
+}
