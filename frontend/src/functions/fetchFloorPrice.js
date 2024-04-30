@@ -1,6 +1,4 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
 
 // Load the GraphQL query from the file
 const query = `query LowestSalePrice($collectionId: String!, $startTime: DateTime!, $endTime: DateTime!) {

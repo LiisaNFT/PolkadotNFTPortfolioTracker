@@ -1,6 +1,4 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
 
 // Load the GraphQL query from the file
 const query = `query ActivityQuery($userId: String, $collectionId: String, $nftId: String, $startTimestamp: DateTime, $endTimestamp: DateTime, $chain: String, $eventType: EventType) {
