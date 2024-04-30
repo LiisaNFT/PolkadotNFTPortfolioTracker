@@ -1,6 +1,0 @@
-query FetchNftCollectionStats {
-  collectionStats(orderBy: date_DESC) {
-    floorPrice
-    date
-  }
-}
