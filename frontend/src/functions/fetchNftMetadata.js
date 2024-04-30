@@ -1,12 +1,30 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
+
+// Load the GraphQL query from the file
+const query = `query NftMetadata($nftId: String!) {
+    nfTokens(where: {id_eq: $nftId}) {
+      id
+      nativeId
+      name
+      symbol
+      uri
+      collection {
+        id
+        name
+      }
+      attributes {
+        attribute {
+          type
+          value
+          rarity
+          id
+        }
+      }
+    }
+  }`;
 
 //NFT - Metadata
 async function fetchNftMetadata(host, nftId) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getNftMetadata.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
 
     const variables = {
         nftId: nftId
