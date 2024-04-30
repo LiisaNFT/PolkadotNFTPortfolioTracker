@@ -2,14 +2,16 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
-//Wallet - NFTs owned per collection
-async function fetchCollectionNfts(host, userId) {
+//Collection - Last Sale per trait
+async function fetchLastTraitSale(host, collectionId, attributeType, attributeValue) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getPortfolio.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/getLastTraitSale.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
-        userId: userId
+        collectionId: collectionId,
+        attributeType: attributeType,
+        attributeValue: attributeValue
     };
 
     try {
@@ -20,7 +22,6 @@ async function fetchCollectionNfts(host, userId) {
         return response;
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
-        
         if (error.response && error.response.errors) {
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
         }
@@ -28,6 +29,6 @@ async function fetchCollectionNfts(host, userId) {
     }
 }
 
-module.exports = { fetchCollectionNfts };
+module.exports = { fetchLastTraitSale };
 
-fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');
+//fetchLastTraitSale('http://localhost:4350', '0x51737fa634e26f5687e45c6ca07604e064076350', 'birthday', '1660734790')

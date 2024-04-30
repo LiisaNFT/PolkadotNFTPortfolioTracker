@@ -1,0 +1,22 @@
+query LastNftTransaction($nftId: String!) {
+  nftEvents(
+    where: { nfToken: { id_eq: $nftId }, eventType_eq: SALE },
+    orderBy: timestamp_DESC,
+    limit: 1
+  ) {
+    eventType
+    price
+    from { id }
+    to { id }
+    timestamp
+    txnHash
+  }
+}
+
+
+# This query, named `LastNftTransaction`, retrieves the most recent transaction event  for a specified NFT ID (`$nftId`) on a given blockchain chain (`$chain`). 
+# The response includes details such as the type of event (e.g., sale or transfer), the price (if applicable), the sender and receiver of the NFT, the timestamp of the transaction, and the transaction hash. 
+#To use this query, provide the desired NFT ID and the blockchain chain you're interested in.
+
+
+#Used to calculate last sales price for a given NFT

@@ -1,0 +1,41 @@
+query WalletRealizedTransactions($walletAddress: ID!, $breakdownByCollection: Boolean = false, $chain: Chain!) {
+  
+  # Fetch sales where the wallet was the seller
+  realizedSales: nftEvents(
+    where: { 
+      from: { id: $walletAddress },
+      eventType: SALE,
+      chain: $chain
+    }
+  ) {
+    price
+    nfToken {
+      id
+      collection @include(if: $breakdownByCollection) {
+        id
+        name
+      }
+    }
+  }
+
+  # Fetch purchases where the wallet was the buyer and no longer owns the NFT
+  realizedPurchases: nftEvents(
+    where: { 
+      to: { id: $walletAddress },
+      eventType: SALE,
+      nfToken: { currentOwner: { id_not: $walletAddress } },
+      chain: $chain
+    }
+  ) {
+    price
+    nfToken {
+      id
+      collection @include(if: $breakdownByCollection) {
+        id
+        name
+      }
+    }
+  }
+}
+
+# This GraphQL query retrieves the realized transactions for a specified wallet address and chain. It segregates the data into two categories: realizedSales and realizedPurchases. The realizedSales section captures all the sales events where the wallet acted as the seller. The realizedPurchases section fetches all purchase events where the wallet was the buyer but no longer retains ownership of the NFTs. By using the breakdownByCollection parameter, users can opt to include detailed information about the collection associated with each NFT.

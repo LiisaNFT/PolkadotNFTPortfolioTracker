@@ -2,14 +2,15 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
-//Wallet - NFTs owned per collection
-async function fetchCollectionNfts(host, userId) {
+//Wallet - Invested value/ Total Revenue
+async function fetchWalletSpending(host, userId, chain) {
     // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getPortfolio.graphql');
+    const queryFilePath = path.join(__dirname, '../queries/getRevenueSpending.graphql');
     const query = fs.readFileSync(queryFilePath, 'utf8');
     
     const variables = {
-        userId: userId
+        userId: userId,
+        chain: chain
     };
 
     try {
@@ -20,7 +21,6 @@ async function fetchCollectionNfts(host, userId) {
         return response;
     } catch (error) {
         console.error("Error querying GraphQL:", error.message);
-        
         if (error.response && error.response.errors) {
             console.error("GraphQL Errors:", JSON.stringify(error.response.errors, null, 2));
         }
@@ -28,6 +28,6 @@ async function fetchCollectionNfts(host, userId) {
     }
 }
 
-module.exports = { fetchCollectionNfts };
+module.exports = { fetchWalletSpending };
 
-fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');
+//fetchWalletSpending('http://localhost:4350', '0x85b03CA16a7B59B392e54bbe4dEF189F6bF6F16b', 'Moonbeam');

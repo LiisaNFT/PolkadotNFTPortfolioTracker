@@ -1,0 +1,48 @@
+query ActivityQuery($userId: String, $collectionId: String, $nftId: String, $startTimestamp: DateTime, $endTimestamp: DateTime, $chain: String, $eventType: EventType) {
+  nftEvents(
+    orderBy: timestamp_DESC,
+    where: {
+      AND: [
+        {
+          OR: [
+            { from: { id_eq: $userId } },
+            { to: { id_eq: $userId } },
+            { nfToken: { id_eq: $nftId } },
+            { nfToken: { collection: { id_eq: $collectionId } } }
+          ]
+        },
+        { timestamp_gte: $startTimestamp },
+        { timestamp_lte: $endTimestamp },
+        { chain_eq: $chain },
+        { eventType_eq: $eventType } 
+      ]
+    }
+  ) {
+    id
+    blockNumber
+    timestamp
+    txnHash
+    eventType
+    from { id }
+    to { id }
+    nfToken {
+      id
+      uri
+      collection {
+        id
+        name
+      }
+    }
+    marketplace
+    price
+    chain
+  }
+}
+
+
+
+
+#This query, named ActivityQuery, retrieves a list of NFT-related events based on various optional filters: a user ID, a collection ID, an individual NFT ID, a specific blockchain chain, and a date range (specified by start and end timestamps). 
+#Events are ordered by timestamp in descending order. 
+#To use the query, provide relevant values for the input parameters you wish to filter by; for instance, if querying for a user's activity, provide the user's ID in the $userId variable. If interested in a specific blockchain chain, specify it with the $chain variable. Similarly, use $collectionId, $nftId, $startTimestamp, and $endTimestamp to filter by collection, individual NFT, or a date range, respectively. 
+#If a parameter is left unspecified (or set to null), it won't be used as a filter, allowing for a flexible and dynamic query experience.

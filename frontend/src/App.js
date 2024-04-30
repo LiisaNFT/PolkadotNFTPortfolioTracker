@@ -58,6 +58,8 @@ function App() {
     setActiveTab(tabName);
   };
 
+  const isWalletConnected = !!selectedWallet;
+
   return (
     <div className="App">
       <header className="App-header">
@@ -93,7 +95,7 @@ function App() {
           </>
         )}
         {activeTab === 'NFTs' && <NFTsDashboard />}
-        {activeTab === 'Collections' && <CollectionsDashboard />}
+        {activeTab === 'Collections' && <CollectionsDashboard isWalletConnected={isWalletConnected} />}
       </main>
     </div>
   );

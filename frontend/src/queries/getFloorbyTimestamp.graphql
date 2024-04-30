@@ -1,0 +1,10 @@
+query FetchFloorPrice($nftCollectionID: BigInt!, $timestamp: BigInt!) {
+  nftCollectionStats(where: {nft_collection_id: $nftCollectionID, stat_timestamp_lte: $timestamp}, orderBy: {stat_timestamp: desc}, first: 1) {
+    floor_price
+    stat_timestamp
+  }
+}
+
+#This GraphQL query fetches the floor price (floor_price) of a specific NFT collection, identified by nftCollectionID, based on the closest recorded statistic timestamp (stat_timestamp) that is earlier than or matches the provided timestamp. 
+
+#By ordering the results in descending order based on the timestamp and limiting the output to one record, the query ensures the user receives the most recent floor price up to their specified point in time. If there are multiple eligible records, the one with the timestamp closest to the provided value will be returned.
