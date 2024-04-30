@@ -28,4 +28,4 @@ async function fetchNftUnrealizedPnL(host, nftId, collectionId) {
 
 module.exports = { fetchNftUnrealizedPnL };
 
-fetchNftUnrealizedPnL('http://localhost:4350', '0xcB13-ac49cA-1700', '0xcB13945Ca8104f813992e4315F8fFeFE64ac49cA');
+//fetchNftUnrealizedPnL('http://localhost:4350', '0xcB13-ac49cA-1700', '0xcB13945Ca8104f813992e4315F8fFeFE64ac49cA');

@@ -1,13 +1,50 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
+
+// Load the GraphQL query from the file
+const query = `query ActivityQuery($userId: String, $collectionId: String, $nftId: String, $startTimestamp: DateTime, $endTimestamp: DateTime, $chain: String, $eventType: EventType) {
+    nftEvents(
+      orderBy: timestamp_DESC,
+      where: {
+        AND: [
+          {
+            OR: [
+              { from: { id_eq: $userId } },
+              { to: { id_eq: $userId } },
+              { nfToken: { id_eq: $nftId } },
+              { nfToken: { collection: { id_eq: $collectionId } } }
+            ]
+          },
+          { timestamp_gte: $startTimestamp },
+          { timestamp_lte: $endTimestamp },
+          { chain_eq: $chain },
+          { eventType_eq: $eventType } 
+        ]
+      }
+    ) {
+      id
+      blockNumber
+      timestamp
+      txnHash
+      eventType
+      from { id }
+      to { id }
+      nfToken {
+        id
+        uri
+        collection {
+          id
+          name
+        }
+      }
+      marketplace
+      price
+      chain
+    }
+  }`;
 
 //Wallet - Activity
 async function fetchWalletActivity(host, userId) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getTransactions.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
-    
+
     const variables = {
         userId: userId
     };
@@ -30,4 +67,4 @@ async function fetchWalletActivity(host, userId) {
 
 module.exports = { fetchWalletActivity };
 
-fetchWalletActivity('http://localhost:4350', '0x02AFA2DCE36a911741467D3cc8688Afcc9a5D3A6');
+//fetchWalletActivity('http://localhost:4350', '0x02AFA2DCE36a911741467D3cc8688Afcc9a5D3A6');
