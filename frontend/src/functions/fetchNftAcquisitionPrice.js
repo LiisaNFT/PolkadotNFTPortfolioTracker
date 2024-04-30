@@ -1,13 +1,24 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
+
+// Load the GraphQL query from the file
+const query = `query LastNftTransaction($nftId: String!) {
+    nftEvents(
+      where: { nfToken: { id_eq: $nftId }, eventType_eq: SALE },
+      orderBy: timestamp_DESC,
+      limit: 1
+    ) {
+      eventType
+      price
+      from { id }
+      to { id }
+      timestamp
+      txnHash
+    }
+  }`;
 
 //NFT - Acquisition price
 async function fetchNftAcquisitionPrice(host, nftId) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/lasNftTransaction.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
-    
+
     const variables = {
         nftId: nftId
     };
@@ -29,4 +40,4 @@ async function fetchNftAcquisitionPrice(host, nftId) {
 
 module.exports = { fetchNftAcquisitionPrice };
 
-fetchNftAcquisitionPrice('http://localhost:4350', '0xcB13-ac49cA-1700')
+//fetchNftAcquisitionPrice('http://localhost:4350', '0xcB13-ac49cA-1700')
