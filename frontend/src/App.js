@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import OverviewBlock from './components/Overview/OverviewBlock';
 import PortfolioScorecard from './components/Overview/PortfolioScorecard';
@@ -10,36 +10,72 @@ import RecentlyBought from './components/Overview/tops/RecentlyBought';
 import NFTsDashboard from './components/NFTs/NFTsDashboard';
 import CollectionsDashboard from './components/Collections/CollectionsDashboard';
 import LiisaLogo from './LiisaLogo.svg'; 
+import { getWallets } from '@talisman-connect/wallets';
+
 
 
 function App() {
   const [activeTab, setActiveTab] = useState('Overview');
+  const [wallets, setWallets] = useState([]);
+  const [selectedWallet, setSelectedWallet] = useState(null);
+  const [walletAddress, setWalletAddress] = useState('');
+
+  useEffect(() => {
+    const loadWallets = async () => {
+      const availableWallets = getWallets();
+      setWallets(availableWallets);
+    };
+    loadWallets();
+  }, []);
+
+  const connectWallet = async () => {
+    const wallet = wallets[0]; // Adjust this index based on your wallet selection UI, if needed
+    if (!wallet) {
+      alert('No wallet available');
+      return;
+    }
+    try {
+      await wallet.enable('Your DApp Name');
+      const unsubscribe = await wallet.subscribeAccounts((accounts) => {
+        if (accounts.length > 0) {
+          setWalletAddress(accounts[0].address); // Set the first account address
+        }
+      });
+      setSelectedWallet(wallet);
+    } catch (error) {
+      console.error('Failed to connect to wallet:', error);
+      alert('Failed to connect to wallet');
+    }
+  }; 
+  
+  const disconnectWallet = () => {
+    setSelectedWallet(null);
+    setWalletAddress('');
+  };
 
   // Function to change the active tab
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
   };
+
   return (
     <div className="App">
       <header className="App-header">
         <div className="logo">
-          {/* Use the imported image here */}
           <img src={LiisaLogo} alt="Liisa Logo" />
-        </div>
-
-        {/* Placeholder for the center area if you plan to add anything later */}
-
-        <div className="connect-wallet">
-          <button>Connect Wallet</button>
+          </div>
+          <div className="wallet-details">
+          {walletAddress && <span>{walletAddress}</span>}
+          <button onClick={selectedWallet ? disconnectWallet : connectWallet}>
+            {selectedWallet ? 'Disconnect' : 'Connect Wallet'}
+          </button>
         </div>
       </header>
-
       <div className="tabs">
         <button onClick={() => handleTabClick('Overview')} className={activeTab === 'Overview' ? 'active' : ''}>Overview</button>
         <button onClick={() => handleTabClick('NFTs')} className={activeTab === 'NFTs' ? 'active' : ''}>NFTs</button>
         <button onClick={() => handleTabClick('Collections')} className={activeTab === 'Collections' ? 'active' : ''}>Collections</button>
       </div>
-      
       <main>
         {activeTab === 'Overview' && (
           <>
