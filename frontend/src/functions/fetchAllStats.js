@@ -1,13 +1,17 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
+
+// Load the GraphQL query from the file
+const query = `query FetchNftCollectionStats {
+    collectionStats(orderBy: date_DESC) {
+      floorPrice
+      date
+    }
+  }
+`;
 
 //Stats - Fetch all
 async function fetchAllStats(host) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getNftCollectionStats.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
-
+    
     try {
         const endpoint = `${host}/graphql`
 

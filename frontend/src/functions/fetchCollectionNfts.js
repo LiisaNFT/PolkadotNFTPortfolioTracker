@@ -1,13 +1,63 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
+
+// Load the GraphQL query from the file
+const query = `query PortfolioDetails($userId: String!) {
+    accounts(where: {id_eq: $userId}) {
+      id
+      ownedTokens {
+        id
+        collection {
+          id
+          name
+          stats {
+            floorPrice
+            totalVolume
+            tokenCount
+            marketCap
+            highestSale
+            lastSaleDate
+            supply
+            date
+            salesCount24h
+            floorPriceChange
+          }
+        }
+        attributes {
+          attribute {
+            id
+            value
+          }
+        }
+      }
+    }
+    
+    # Adjusted to remove direct chain filtering if not supported
+    collections {
+      id
+      name
+      stats {
+        floorPrice
+        totalVolume
+        tokenCount
+        marketCap
+        highestSale
+        lastSaleDate
+        supply
+        date
+        salesCount24h
+        floorPriceChange
+      }
+      nfts {
+        id
+        name
+        image
+      }
+    }
+  }`;
 
 //Wallet - NFTs owned per collection
 async function fetchCollectionNfts(host, userId) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getPortfolio.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
-    
+
     const variables = {
         userId: userId
     };
@@ -30,4 +80,4 @@ async function fetchCollectionNfts(host, userId) {
 
 module.exports = { fetchCollectionNfts };
 
-fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');
+//fetchCollectionNfts('http://localhost:4350', '0x026fc0D0b90Ea52A992db2a4536e5C378d977c63');
