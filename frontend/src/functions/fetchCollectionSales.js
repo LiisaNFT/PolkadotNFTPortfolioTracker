@@ -2,11 +2,50 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
+// Load the GraphQL query from the file
+const query = `query ActivityQuery($userId: String, $collectionId: String, $nftId: String, $startTimestamp: DateTime, $endTimestamp: DateTime, $chain: String, $eventType: EventType) {
+    nftEvents(
+      orderBy: timestamp_DESC,
+      where: {
+        AND: [
+          {
+            OR: [
+              { from: { id_eq: $userId } },
+              { to: { id_eq: $userId } },
+              { nfToken: { id_eq: $nftId } },
+              { nfToken: { collection: { id_eq: $collectionId } } }
+            ]
+          },
+          { timestamp_gte: $startTimestamp },
+          { timestamp_lte: $endTimestamp },
+          { chain_eq: $chain },
+          { eventType_eq: $eventType } 
+        ]
+      }
+    ) {
+      id
+      blockNumber
+      timestamp
+      txnHash
+      eventType
+      from { id }
+      to { id }
+      nfToken {
+        id
+        uri
+        collection {
+          id
+          name
+        }
+      }
+      marketplace
+      price
+      chain
+    }
+  }`;
+
 //NFT - 24h collection trades
 async function fetchCollectionSales(host, userId, nftId, collectionId, startTime, endTime, chain) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getTransactions.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
 
     // Prepare variables based on filters provided
     const variables = {
@@ -40,5 +79,5 @@ module.exports = { fetchCollectionSales };
 
 
 // Example usage
-fetchCollectionSales('http://localhost:4350', '', '', '0x51737fa634e26f5687e45c6ca07604e064076350','2023-01-01T00:00:00Z','2024-01-01T00:00:00Z', 'Moonbeam');
+//fetchCollectionSales('http://localhost:4350', '', '', '0x51737fa634e26f5687e45c6ca07604e064076350','2023-01-01T00:00:00Z','2024-01-01T00:00:00Z', 'Moonbeam');
 
