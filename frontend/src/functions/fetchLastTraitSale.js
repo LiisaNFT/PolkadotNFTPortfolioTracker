@@ -1,13 +1,35 @@
 const { request } = require('graphql-request');
-const fs = require('fs');
-const path = require('path');
+
+// Load the GraphQL query from the file
+const query = `query LastTraitSale($collectionId: String!, $attributeType: String!, $attributeValue: String!) {
+    nftEvents(
+    orderBy: timestamp_DESC,
+    where: {
+      eventType_eq: SALE,
+      nfToken: {
+        attributes_some: {
+          attribute: {
+            type_eq: $attributeType,
+            value_eq: $attributeValue
+          }
+        },
+        collection: {
+          id_eq: $collectionId
+        }
+      }
+    }
+  ) {
+    id
+    eventType
+    price
+    txnHash
+    timestamp
+    }
+  }`;
 
 //Collection - Last Sale per trait
 async function fetchLastTraitSale(host, collectionId, attributeType, attributeValue) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getLastTraitSale.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
-    
+
     const variables = {
         collectionId: collectionId,
         attributeType: attributeType,
