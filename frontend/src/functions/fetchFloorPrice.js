@@ -2,12 +2,36 @@ const { request } = require('graphql-request');
 const fs = require('fs');
 const path = require('path');
 
+// Load the GraphQL query from the file
+const query = `query LowestSalePrice($collectionId: String!, $startTime: DateTime!, $endTime: DateTime!) {
+    nftEvents(
+      where: { 
+        AND: [
+          { nfToken: { collection: { id_eq: $collectionId } } },
+          { eventType_eq: SALE },
+          { timestamp_gte: $startTime },
+          { timestamp_lte: $endTime }
+        ]
+      },
+      orderBy: price_ASC,
+      limit: 1
+    ) {
+      price
+      nfToken {
+        id
+        collection {
+          id
+          name
+        }
+      }
+      timestamp
+      txnHash
+    }
+  }`;
+
 //Stats - Current Floor/Sales floor
 async function fetchFloorPrice(host, collectionId, startTime, endTime) {
-    // Load the GraphQL query from the file
-    const queryFilePath = path.join(__dirname, '../queries/getSalesFloor.graphql');
-    const query = fs.readFileSync(queryFilePath, 'utf8');
-    
+
     const variables = {
         collectionId: collectionId,
         startTime: startTime,
