@@ -3,6 +3,7 @@ import CollectionItem from './CollectionItem';
 import './CollectionsDashboard.css'; 
 import mockCollections from './mockCollectionsData.json'; // Import the JSON data
 import { fetchCollectionNfts } from '../../functions';
+import placeholderImage from './collectionplaceholder.png';
 
 const host = '';
 
@@ -40,7 +41,17 @@ const CollectionsDashboard = ({ isWalletConnected, walletAddress }) => {
         <div>Volume</div>
       </div>
       {collections.map(collection => (
-        <CollectionItem key={collection.id} {...collection} />
+        <CollectionItem
+          imageUrl={placeholderImage}
+          name={collection.name}
+          nftsOwned={collection.nftsOwned}
+          salesFloor={collection.salesFloor}
+          fpChange={collection.fpChange}
+          investedValue={collection.investedValue}
+          estimatedValue={collection.estimatedValue}
+          unrealizedPnl={collection.unrealizedPnl}
+          volume={collection.volume}
+        />
       ))}
     </div>
   );
