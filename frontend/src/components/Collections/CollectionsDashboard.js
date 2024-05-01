@@ -1,31 +1,31 @@
-// src/components/Collections/CollectionsDashboard.js
 import React, { useState, useEffect } from 'react';
 import CollectionItem from './CollectionItem';
 import './CollectionsDashboard.css'; 
 import mockCollections from './mockCollectionsData.json'; // Import the JSON data
 import { fetchCollectionNfts } from '../../functions';
 
+const host = '';
 
-const CollectionsDashboard = ({ isWalletConnected }) => {
+const CollectionsDashboard = ({ isWalletConnected, walletAddress }) => {
   const [collections, setCollections] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      if (isWalletConnected) { // Only fetch data if the wallet is connected
+      if (isWalletConnected) {
         try {
-          const data = await fetchCollectionNfts();
+          const data = await fetchCollectionNfts(host, walletAddress);
           setCollections(data);
         } catch (error) {
           console.error('Error fetching collections:', error);
-          setCollections([]); // Optionally clear or maintain old data based on your use case
+          setCollections([]); 
         }
       } else {
-        setCollections([]); // Clear data if wallet is not connected
+        setCollections([]);
       }
     };
 
-    fetchData();
-  }, [isWalletConnected]);
+    fetchData();  
+  }, [isWalletConnected, walletAddress]);
 
     return (
     <div className="collections-dashboard">

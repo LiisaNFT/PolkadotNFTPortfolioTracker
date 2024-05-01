@@ -95,7 +95,7 @@ function App() {
           </>
         )}
         {activeTab === 'NFTs' && <NFTsDashboard />}
-        {activeTab === 'Collections' && <CollectionsDashboard isWalletConnected={isWalletConnected} />}
+        {activeTab === 'Collections' && <CollectionsDashboard isWalletConnected={isWalletConnected} walletAddress={walletAddress} />}
       </main>
     </div>
   );
