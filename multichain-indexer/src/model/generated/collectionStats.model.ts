@@ -8,58 +8,64 @@ export class CollectionStats {
     }
 
     @PrimaryColumn_()
-    id!: string
+    id!: string;
 
     @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
-    totalVolume!: bigint | undefined | null
+    totalVolume!: bigint | null;
 
-    @Column_("float", {transformer: marshal.bigintTransformer, nullable: true})
-    floorPrice!: bigint | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floorPrice!: number | null;
 
-    @Column_("float", {transformer: marshal.bigintTransformer, nullable: true})
-    floorPriceUSD!: bigint | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floorPriceUSD!: number | null;
 
     @Column_("int4", {nullable: true})
-    tokenCount!: number | undefined | null
+    tokenCount!: number | null;
 
     @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
-    marketCap!: bigint | undefined | null
+    marketCap!: bigint | null;
 
-    @Column_("numeric", {transformer: marshal.floatTransformer, nullable: true})
-    highestSale!: number | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    highestSale!: number | null;
 
     @Column_("timestamp with time zone", {nullable: true})
-    lastSaleDate!: Date | undefined | null
+    lastSaleDate!: Date | null;
 
     @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
-    supply!: bigint | undefined | null
+    supply!: bigint | null;
 
-    @Column_("float", {nullable: true})
-    floor1hDif!: number | undefined | null
+    @Column_("int4", {nullable: true})
+    salesCount24h!: number | null;
 
-    @Column_("float", {nullable: true})
-    floor1hDifUsd!: number | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floorPriceChange!: number | null;
 
-    @Column_("float", {nullable: true})
-    floor24hDif!: number | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floor1hDif!: number | null;
 
-    @Column_("float", {nullable: true})
-    floor24hDifUsd!: number | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floor1hDifUsd!: number | null;
 
-    @Column_("float", {nullable: true})
-    floor7dDif!: number | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floor24hDif!: number | null;
 
-    @Column_("float", {nullable: true})
-    floor7dDifUsd!: number | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floor24hDifUsd!: number | null;
 
-    @Column_("float", {nullable: true})
-    floor30dDif!: number | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floor7dDif!: number | null;
 
-    @Column_("float", {nullable: true})
-    floor30dDifUsd!: number | undefined | null
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floor7dDifUsd!: number | null;
+
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floor30dDif!: number | null;
+
+    @Column_("float", {transformer: marshal.floatTransformer, nullable: true})
+    floor30dDifUsd!: number | null;
 
     @Column_("timestamp with time zone", {nullable: true})
-    date!: Date | undefined | null;
+    date!: Date | null;
 
 }
 

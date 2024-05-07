@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NFTCard from './NFTCard';
 import Popup from './Popup/Popup'; // Updated path to reflect the new folder structure
 import './NFTsDashboard.css'; // Ensure CSS is properly set up for styling
@@ -8,6 +8,8 @@ import bayc3 from './bayc3.png';
 import bayc4 from './bayc4.png';
 import bayc5 from './bayc5.png';
 import bayc6 from './bayc6.png';
+import { fetchCollectionNfts } from '../../functions';
+
 
 const mockNFTs = [
   { id: 1, image: bayc1, collectionName: "Mutant Ape Yacht Club", itemId: "0001", rarityRank:"880/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
@@ -18,8 +20,28 @@ const mockNFTs = [
   { id: 6, image: bayc6, collectionName: "Bored Ape Yacht Club", itemId: "0006", rarityRank:"8050/10000",estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
 ];
 
-const NFTsDashboard = () => {
-  const [selectedNFT, setSelectedNFT] = useState(null);
+const host = 'http://localhost:4350';
+
+const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
+  const [selectedNFT, setSelectedNFT, setNfts] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (isWalletConnected) {
+        try {
+          const data = await fetchCollectionNfts(host, walletAddress);
+          setNfts(data);
+        } catch (error) {
+          console.error('Error fetching collections:', error);
+          setNfts([]); 
+        }
+      } else {
+        setNfts([]);
+      }
+    };
+
+    fetchData();  
+  }, [isWalletConnected, walletAddress]);
 
   const handleClosePopup = () => {
     setSelectedNFT(null); // Close popup by resetting the selected NFT
@@ -27,12 +49,12 @@ const NFTsDashboard = () => {
 
   return (
     <div className="nft-dashboard">
-      {mockNFTs.map((nft) => (
+      {setNfts.map((nft) => (
         <div key={nft.id} onClick={() => setSelectedNFT(nft)} style={{ cursor: 'pointer' }}>
           <NFTCard
             image={nft.image}
             collectionName={nft.collectionName}
-            itemId={nft.itemId}
+            itemId={nft.nativeId}
             rarityRank={nft.rarityRank}
             estimatedValue={nft.estimatedValue}
             acquisitionPrice={nft.acquisitionPrice}
