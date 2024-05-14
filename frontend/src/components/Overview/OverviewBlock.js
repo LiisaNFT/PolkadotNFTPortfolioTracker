@@ -1,6 +1,6 @@
 import React from 'react';
 import OverviewCard from './OverviewCard';
-import './OverviewBlock.css'; // We will create this CSS file later
+import './OverviewBlock.css'; 
 
 const OverviewBlock = () => {
   return (
@@ -10,7 +10,6 @@ const OverviewBlock = () => {
       <OverviewCard title="Spending" value="749" change={-11.19} currency="GLMR" />
       <OverviewCard title="Realized PnL" value="1194" change={8.41} currency="GLMR" />
       <OverviewCard title="Unrealized PnL" value="749" change={11.19} currency="GLMR" />
-      {/* ... Add other cards ... */}
     </div>
   );
 };

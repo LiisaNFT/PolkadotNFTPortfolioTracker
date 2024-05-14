@@ -30,7 +30,7 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
       if (isWalletConnected) {
         try {
           const data = await fetchCollectionNfts(host, walletAddress);
-          setNfts(data);
+          setNfts(data.ownedTokens);
         } catch (error) {
           console.error('Error fetching collections:', error);
           setNfts([]); 
@@ -53,7 +53,7 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
         <div key={nft.id} onClick={() => setSelectedNFT(nft)} style={{ cursor: 'pointer' }}>
           <NFTCard
             image={nft.image}
-            collectionName={nft.collectionName}
+            collectionName={nft.collection.name}
             itemId={nft.nativeId}
             rarityRank={nft.rarityRank}
             estimatedValue={nft.estimatedValue}
@@ -67,8 +67,8 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
         <Popup 
             onClose={handleClosePopup} 
             image={selectedNFT.image}
-            collectionName={selectedNFT.collectionName}
-            itemId={selectedNFT.itemId}
+            collectionName={selectedNFT.collection.name}
+            itemId={selectedNFT.nativeId}
             rarityRank={selectedNFT.rarityRank}
             estimatedValue={selectedNFT.estimatedValue}
             acquisitionPrice={selectedNFT.acquisitionPrice}

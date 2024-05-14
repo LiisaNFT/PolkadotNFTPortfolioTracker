@@ -6,6 +6,9 @@ const query = `query PortfolioDetails($userId: String!) {
       id
       ownedTokens {
         id
+        name
+        image
+        nativeId
         collection {
           id
           name

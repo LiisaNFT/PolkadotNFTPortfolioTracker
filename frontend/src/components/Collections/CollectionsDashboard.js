@@ -15,7 +15,7 @@ const CollectionsDashboard = ({ isWalletConnected, walletAddress }) => {
       if (isWalletConnected) {
         try {
           const data = await fetchCollectionNfts(host, walletAddress);
-          setCollections(data);
+          setCollections(data.collections);
         } catch (error) {
           console.error('Error fetching collections:', error);
           setCollections([]); 
@@ -43,14 +43,14 @@ const CollectionsDashboard = ({ isWalletConnected, walletAddress }) => {
       {collections.map(collection => (
         <CollectionItem
           imageUrl={placeholderImage}
-          name={collection.name}
-          nftsOwned={collection.nftsOwned}
-          salesFloor={collection.salesFloor}
-          fpChange={collection.fpChange}
+          name={collection.nanme}
+          nftsOwned={collection.nfts.length()}
+          salesFloor={collection.stats.floorPrice}
+          fpChange={collection.stats.floorPriceChange}
           investedValue={collection.investedValue}
           estimatedValue={collection.estimatedValue}
           unrealizedPnl={collection.unrealizedPnl}
-          volume={collection.volume}
+          volume={collection.stats.totalVolume}
         />
       ))}
     </div>
