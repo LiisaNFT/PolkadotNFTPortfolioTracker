@@ -8,8 +8,8 @@ import TopGainers from './components/Overview/tops/TopGainers';
 import TopLosers from './components/Overview/tops/TopLosers';
 import RecentlyBought from './components/Overview/tops/RecentlyBought';
 import NFTsDashboard from './components/NFTs/NFTsDashboard';
-import CollectionsDashboard from './components/Collections/CollectionsDashboard';
-import LiisaLogo from './LiisaLogo.svg'; 
+import LiisaLogo from './LiisaLogo.svg';
+import CollectionsDashboard from './components/Collections/CollectionsDashboard.js';
 import { getWallets } from '@talisman-connect/wallets';
 
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import App from '../src/App';
+import App from '../src/App.js';
 
 jest.mock('@talisman-connect/wallets', () => ({
   getWallets: jest.fn(() => []),

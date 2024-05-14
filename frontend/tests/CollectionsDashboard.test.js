@@ -1,8 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
 import CollectionsDashboard from '../src/components/Collections/CollectionsDashboard';
 
-// Import mockCollections data/
+// Import mockCollections data
 import mockCollections from '../src/components/Collections/mockCollectionsData.json';
 
 // Mock the fetchCollectionNfts function
@@ -12,8 +13,9 @@ jest.mock('../src/functions', () => ({
 
 describe('CollectionsDashboard', () => {
   it('renders correctly with mock collections data', async () => {
-    const { getByText } = render(<CollectionsDashboard isWalletConnected={false} walletAddress="" />);
-    
+    const { getByText } = render(<CollectionsDashboard isWalletConnected={true} walletAddress="" />);
+
+    // Basic header checks
     expect(getByText('Name')).toBeInTheDocument();
     expect(getByText('NFTs Owned')).toBeInTheDocument();
     expect(getByText('Sales Floor')).toBeInTheDocument();
@@ -24,8 +26,10 @@ describe('CollectionsDashboard', () => {
     expect(getByText('Volume')).toBeInTheDocument();
 
     // Check if each collection name from mock data is rendered
-    mockCollections.forEach(collection => {
-      expect(getByText(collection.name)).toBeInTheDocument();
+    await waitFor(() => {
+      mockCollections.forEach(collection => {
+        expect(getByText(collection.name)).toBeInTheDocument();
+      });
     });
   });
 });
