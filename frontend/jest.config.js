@@ -1,8 +1,11 @@
 module.exports = {
     transform: {
-      '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
+      '^.+\\.(js|jsx)$': 'babel-jest',
     },
-    moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
+    moduleNameMapper: {
+      '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+    },
+    moduleFileExtensions: ['js', 'jsx'],
     transformIgnorePatterns: ['/node_modules/'],
   };
   
