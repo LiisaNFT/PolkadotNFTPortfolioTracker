@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import CollectionItem from './CollectionItem';
+import CollectionItem from '../src/components/Collections/CollectionItem';
 
 const mockCollection = {
   id: 1,

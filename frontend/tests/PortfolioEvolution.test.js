@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import PortfolioEvolution from './PortfolioEvolution';
+import PortfolioEvolution from '../src/components/Overview/PortfolioEvolution';
 
 describe('PortfolioEvolution', () => {
   it('renders portfolio evolution chart correctly', () => {

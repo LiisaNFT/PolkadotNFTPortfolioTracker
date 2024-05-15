@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import TopGainers from './TopGainers';
+import TopGainers from '../src/components/Overview/tops/TopGainers';
 
 describe('TopGainers', () => {
   it('renders top gainers correctly', () => {

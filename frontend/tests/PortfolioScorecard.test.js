@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import PortfolioScorecard from './PortfolioScorecard';
+import PortfolioScorecard from '../src/components/Overview/PortfolioScorecard';
 
 describe('PortfolioScorecard', () => {
   it('renders portfolio scorecard correctly', () => {

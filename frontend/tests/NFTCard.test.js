@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import NFTCard from './NFTCard';
+import NFTCard from '../src/components/NFTs/NFTCard'; // Updated path to match your structure
 
 describe('NFTCard', () => {
   it('renders NFT details correctly', () => {

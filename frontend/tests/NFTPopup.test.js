@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Popup from './Popup';
+import Popup from '../src/components/NFTs/Popup/Popup';
 
 describe('Popup', () => {
   it('renders popup content correctly', () => {

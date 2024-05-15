@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import OverviewBlock from './OverviewBlock';
+import OverviewBlock from '../src/components/Overview/OverviewBlock';
 
 describe('OverviewBlock', () => {
   it('renders overview cards correctly', () => {

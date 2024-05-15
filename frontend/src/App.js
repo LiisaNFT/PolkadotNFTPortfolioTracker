@@ -12,8 +12,6 @@ import LiisaLogo from './LiisaLogo.svg';
 import CollectionsDashboard from './components/Collections/CollectionsDashboard.js';
 import { getWallets } from '@talisman-connect/wallets';
 
-
-
 function App() {
   const [activeTab, setActiveTab] = useState('Overview');
   const [wallets, setWallets] = useState([]);
@@ -53,7 +51,6 @@ function App() {
     setWalletAddress('');
   };
 
-  // Function to change the active tab
   const handleTabClick = (tabName) => {
     setActiveTab(tabName);
   };
@@ -94,7 +91,7 @@ function App() {
             </div>
           </>
         )}
-        {activeTab === 'NFTs' && <NFTsDashboard />}
+        {activeTab === 'NFTs' && <NFTsDashboard walletAddress={walletAddress} />}
         {activeTab === 'Collections' && <CollectionsDashboard isWalletConnected={isWalletConnected} walletAddress={walletAddress} />}
       </main>
     </div>

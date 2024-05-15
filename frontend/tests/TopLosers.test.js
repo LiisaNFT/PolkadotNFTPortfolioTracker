@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import TopLosers from './TopLosers';
+import TopLosers from '../src/components/Overview/tops/TopLosers';
 
 describe('TopLosers', () => {
   it('renders top losers correctly', () => {

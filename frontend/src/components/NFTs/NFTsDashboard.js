@@ -10,7 +10,6 @@ import bayc5 from './bayc5.png';
 import bayc6 from './bayc6.png';
 import { fetchCollectionNfts } from '../../functions';
 
-
 const mockNFTs = [
   { id: 1, image: bayc1, collectionName: "Mutant Ape Yacht Club", itemId: "0001", rarityRank:"880/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
   { id: 2, image: bayc2, collectionName: "Bored Ape Yacht Club", itemId: "0002", rarityRank:"4/10000",estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
@@ -23,7 +22,8 @@ const mockNFTs = [
 const host = 'http://localhost:4350';
 
 const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
-  const [selectedNFT, setSelectedNFT, setNfts] = useState(null);
+  const [nfts, setNfts] = useState(mockNFTs); // Initialize with mock data for testing
+  const [selectedNFT, setSelectedNFT] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,12 +49,12 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
 
   return (
     <div className="nft-dashboard">
-      {setNfts.map((nft) => (
+      {nfts.map((nft) => (
         <div key={nft.id} onClick={() => setSelectedNFT(nft)} style={{ cursor: 'pointer' }}>
           <NFTCard
             image={nft.image}
-            collectionName={nft.collection.name}
-            itemId={nft.nativeId}
+            collectionName={nft.collectionName}
+            itemId={nft.itemId}
             rarityRank={nft.rarityRank}
             estimatedValue={nft.estimatedValue}
             acquisitionPrice={nft.acquisitionPrice}
@@ -65,20 +65,21 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
       ))}
       {selectedNFT && (
         <Popup 
-            onClose={handleClosePopup} 
-            image={selectedNFT.image}
-            collectionName={selectedNFT.collection.name}
-            itemId={selectedNFT.nativeId}
-            rarityRank={selectedNFT.rarityRank}
-            estimatedValue={selectedNFT.estimatedValue}
-            acquisitionPrice={selectedNFT.acquisitionPrice}
-            unrealizedPNL={selectedNFT.unrealizedPNL}
+          onClose={handleClosePopup} 
+          image={selectedNFT.image}
+          collectionName={selectedNFT.collectionName}
+          itemId={selectedNFT.itemId}
+          rarityRank={selectedNFT.rarityRank}
+          estimatedValue={selectedNFT.estimatedValue}
+          acquisitionPrice={selectedNFT.acquisitionPrice}
+          unrealizedPNL={selectedNFT.unrealizedPNL}
         >
-            {/* Content here is now managed within the Popup component */}
+          {/* Content here is now managed within the Popup component */}
         </Popup>
-)}
+      )}
     </div>
   );
 };
 
 export default NFTsDashboard;
+

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import RecentlyBought from './RecentlyBought';
+import RecentlyBought from '../src/components/Overview/tops/RecentlyBought';
 
 describe('RecentlyBought', () => {
   it('renders recently bought items correctly', () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
-import Inventory from './Inventory';
+import Inventory from '../src/components/Overview/Inventory';
 
 // Mock fetchCollectionNfts function
 jest.mock('../../functions', () => ({

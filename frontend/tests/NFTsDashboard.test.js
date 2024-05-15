@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import NFTsDashboard from './NFTsDashboard';
+import NFTsDashboard from '../src/components/NFTs/NFTsDashboard';
 import { fetchCollectionNfts } from '../../functions';
 
 // Mock fetchCollectionNfts function
