@@ -2,7 +2,6 @@ import React from 'react';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, LabelList } from 'recharts';
 
 const PortfolioScorecard = () => {
-  // Prepare gauge data for each metric with a full background bar
   const gauges = [
     { title: 'Liquidity', value: 70, maxValue: 100 },
     { title: 'Volatility', value: 50, maxValue: 100 },
@@ -14,7 +13,7 @@ const PortfolioScorecard = () => {
       <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Portfolio Scorecard</h2>
       {gauges.map((gauge, index) => (
         <div key={index} style={{ marginBottom: '20px' }}>
-          <div style={{ marginBottom: '5px' }}>{gauge.title}</div>
+          <div className="portfolio-scorecard-title" style={{ marginBottom: '5px' }}>{gauge.title}</div>
           <ResponsiveContainer width="100%" height={50}>
             <BarChart layout="vertical" data={[{ name: gauge.title, value: gauge.value }]} barCategoryGap="35%" barSize={10}>
               <XAxis type="number" domain={[0, 100]} hide />

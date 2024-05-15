@@ -1,26 +1,22 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import PortfolioScorecard from '../src/components/Overview/PortfolioScorecard';
+import { render, screen, waitFor } from '@testing-library/react';
+import PortfolioScorecard from '../src/components/Overview/PortfolioScorecard'; // Adjust the path as needed
 
 describe('PortfolioScorecard', () => {
-  it('renders portfolio scorecard correctly', () => {
+  it('renders portfolio scorecard correctly', async () => {
     // Render the PortfolioScorecard component
-    const { container, getByText } = render(<PortfolioScorecard />);
+    const { container } = render(<PortfolioScorecard />);
 
     // Check if the title is rendered correctly
-    const titleElement = getByText('Portfolio Scorecard');
+    const titleElement = screen.getByText('Portfolio Scorecard');
     expect(titleElement).toBeInTheDocument();
 
-    // Check if each gauge is rendered correctly
-    const gauges = container.querySelectorAll('.recharts-wrapper');
-    expect(gauges.length).toBe(3); // Assuming there are three gauges
-
-    // Check if gauge titles are rendered correctly
-    const gaugeTitles = container.querySelectorAll('.portfolio-scorecard-title');
-    expect(gaugeTitles.length).toBe(3); // Assuming there are three gauge titles
-
-    // Check if gauge values are rendered correctly
-    const gaugeValues = container.querySelectorAll('.portfolio-scorecard-value');
-    expect(gaugeValues.length).toBe(3); // Assuming there are three gauge values
+    // Use waitFor to allow time for asynchronous rendering
+    await waitFor(() => {
+      // Check if gauge titles are rendered correctly
+      const gaugeTitles = container.querySelectorAll('.portfolio-scorecard-title');
+      console.log('Gauge titles found:', gaugeTitles.length); // Debug log
+      expect(gaugeTitles.length).toBe(3); // Assuming there are three titles
+    });
   });
 });

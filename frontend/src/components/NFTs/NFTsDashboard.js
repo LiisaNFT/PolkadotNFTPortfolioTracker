@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import NFTCard from './NFTCard';
-import Popup from './Popup/Popup'; // Updated path to reflect the new folder structure
-import './NFTsDashboard.css'; // Ensure CSS is properly set up for styling
+import Popup from './Popup/Popup';
+import './NFTsDashboard.css';
 import bayc1 from './bayc1.png';
 import bayc2 from './bayc2.png';
 import bayc3 from './bayc3.png';
@@ -11,12 +11,12 @@ import bayc6 from './bayc6.png';
 import { fetchCollectionNfts } from '../../functions';
 
 const mockNFTs = [
-  { id: 1, image: bayc1, collectionName: "Mutant Ape Yacht Club", itemId: "0001", rarityRank:"880/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
-  { id: 2, image: bayc2, collectionName: "Bored Ape Yacht Club", itemId: "0002", rarityRank:"4/10000",estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
-  { id: 3, image: bayc3, collectionName: "Bored Ape Yacht Club", itemId: "0003", rarityRank:"7/10000",estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
-  { id: 4, image: bayc4, collectionName: "Bored Ape Yacht Club", itemId: "0004", rarityRank:"420/10000",estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
-  { id: 5, image: bayc5, collectionName: "Bored Ape Yacht Club", itemId: "0005", rarityRank:"999/10000",estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
-  { id: 6, image: bayc6, collectionName: "Bored Ape Yacht Club", itemId: "0006", rarityRank:"8050/10000",estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
+  { id: 1, image: bayc1, collectionName: "Mutant Ape Yacht Club", itemId: "0001", rarityRank: "880/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
+  { id: 2, image: bayc2, collectionName: "Bored Ape Yacht Club", itemId: "0002", rarityRank: "4/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
+  { id: 3, image: bayc3, collectionName: "Bored Ape Yacht Club", itemId: "0003", rarityRank: "7/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
+  { id: 4, image: bayc4, collectionName: "Bored Ape Yacht Club", itemId: "0004", rarityRank: "420/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
+  { id: 5, image: bayc5, collectionName: "Bored Ape Yacht Club", itemId: "0005", rarityRank: "999/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
+  { id: 6, image: bayc6, collectionName: "Bored Ape Yacht Club", itemId: "0006", rarityRank: "8050/10000", estimatedValue: '40.0', acquisitionPrice: '55.0', unrealizedPNL: '-15.0', tradeCount: '41' },
 ];
 
 const host = 'http://localhost:4350';
@@ -33,14 +33,14 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
           setNfts(data.ownedTokens);
         } catch (error) {
           console.error('Error fetching collections:', error);
-          setNfts([]); 
+          setNfts([]);
         }
       } else {
         setNfts([]);
       }
     };
 
-    fetchData();  
+    fetchData();
   }, [isWalletConnected, walletAddress]);
 
   const handleClosePopup = () => {
@@ -50,7 +50,7 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
   return (
     <div className="nft-dashboard">
       {nfts.map((nft) => (
-        <div key={nft.id} onClick={() => setSelectedNFT(nft)} style={{ cursor: 'pointer' }}>
+        <div key={nft.id} onClick={() => setSelectedNFT(nft)} style={{ cursor: 'pointer' }} data-testid={`nft-card-${nft.id}`}>
           <NFTCard
             image={nft.image}
             collectionName={nft.collectionName}
@@ -73,6 +73,7 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
           estimatedValue={selectedNFT.estimatedValue}
           acquisitionPrice={selectedNFT.acquisitionPrice}
           unrealizedPNL={selectedNFT.unrealizedPNL}
+          data-testid="popup"
         >
           {/* Content here is now managed within the Popup component */}
         </Popup>
@@ -82,4 +83,6 @@ const NFTsDashboard = ({ isWalletConnected, walletAddress }) => {
 };
 
 export default NFTsDashboard;
+
+
 
