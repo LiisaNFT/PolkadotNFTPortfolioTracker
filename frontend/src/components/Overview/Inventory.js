@@ -51,6 +51,3 @@ const Inventory = ({ testData }) => {
 };
 
 export default Inventory;
-
-
-

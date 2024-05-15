@@ -23,12 +23,16 @@ describe('Inventory', () => {
     // Wait for the chart to render
     await waitFor(() => {
       expect(getByText('Inventory')).toBeInTheDocument();
+    });
+
+    await waitFor(() => {
       expect(getByTestId('pie-chart')).toBeInTheDocument();
     });
 
     // Check if each product name is rendered with its corresponding value
     mockData.forEach(({ name, value }) => {
-      expect(getByText(`${name} (${Math.round((value / 2000) * 100)}%)`)).toBeInTheDocument();
+      const percentage = Math.round((value / mockData.reduce((acc, item) => acc + item.value, 0)) * 100);
+      expect(getByText(`${name} (${percentage}%)`)).toBeInTheDocument();
     });
   });
 
@@ -43,6 +47,3 @@ describe('Inventory', () => {
     });
   });
 });
-
-
-

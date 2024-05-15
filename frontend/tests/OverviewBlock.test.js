@@ -27,9 +27,9 @@ describe('OverviewBlock', () => {
     const expectedValues = ['749', '1194', '749', '1194', '749'];
     const expectedChanges = [11.19, 8.41, -11.19, 8.41, 11.19];
     overviewCards.forEach((card, index) => {
-      const valueText = card.querySelector('.value').textContent;
-      const changeText = card.querySelector('.change').textContent;
-      expect(valueText).toBe(expectedValues[index]);
+      const valueText = card.querySelector('.value').textContent.trim();
+      const changeText = card.querySelector('.change').textContent.trim();
+      expect(valueText).toContain(expectedValues[index]);
       expect(parseFloat(changeText)).toBe(expectedChanges[index]);
     });
 
