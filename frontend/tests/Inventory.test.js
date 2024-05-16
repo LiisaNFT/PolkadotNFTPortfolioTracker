@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import Inventory from '../src/components/Overview/Inventory';
 
 describe('Inventory', () => {
@@ -16,15 +16,19 @@ describe('Inventory', () => {
   ];
 
   it('renders correctly with mock data', async () => {
-    const { getByText, getByTestId } = render(
+    const { getByText, getByTestId, container } = render(
       <Inventory testData={mockData} />
     );
 
-    // Wait for the chart to render
+    // Wait for the Inventory title to be in the document
     await waitFor(() => {
       expect(getByText('Inventory')).toBeInTheDocument();
     });
 
+    // Output the container HTML for debugging
+    console.log(container.innerHTML);
+
+    // Wait for the PieChart to be in the document
     await waitFor(() => {
       expect(getByTestId('pie-chart')).toBeInTheDocument();
     });
@@ -41,9 +45,10 @@ describe('Inventory', () => {
       <Inventory testData={null} />
     );
 
-    // Wait for the error message to render
+    // Wait for the error message to be in the document
     await waitFor(() => {
       expect(getByText('Error fetching collections: Failed to fetch collections')).toBeInTheDocument();
     });
   });
 });
+

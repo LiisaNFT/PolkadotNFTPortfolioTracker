@@ -61,6 +61,19 @@ A GraphiQL playground will be available at [localhost:4350/graphql](http://local
 npm test
 ```
 
+To test the frontend do the following:
+
+```bash
+# 0. Have the indexer run in the first place
+Follow all the previous steps
+
+# 1. open the frontend
+npm start
+
+# 2. Run all tests
+npm test
+```
+
 ## License
 
 This project is licensed under Apache 2.0. See [LICENSE](LICENSE.md) file for details.
