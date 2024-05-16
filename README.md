@@ -74,6 +74,8 @@ npm start
 npm test
 ```
 
+**Article: https://medium.com/@liisanft/introducing-liisas-multi-chain-portfolio-tracker-on-polkadot-5aeaaa334d88
+
 ## License
 
 This project is licensed under Apache 2.0. See [LICENSE](LICENSE.md) file for details.
