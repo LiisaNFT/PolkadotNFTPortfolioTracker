@@ -68,9 +68,12 @@ To test the frontend do the following:
 cd frontend
 
 # 1. open the frontend
+npm install
+
+# 2. open the frontend
 npm start
 
-# 2. Run all tests
+# 3. Run all tests
 npm test
 ```
 
