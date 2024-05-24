@@ -65,7 +65,7 @@ To test the frontend do the following:
 
 ```bash
 # 0. Have the indexer run in the first place
-Follow all the previous steps
+cd frontend
 
 # 1. open the frontend
 npm start
