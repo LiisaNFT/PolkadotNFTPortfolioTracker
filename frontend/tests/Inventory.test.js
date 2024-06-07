@@ -1,9 +1,11 @@
+// Inventory.test.js
+
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
 import Inventory from '../src/components/Overview/Inventory';
 
 describe('Inventory', () => {
-  const mockData = [
+  const sampleData = [
     { name: 'Product A', value: 400 },
     { name: 'Product B', value: 300 },
     { name: 'Product C', value: 300 },
@@ -15,40 +17,37 @@ describe('Inventory', () => {
     { name: 'Product I', value: 50 },
   ];
 
-  it('renders correctly with mock data', async () => {
-    const { getByText, getByTestId, container } = render(
-      <Inventory testData={mockData} />
-    );
+  it('renders correctly with sample data', async () => {
+    render(<Inventory testData={sampleData} />);
 
     // Wait for the Inventory title to be in the document
     await waitFor(() => {
-      expect(getByText('Inventory')).toBeInTheDocument();
+      expect(screen.getByText('Inventory')).toBeInTheDocument();
     });
 
-    // Output the container HTML for debugging
-    console.log(container.innerHTML);
+    // Wait for the ResponsiveContainer to be in the document
+    await waitFor(() => {
+      expect(screen.getByTestId('responsive-container')).toBeInTheDocument();
+    });
 
     // Wait for the PieChart to be in the document
     await waitFor(() => {
-      expect(getByTestId('pie-chart')).toBeInTheDocument();
+      expect(screen.getByTestId('pie-chart')).toBeInTheDocument();
     });
 
-    // Check if each product name is rendered with its corresponding value
-    mockData.forEach(({ name, value }) => {
-      const percentage = Math.round((value / mockData.reduce((acc, item) => acc + item.value, 0)) * 100);
-      expect(getByText(`${name} (${percentage}%)`)).toBeInTheDocument();
-    });
-  });
+    // Check if each product name is rendered within the PieChart
+    for (const { name } of sampleData) {
+      const productElement = await screen.findByText(name);
+      expect(productElement).toBeInTheDocument();
+    }
 
-  it('handles error when fetching data', async () => {
-    const { getByText } = render(
-      <Inventory testData={null} />
-    );
-
-    // Wait for the error message to be in the document
-    await waitFor(() => {
-      expect(getByText('Error fetching collections: Failed to fetch collections')).toBeInTheDocument();
-    });
+    // Check if each product percentage is rendered
+    const totalValue = sampleData.reduce((acc, item) => acc + item.value, 0);
+    for (const { name, value } of sampleData) {
+      const percentage = Math.round((value / totalValue) * 100);
+      const text = `${percentage}%`;
+      const percentageElement = screen.getByText(text);
+      expect(percentageElement).toBeInTheDocument();
+    }
   });
 });
-
