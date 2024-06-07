@@ -27,8 +27,7 @@ const COLORS = [
 ];
 
 const Inventory = ({ testData = mockData }) => {
-  const data = testData || mockData;
-  const totalValue = data.reduce((acc, item) => acc + item.value, 0);
+  const data = testData;
 
   if (!data) {
     return (
@@ -40,6 +39,8 @@ const Inventory = ({ testData = mockData }) => {
       </div>
     );
   }
+
+  const totalValue = data.reduce((acc, item) => acc + item.value, 0);
 
   return (
     <div className="inventory" data-testid="inventory">
